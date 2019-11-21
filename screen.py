@@ -11,7 +11,7 @@ class Screen(Module):
     # Returns true if this screen is the current screen
     # or if there is no current and this is the default.
     def isActive(self):
-        screen = self.getCurrentScreen()
+        screen = self.app.getCurrentScreen()
         
         # No screen, return if this is the default
         if screen == None:

@@ -13,5 +13,5 @@ class StartScreen(Screen):
         
     def keyPressed(self):
         if keyCode == 10:
-            gameScreen = self.getScreen('game')
-            self.setCurrentScreen(gameScreen)
+            gameScreen = self.app.getScreen('game')
+            self.app.setCurrentScreen(gameScreen)
