@@ -1,5 +1,7 @@
-from game import Game
+from start_screen import StartScreen
+from game_screen import GameScreen
 
 modules = [
-    [ Game, { 'playerCount': 4, 'direction': True } ]
+    [ StartScreen, {  } ],
+    [ GameScreen, { 'playerCount': 4, 'direction': True } ]
 ]

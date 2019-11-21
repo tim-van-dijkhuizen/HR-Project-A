@@ -1,5 +1,16 @@
 class Module:
 
+    # Screen management functions from main file
+    getScreenFunction = None
+    getCurrentScreenFunction = None
+    setCurrentScreenFunction = None
+
+    # Init
+    def __init__(self, getScreenFunction, getCurrentScreenFunction, setCurrentScreenFunction):
+        self.getScreenFunction = getScreenFunction
+        self.getCurrentScreenFunction = getCurrentScreenFunction
+        self.setCurrentScreenFunction = setCurrentScreenFunction
+
     # The parent module of this module.
     # This attribute will be set automatically.
     parent = None
@@ -23,7 +34,18 @@ class Module:
         
         # Return own active state
         return self.isActive()
-            
+    
+    # Get a screen by its hand;e
+    def getScreen(self, handle):
+        return self.getScreenFunction(handle)
+    
+    # Returns the currently active screen
+    def getCurrentScreen(self):
+        return self.getCurrentScreenFunction()
+    
+    # Sets the currently active screen
+    def setCurrentScreen(self, screen):
+        return self.setCurrentScreenFunction(screen)
     
     # Optional functions
     # ==========================================================

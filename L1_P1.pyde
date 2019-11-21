@@ -1,4 +1,5 @@
 from modules import modules as moduleList
+from screen import Screen
 
 # Globals
 # ==========================================================
@@ -10,16 +11,39 @@ devMode = True
 # All registered module objects
 modules = []
 
+# All registered screens handle -> object
+screens = {}
+
+# Current screen
+currentScreen = None
+
 # Functions
 # ==========================================================
 
+# Returns a Screen by its handle
+def getScreen(handle):
+    return screens[handle]
+
+# Returns the currently active screen
+def getCurrentScreen():
+    return currentScreen
+        
+# Switches to a different screen
+def setCurrentScreen(screen):
+    global currentScreen
+    currentScreen = screen
+
 # Registers a module and its sub-modules
 def registerModule(module, config):
-    instance = module()
+    instance = module(getScreen, getCurrentScreen, setCurrentScreen)
     
     # Register module
     modules.append(instance)
     instance.init(config)
+    
+    # Add to screens if its a Screen
+    if isinstance(instance, Screen):
+        screens[instance.getHandle()] = instance
 
     # Register sub-modules
     for subModule in instance.getSubModules():
@@ -29,12 +53,13 @@ def registerModule(module, config):
     # Print message if devMode is enabled
     if devMode:
         print('Registered module: ' + str(instance))
+    
 
 # Program
 # ==========================================================
 
 def setup():
-    global modules
+    global modules, activeScreen
     
     # Set app settings
     size(500, 500)

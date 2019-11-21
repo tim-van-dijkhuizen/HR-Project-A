@@ -1,14 +1,15 @@
-from module import Module
+from screen import Screen
 from score import Score
 
-class Game(Module):
+class GameScreen(Screen):
+        
+    def getHandle(self):
+        return 'game'
         
     def draw(self):
+        background(0, 255, 0)
         fill(11, 60, 73)
         text('playerCount: ' + str(self.playerCount), 15, 15)
-        
-    def isActive(self):
-        return True
     
     def getSubModules(self):
         return [
