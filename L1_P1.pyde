@@ -3,19 +3,19 @@ from modules import modules as moduleList
 
 app = None
 
-# Program
+# Bootstrap
 # ==========================================================
 
 def setup():
     global app
     
-    # Set app settings
+    # Configure program
     size(500, 500)
     
-    # Register our app
+    # Create app
     app = App({ 'devMode': True })
     
-    # Register modules
+    # Register modules inside App
     for module in moduleList:
         app.registerModule(module[0], module[1])
     
