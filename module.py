@@ -35,7 +35,7 @@ class Module:
         # Return own active state
         return self.isActive()
     
-    # Get a screen by its hand;e
+    # Get a screen by its handle
     def getScreen(self, handle):
         return self.getScreenFunction(handle)
     

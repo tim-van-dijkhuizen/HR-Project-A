@@ -11,7 +11,7 @@ devMode = True
 # All registered module objects
 modules = []
 
-# All registered screens handle -> object
+# All registered screens handle -> instance
 screens = {}
 
 # Current screen
@@ -28,7 +28,7 @@ def getScreen(handle):
 def getCurrentScreen():
     return currentScreen
         
-# Switches to a different screen
+# Sets the current screen
 def setCurrentScreen(screen):
     global currentScreen
     currentScreen = screen
