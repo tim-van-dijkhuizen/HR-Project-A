@@ -20,8 +20,6 @@ def setup():
         app.registerModule(module[0], module[1])
     
 def draw():
-    background(255, 253, 253)
-    
     for module in app.modules:
         if module.getIsActive(): module.draw()
     

@@ -10,6 +10,9 @@ class StartScreen(Screen):
         
     def draw(self):
         background(0, 0, 255)
+        fill(11, 60, 73)
+        
+        text('Press enter to start', 100, 100)
         
     def keyPressed(self):
         if keyCode == 10:
