@@ -2,6 +2,10 @@ from module import Module
 
 class Button(Module):
     
+    # Handle of this button module
+    handle = None
+    
+    # Button properties
     x = None
     y = None
     width = None
@@ -31,5 +35,8 @@ class Button(Module):
     # Returns whether the mouse is colliding with the object
     def collidesWith(self, objectX, objectY, objectWidth, objectHeight):
         return objectX < mouseX < objectX + objectWidth and objectY < mouseY < objectY + objectHeight
+    
+    def getHandle(self):
+        return self.handle
         
         

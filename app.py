@@ -12,9 +12,7 @@ class App(Component):
     
     # All registered module objects
     modules = []
-    
-    # All registered screens handle -> instance
-    screens = {}
+    moduleMap = {}
     
     # Current screen
     currentScreen = None
@@ -22,9 +20,19 @@ class App(Component):
     # Functions
     # ==========================================================
     
+    # Returns a Module by its handle
+    def getModule(self, handle):
+        return self.moduleMap[handle]
+    
     # Returns a Screen by its handle
     def getScreen(self, handle):
-        return self.screens[handle]
+        screen = self.getModule(handle)
+        
+        # Return if its actually a screen
+        if isinstance(screen, Screen):
+            return screen
+        
+        return None
     
     # Returns the currently active screen
     def getCurrentScreen(self):
@@ -43,9 +51,9 @@ class App(Component):
         instance = module(config)
         self.modules.append(instance)
         
-        # Add to screens if its a Screen
-        if isinstance(instance, Screen):
-            self.screens[instance.getHandle()] = instance
+        # Add module to the map if it has a handle
+        if instance.getHandle() != None:
+            self.moduleMap[instance.getHandle()] = instance
     
         # Register sub-modules
         for subModule in instance.getSubModules():

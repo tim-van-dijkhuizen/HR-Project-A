@@ -24,6 +24,8 @@ class Module(Component):
     # Optional functions
     # ==========================================================
     
+    def getHandle(self): return None
+    
     # Override this to decide whether the module is active.
     # Disabled modules won't be visible/interactive.
     def isActive(self): return True

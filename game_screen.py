@@ -39,4 +39,5 @@ class GameScreen(Screen):
         ]
         
     def printTest(self):
-        print('test')
+        scoreModule = self.app.getModule('gameCounter')
+        print('test: ' + str(scoreModule.counter))
