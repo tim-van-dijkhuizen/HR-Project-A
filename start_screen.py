@@ -45,7 +45,7 @@ class StartScreen(Screen):
     def getSubModules(self):
         playerManager = self.app.getModule('playerManager')
         
-        testButton = [Button, {
+        testButton1 = [Button, {
             'x': 600,
             'y': 200,
             'width': 250,
@@ -56,7 +56,7 @@ class StartScreen(Screen):
             'callback': playerManager.updateList
         }]
         
-        team2Button = [Button, {
+        testButton2 = [Button, {
             'x': 300,
             'y': 200,
             'width': 120,
@@ -78,7 +78,7 @@ class StartScreen(Screen):
             'callback': self.testButtonAction2
         }]
    
-        gamemanualButton = [Button, {
+        testButton4 = [Button, {
             'x': 475,
             'y': 400,
             'width': 250,
@@ -90,8 +90,9 @@ class StartScreen(Screen):
         }]
    
         return [
-            team3Button,
-            team2Button,
-            gamemanualButton
+            testButton1,
+            testButton2,
+            testButton3,
+            testButton4
         
         ]
