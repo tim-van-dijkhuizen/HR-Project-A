@@ -12,8 +12,13 @@ class StartScreen(Screen):
     def draw(self):
         background(0, 0, 255)
         fill(11, 60, 73)
+        textSize(50);
         
-        text('Press enter to start', 100, 100)
+        text('Love it!', 600, 100)
+        
+        textSize(25);
+        text('Kies het aantal teams', 600, 180)
+    
         
     def keyPressed(self):
         if keyCode == 10:
@@ -21,50 +26,39 @@ class StartScreen(Screen):
             self.app.setCurrentScreen(gameScreen)
             
     def getSubModules(self):
-        testButton = [Button, {
-            'x': 600,
+        team3Button = [Button, {
+            'x': 650,
             'y': 200,
-            'width': 120,
+            'width': 250,
             'height': 100, 
             'color': [242, 84, 91],
-            'text': '3 Teams',
+            'text': '3 teams',
             'textColor': [11, 60, 73],
         }]
         
-        testButton2 = [Button, {
-            'x': 400,
+        team2Button = [Button, {
+            'x': 300,
             'y': 200,
-            'width': 120,
+            'width': 250,
             'height': 100, 
             'color': [242, 84, 91],
             'text': '2 Teams',
             'textColor': [11, 60, 73],
         }]
-        
-        testButton3 = [Button, {
-            'x': 650,
-            'y': 400,
-            'width': 250,
-            'height': 100, 
-            'color': [242, 84, 91],
-            'text': 'Met de klok mee',
-            'textColor': [11, 60, 73],
-        }]
    
-        testButton4 = [Button, {
-            'x': 350,
+        gamemanualButton = [Button, {
+            'x': 475,
             'y': 400,
             'width': 250,
             'height': 100, 
             'color': [242, 84, 91],
-            'text': 'Tegen de klok in',
+            'text': 'Game manual',
             'textColor': [11, 60, 73],
         }]
    
         return [
-            testButton,
-            testButton2,
-            testButton3,
-            testButton4
+            team3Button,
+            team2Button,
+            gamemanualButton
         
         ]
