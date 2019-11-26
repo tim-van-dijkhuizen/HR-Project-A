@@ -23,8 +23,8 @@ class GameScreen(Screen):
     
     def getSubModules(self):
         testButton = [Button, {
-            'x': 200,
-            'y': 200,
+            'x': 50,
+            'y': 100,
             'width': 90,
             'height': 50, 
             'color': [242, 84, 91],
@@ -34,8 +34,8 @@ class GameScreen(Screen):
         }]
         
         testButton2 = [Button, {
-            'x': 400,
-            'y': 400,
+            'x': 200,
+            'y': 100,
             'width': 90,
             'height': 50, 
             'color': [242, 84, 91],
@@ -44,10 +44,22 @@ class GameScreen(Screen):
             'callback': self.printTest
         }]
         
+        testButton3 = [Button, {
+            'x': 350,
+            'y': 100,
+            'width': 90,
+            'height': 50, 
+            'color': [242, 84, 91],
+            'text': 'Test knop 3',
+            'textColor': [11, 60, 73],
+            'callback': self.printTest
+        }]
+        
         return [
             [ Score, {} ],
             testButton,
-            testButton2
+            testButton2,
+            testButton3
         ]
         
     def printTest(self):

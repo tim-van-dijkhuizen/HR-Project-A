@@ -10,7 +10,7 @@ def setup():
     global app
     
     # Configure program
-    size(500, 500)
+    size(1200, 1200)
     
     # Create app
     app = App({ 'devMode': True })
