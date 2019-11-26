@@ -29,7 +29,7 @@ class Button(Module):
         text(self.text, self.x + self.width / 2, self.y + self.height / 2 + self.height / 12)
         
     def mousePressed(self):
-        if self.collidesWith(self.x, self.y, self.width, self.height):
+        if self.collidesWith(self.x, self.y, self.width, self.height) and self.callback != None:
             self.callback()
         
     # Returns whether the mouse is colliding with the object
