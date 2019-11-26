@@ -6,26 +6,25 @@ class Button(Module):
     handle = None
     
     # Button properties
-    x = None
-    y = None
-    width = None
-    height = None
-    color = None
-    text = None
-    textColor = None
+    x = 0
+    y = 0
+    width = 0
+    height = 0
+    color = [255, 255, 255]
+    text = ''
+    textSize = 15
+    textColor = [0, 0, 0]
     callback = None
         
-    def draw(self):
-        textSize(15);
-        textAlign(CENTER);
-        
+    def draw(self):        
         # Create rectangle
         fill(self.color[0], self.color[1], self.color[2])
         rect(self.x, self.y, self.width, self.height)
         
         # Create text
+        textSize(self.textSize);
+        textAlign(CENTER);
         fill(self.textColor[0], self.textColor[1], self.textColor[2])
-        textSize(self.width / 6);
         text(self.text, self.x + self.width / 2, self.y + self.height / 2 + self.height / 12)
         
     def mousePressed(self):
