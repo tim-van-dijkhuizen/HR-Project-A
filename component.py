@@ -2,7 +2,7 @@ class Component:
 
     # Sets all attributes from the config
     # and calls setup().
-    def __init__(self, config):
+    def __init__(self, config = {}):
         for attribute, value in config.items():
             setattr(self, attribute, value)
     

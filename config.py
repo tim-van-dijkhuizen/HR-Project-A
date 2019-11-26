@@ -1,3 +1,0 @@
-defaults = {
-    'maxPlayers': 4
-}

@@ -20,7 +20,26 @@ class StartScreen(Screen):
             gameScreen = self.app.getScreen('game')
             self.app.setCurrentScreen(gameScreen)
             
+    def testButtonAction1(self):
+        playerManager = self.app.getModule('playerManager')
+        playerManager.maxPlayers = 6
+        playerManager.updateList()
+        
+    def testButtonAction2(self):
+        playerManager = self.app.getModule('playerManager')
+        playerManager.maxPlayers = 4
+        playerManager.updateList()
+        
+    def testButtonAction3(self):
+        playerManager = self.app.getModule('playerManager')
+        player = playerManager.getPlayer(1)
+        
+        player.name = 'Tim'
+        print(player, player.name)
+            
     def getSubModules(self):
+        playerManager = self.app.getModule('playerManager')
+        
         testButton = [Button, {
             'x': 600,
             'y': 200,
@@ -29,6 +48,7 @@ class StartScreen(Screen):
             'color': [242, 84, 91],
             'text': '3 Teams',
             'textColor': [11, 60, 73],
+            'callback': playerManager.updateList
         }]
         
         testButton2 = [Button, {
@@ -39,6 +59,7 @@ class StartScreen(Screen):
             'color': [242, 84, 91],
             'text': '2 Teams',
             'textColor': [11, 60, 73],
+            'callback': self.testButtonAction1
         }]
         
         testButton3 = [Button, {
@@ -49,6 +70,7 @@ class StartScreen(Screen):
             'color': [242, 84, 91],
             'text': 'Met de klok mee',
             'textColor': [11, 60, 73],
+            'callback': self.testButtonAction2
         }]
    
         testButton4 = [Button, {
@@ -59,6 +81,7 @@ class StartScreen(Screen):
             'color': [242, 84, 91],
             'text': 'Tegen de klok in',
             'textColor': [11, 60, 73],
+            'callback': self.testButtonAction3
         }]
    
         return [

@@ -22,7 +22,10 @@ class App(Component):
     
     # Returns a Module by its handle
     def getModule(self, handle):
-        return self.moduleMap[handle]
+        try:
+            return self.moduleMap[handle]
+        except KeyError:
+            return None
     
     # Returns a Screen by its handle
     def getScreen(self, handle):
