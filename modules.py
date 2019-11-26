@@ -1,4 +1,3 @@
-from config_manager import ConfigManager
 from player_manager import PlayerManager
 from start_screen import StartScreen
 from game_screen import GameScreen
