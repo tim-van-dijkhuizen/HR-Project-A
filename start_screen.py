@@ -27,13 +27,11 @@ class StartScreen(Screen):
             
     def testButtonAction1(self):
         playerManager = self.app.getModule('playerManager')
-        playerManager.maxPlayers = 6
-        playerManager.updateList()
+        playerManager.setMaxPlayers(6)
         
     def testButtonAction2(self):
         playerManager = self.app.getModule('playerManager')
-        playerManager.maxPlayers = 4
-        playerManager.updateList()
+        playerManager.setMaxPlayers(4)
         
     def testButtonAction3(self):
         playerManager = self.app.getModule('playerManager')

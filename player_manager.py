@@ -12,6 +12,10 @@ class PlayerManager(Module):
     def setup(self):
         self.updateList()
     
+    def setMaxPlayers(self, maxPlayers):
+        self.maxPlayers = maxPlayers
+        self.updateList()
+    
     def updateList(self):
         currentPlayers = len(self.players)
         
