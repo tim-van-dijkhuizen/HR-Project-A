@@ -1,0 +1,3 @@
+defaults = {
+    'maxPlayers': 4
+}
