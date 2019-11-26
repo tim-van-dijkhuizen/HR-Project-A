@@ -29,6 +29,7 @@ class GameScreen(Screen):
             'height': 50, 
             'color': [242, 84, 91],
             'text': 'Test knop',
+            'textSize': 10,
             'textColor': [11, 60, 73],
             'callback': self.printTest
         }]
