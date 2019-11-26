@@ -11,10 +11,10 @@ class GameScreen(Screen):
         background(0, 255, 0)
         fill(11, 60, 73)
         
-        textSize(15);
+        textSize(50);
         textAlign(LEFT);
         
-        text('Press space to quit', 100, 100)
+        text('Spelers', 475, 100)
     
     def keyPressed(self):
         if keyCode == 32:
@@ -56,11 +56,23 @@ class GameScreen(Screen):
             'callback': self.printTest
         }]
         
+        testButton4 = [Button, {
+            'x': 600,
+            'y': 100,
+            'width': 90,
+            'height': 50, 
+            'color': [242, 84, 91],
+            'text': 'Test knop 2',
+            'textColor': [11, 60, 73],
+            'callback': self.printTest
+        }]
+        
         return [
             [ Score, {} ],
             testButton,
             testButton2,
-            testButton3
+            testButton3,
+            testButton4
         ]
         
     def printTest(self):
