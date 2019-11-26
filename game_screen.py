@@ -33,9 +33,21 @@ class GameScreen(Screen):
             'callback': self.printTest
         }]
         
+        testButton2 = [Button, {
+            'x': 400,
+            'y': 400,
+            'width': 90,
+            'height': 50, 
+            'color': [242, 84, 91],
+            'text': 'Test knop 2',
+            'textColor': [11, 60, 73],
+            'callback': self.printTest
+        }]
+        
         return [
             [ Score, {} ],
-            testButton   
+            testButton,
+            testButton2
         ]
         
     def printTest(self):
