@@ -18,6 +18,9 @@ class StartScreen(Screen):
         
         textSize(25);
         text('Kies het aantal teams', 600, 180)
+        
+        textSize(25);
+        text('Kies het aantal spelers', 600, 380)
     
         
     def keyPressed(self):
@@ -57,7 +60,7 @@ class StartScreen(Screen):
         testButton2 = [Button, {
             'x': 300,
             'y': 200,
-            'width': 120,
+            'width': 250,
             'height': 100, 
             'color': [242, 84, 91],
             'text': '2 Teams',
@@ -66,31 +69,67 @@ class StartScreen(Screen):
         }]
         
         testButton3 = [Button, {
-            'x': 650,
+            'x': 600,
             'y': 400,
             'width': 250,
             'height': 100, 
             'color': [242, 84, 91],
-            'text': '2 Teams',
+            'text': 'Naam',
             'textColor': [11, 60, 73],
-            'callback': self.testButtonAction2
+            'callback': self.testButtonAction1
         }]
    
         testButton4 = [Button, {
-            'x': 475,
+            'x': 300,
             'y': 400,
             'width': 250,
             'height': 100, 
             'color': [242, 84, 91],
-            'text': 'Game manual',
+            'text': 'Naam',
             'textColor': [11, 60, 73],
-            'callback': self.testButtonAction3
+            'callback': self.testButtonAction1
         }]
    
+        testButton5 = [Button, {
+            'x': 300,
+            'y': 600,
+            'width': 250,
+            'height': 100, 
+            'color': [242, 84, 91],
+            'text': 'Naam',
+            'textColor': [11, 60, 73],
+            'callback': self.testButtonAction1
+        }]
+     
+        testButton6 = [Button, {
+            'x': 600,
+            'y': 600,
+            'width': 250,
+            'height': 100, 
+            'color': [242, 84, 91],
+            'text': 'Naam',
+            'textColor': [11, 60, 73],
+            'callback': self.testButtonAction1
+        }]
+     
+        testButton7 = [Button, {
+            'x': 450,
+            'y': 800,
+            'width': 250,
+            'height': 100, 
+            'color': [242, 84, 91],
+            'text': 'Start',
+            'textColor': [11, 60, 73],
+            'callback': self.testButtonAction1
+        }]
+     
         return [
             testButton1,
             testButton2,
             testButton3,
-            testButton4
+            testButton4,
+            testButton5,
+            testButton6,
+            testButton7
         
         ]
