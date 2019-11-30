@@ -63,8 +63,12 @@ class App(Component):
             subModule[1]['parent'] = instance
             self.registerModule(subModule[0], subModule[1])
         
+        # Sort module list
+        self.modules.sort(key = lambda x: x.getPriority(), reverse = False)
+        
         # Print message if devMode is enabled
         if self.devMode:
             print('Registered module: ' + str(instance))
+            print('All modules:', self.modules)
             
         return instance
