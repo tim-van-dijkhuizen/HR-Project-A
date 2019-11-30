@@ -1,6 +1,7 @@
 from app import App
 from modules import modules as moduleList
 
+# App instance
 app = None
 
 # Bootstrap
@@ -10,6 +11,7 @@ def setup():
     global app
     
     # Configure program
+    fullScreen()
     
     # Create app
     app = App({ 'devMode': True })

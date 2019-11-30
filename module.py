@@ -5,6 +5,13 @@ class Module(Component):
     # Main app object
     app = None
 
+    # Handle of this module
+    handle = None
+    
+    # Priority of the module
+    # Higher priorities will be triggered later
+    priority = 1
+
     # The parent module of this module.
     # This attribute will be set automatically.
     parent = None
@@ -24,7 +31,8 @@ class Module(Component):
     # Optional functions
     # ==========================================================
     
-    def getHandle(self): return None
+    def getHandle(self): return self.handle
+    def getPriority(self): return self.priority
     
     # Override this to decide whether the module is active.
     # Disabled modules won't be visible/interactive.
