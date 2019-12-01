@@ -44,30 +44,8 @@ class StartScreen(Screen):
         playerManager = self.app.getModule('playerManager')
         
         testButton1 = [Button, {
-            'x': 600,
-            'y': 200,
-            'width': 250,
-            'height': 100, 
-            'color': [242, 84, 91],
-            'text': '3 teams',
-            'textColor': [11, 60, 73],
-            'callback': playerManager.updateList
-        }]
-        
-        testButton2 = [Button, {
             'x': 300,
-            'y': 200,
-            'width': 120,
-            'height': 100, 
-            'color': [242, 84, 91],
-            'text': '2 Teams',
-            'textColor': [11, 60, 73],
-            'callback': self.testButtonAction1
-        }]
-        
-        testButton3 = [Button, {
-            'x': 650,
-            'y': 400,
+            'y': 250,
             'width': 250,
             'height': 100, 
             'color': [242, 84, 91],
@@ -75,11 +53,22 @@ class StartScreen(Screen):
             'textColor': [11, 60, 73],
             'callback': self.testButtonAction2
         }]
-   
-        testButton4 = [Button, {
-            'x': 475,
-            'y': 400,
+        
+        testButton2 = [Button, {
+            'x': 650,
+            'y': 250,
             'width': 250,
+            'height': 100, 
+            'color': [242, 84, 91],
+            'text': '3 Teams',
+            'textColor': [11, 60, 73],
+            'callback': self.testButtonAction1
+        }]
+   
+        testButton3 = [Button, {
+            'x': 400,
+            'y': 400,
+            'width': 400,
             'height': 100, 
             'color': [242, 84, 91],
             'text': 'Game manual',
@@ -90,7 +79,6 @@ class StartScreen(Screen):
         return [
             testButton1,
             testButton2,
-            testButton3,
-            testButton4
+            testButton3
         
         ]
