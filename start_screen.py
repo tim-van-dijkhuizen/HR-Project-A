@@ -14,13 +14,13 @@ class StartScreen(Screen):
         fill(11, 60, 73)
         textSize(50);
         
-        text('Love it!', 950, 100)
+        text('Love It!', width/2, height/8.5);
         
         textSize(25);
-        text('Kies het aantal teams', 950, 180)
+        text('Kies het aantal teams', width/2, height/6);
         
         textSize(25);
-        text('Kies het aantal spelers', 950, 380)
+        text('Kies het aantal spelers', width/2, height/2.8);
     
         
     def keyPressed(self):
@@ -47,7 +47,7 @@ class StartScreen(Screen):
         playerManager = self.app.getModule('playerManager')
         
         testButton1 = [Button, {
-            'x': width / 2 + 20,
+            'x': width / 2 + 10,
             'y': 200,
             'width': 250,
             'height': 100, 
@@ -58,7 +58,7 @@ class StartScreen(Screen):
         }]
         
         testButton2 = [Button, {
-            'x': width / 2 - (280),
+            'x': width / 2 - (260),
             'y': 200,
             'width': 250,
             'height': 100, 
@@ -69,7 +69,7 @@ class StartScreen(Screen):
         }]
         
         testButton3 = [Button, {
-            'x': 1000,
+            'x': width / 2 + 10,
             'y': 400,
             'width': 250,
             'height': 100, 
@@ -80,7 +80,7 @@ class StartScreen(Screen):
         }]
    
         testButton4 = [Button, {
-            'x': 700,
+            'x': width / 2 - (260),
             'y': 400,
             'width': 250,
             'height': 100, 
@@ -91,7 +91,7 @@ class StartScreen(Screen):
         }]
    
         testButton5 = [Button, {
-            'x': 1000,
+            'x': width / 2 + 10,
             'y': 600,
             'width': 250,
             'height': 100, 
@@ -102,7 +102,7 @@ class StartScreen(Screen):
         }]
      
         testButton6 = [Button, {
-            'x': 700,
+            'x': width / 2 - (260),
             'y': 600,
             'width': 250,
             'height': 100, 
@@ -113,7 +113,7 @@ class StartScreen(Screen):
         }]
      
         testButton7 = [Button, {
-            'x': 850,
+            'x': width / 2 - 125,
             'y': 800,
             'width': 250,
             'height': 100, 
