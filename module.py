@@ -42,6 +42,9 @@ class Module(Component):
     # Keep in mind that these will be inactive if their parent is.
     def getSubModules(self): return []
     
+    # Called after all modules are loaded
+    def afterLoadModules(self): pass
+    
     # Called on draw
     def draw(self): pass
     
@@ -53,3 +56,7 @@ class Module(Component):
     
     # Called on keyReleased
     def keyReleased(self): pass
+    
+    # Called on mouseMoved
+    def mouseMoved(self): pass
+    

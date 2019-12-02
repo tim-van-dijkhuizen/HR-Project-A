@@ -19,6 +19,9 @@ def setup():
     # Register modules inside App
     for module in moduleList:
         app.registerModule(module[0], module[1])
+        
+    for module in app.modules:
+        module.afterLoadModules()
     
 def draw():
     for module in app.modules:
@@ -35,3 +38,7 @@ def keyPressed():
 def keyReleased():
     for module in app.modules: 
         if module.getIsActive(): module.keyReleased()
+        
+def mouseMoved():
+    for module in app.modules: 
+        if module.getIsActive(): module.mouseMoved()
