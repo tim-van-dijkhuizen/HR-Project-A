@@ -1,6 +1,5 @@
 from screen import Screen
 from button import Button
-from user_input import UserInput
 
 class StartScreen(Screen):
     
@@ -11,14 +10,17 @@ class StartScreen(Screen):
         return True
         
     def draw(self):
-        background(0, 0, 255)
+        background(112,238,255)
         fill(11, 60, 73)
         textSize(50);
         
-        text('Love it!', 600, 100)
+        text('Love it!', 650, 100)
         
         textSize(25);
-        text('Kies het aantal teams', 600, 180)
+        text('Kies het aantal teams', 650, 180)
+        
+        textSize(25);
+        text('Kies het aantal spelers', 650, 380)
     
         
     def keyPressed(self):
@@ -45,46 +47,89 @@ class StartScreen(Screen):
         playerManager = self.app.getModule('playerManager')
         
         testButton1 = [Button, {
-            'x': 300,
-            'y': 250,
+            'x': 675,
+            'y': 200,
             'width': 250,
             'height': 100, 
-            'color': [242, 84, 91],
+            'color': [255,74,113],
+            'text': '3 teams',
+            'textColor': [11, 60, 73],
+            'callback': self.testButtonAction1
+        }]
+        
+        testButton2 = [Button, {
+            'x': 400,
+            'y': 200,
+            'width': 250,
+            'height': 100, 
+            'color': [255,74,113],
             'text': '2 Teams',
             'textColor': [11, 60, 73],
             'callback': self.testButtonAction2
         }]
         
-        testButton2 = [Button, {
-            'x': 650,
-            'y': 250,
+        testButton3 = [Button, {
+            'x': 675,
+            'y': 400,
             'width': 250,
             'height': 100, 
-<<<<<<< Updated upstream
-            'color': [242, 84, 91],
-            'text': '3 Teams',
-=======
             'color': [255,74,113],
-            'text':'Naam',
->>>>>>> Stashed changes
+            'text': 'Naam',
             'textColor': [11, 60, 73],
             'callback': self.testButtonAction1
         }]
    
-        testButton3 = [Button, {
+        testButton4 = [Button, {
             'x': 400,
             'y': 400,
-            'width': 400,
+            'width': 250,
             'height': 100, 
-            'color': [242, 84, 91],
-            'text': 'Game manual',
+            'color': [255,74,113],
+            'text': 'Naam',
             'textColor': [11, 60, 73],
-            'callback': self.testButtonAction3
+            'callback': self.testButtonAction1
         }]
    
+        testButton5 = [Button, {
+            'x': 675,
+            'y': 600,
+            'width': 250,
+            'height': 100, 
+            'color': [255,74,113],
+            'text': 'Naam',
+            'textColor': [11, 60, 73],
+            'callback': self.testButtonAction1
+        }]
+     
+        testButton6 = [Button, {
+            'x': 400,
+            'y': 600,
+            'width': 250,
+            'height': 100, 
+            'color': [255,74,113],
+            'text': 'Naam',
+            'textColor': [11, 60, 73],
+            'callback': self.testButtonAction1
+        }]
+     
+        testButton7 = [Button, {
+            'x': 545,
+            'y': 800,
+            'width': 250,
+            'height': 100, 
+            'color': [255,74,113],
+            'text': 'START',
+            'textColor': [11, 60, 73],
+            'callback': self.testButtonAction1
+        }]
+     
         return [
             testButton1,
             testButton2,
-            testButton3
+            testButton3,
+            testButton4,
+            testButton5,
+            testButton6,
+            testButton7
         
         ]
