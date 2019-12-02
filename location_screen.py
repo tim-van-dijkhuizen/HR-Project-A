@@ -23,7 +23,7 @@ class LocationScreen(Screen):
         boardImagePath = 'board-players' + str(playerManager.maxPlayers) + '.png'
         
         # Load board image
-        self.boardImage = loadImage(boardImagePath)
+        #self.boardImage = loadImage(boardImagePath)
         self.boardX = width / 2 - (self.boardWidth / 2)
         self.boardY = height / 2 - (self.boardHeight / 2)
         
@@ -40,7 +40,7 @@ class LocationScreen(Screen):
         background(255, 74, 113)
         
         # Board    
-        image(self.boardImage, self.boardX, self.boardY, self.boardWidth, self.boardHeight)
+        #image(self.boardImage, self.boardX, self.boardY, self.boardWidth, self.boardHeight)
         
         # Current location
         fill(0, 0, 0)
