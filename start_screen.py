@@ -14,13 +14,13 @@ class StartScreen(Screen):
         fill(11, 60, 73)
         textSize(50);
         
-        text('Love it!', 600, 100)
+        text('Love it!', 950, 100)
         
         textSize(25);
-        text('Kies het aantal teams', 600, 180)
+        text('Kies het aantal teams', 950, 180)
         
         textSize(25);
-        text('Kies het aantal spelers', 600, 380)
+        text('Kies het aantal spelers', 950, 380)
     
         
     def keyPressed(self):
@@ -47,29 +47,29 @@ class StartScreen(Screen):
         playerManager = self.app.getModule('playerManager')
         
         testButton1 = [Button, {
-            'x': 600,
+            'x': 975,
             'y': 200,
             'width': 250,
             'height': 100, 
             'color': [255,74,113],
             'text': '3 teams',
             'textColor': [11, 60, 73],
-            'callback': playerManager.updateList
+            'callback': self.testButtonAction1
         }]
         
         testButton2 = [Button, {
-            'x': 300,
+            'x': 700,
             'y': 200,
             'width': 250,
             'height': 100, 
             'color': [255,74,113],
             'text': '2 Teams',
             'textColor': [11, 60, 73],
-            'callback': self.testButtonAction1
+            'callback': self.testButtonAction2
         }]
         
         testButton3 = [Button, {
-            'x': 600,
+            'x': 975,
             'y': 400,
             'width': 250,
             'height': 100, 
@@ -80,7 +80,7 @@ class StartScreen(Screen):
         }]
    
         testButton4 = [Button, {
-            'x': 300,
+            'x': 700,
             'y': 400,
             'width': 250,
             'height': 100, 
@@ -91,7 +91,7 @@ class StartScreen(Screen):
         }]
    
         testButton5 = [Button, {
-            'x': 300,
+            'x': 975,
             'y': 600,
             'width': 250,
             'height': 100, 
@@ -102,7 +102,7 @@ class StartScreen(Screen):
         }]
      
         testButton6 = [Button, {
-            'x': 600,
+            'x': 700,
             'y': 600,
             'width': 250,
             'height': 100, 
@@ -113,12 +113,12 @@ class StartScreen(Screen):
         }]
      
         testButton7 = [Button, {
-            'x': 450,
+            'x': 845,
             'y': 800,
             'width': 250,
             'height': 100, 
             'color': [255,74,113],
-            'text': 'Start',
+            'text': 'START',
             'textColor': [11, 60, 73],
             'callback': self.testButtonAction1
         }]
