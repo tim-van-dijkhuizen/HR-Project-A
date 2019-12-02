@@ -10,7 +10,7 @@ class StartScreen(Screen):
         return True
         
     def draw(self):
-        background(0, 0, 255)
+        background(112,238,255)
         fill(11, 60, 73)
         textSize(50);
         
@@ -51,7 +51,7 @@ class StartScreen(Screen):
             'y': 200,
             'width': 250,
             'height': 100, 
-            'color': [242, 84, 91],
+            'color': [255,74,113],
             'text': '3 teams',
             'textColor': [11, 60, 73],
             'callback': playerManager.updateList
@@ -62,7 +62,7 @@ class StartScreen(Screen):
             'y': 200,
             'width': 250,
             'height': 100, 
-            'color': [242, 84, 91],
+            'color': [255,74,113],
             'text': '2 Teams',
             'textColor': [11, 60, 73],
             'callback': self.testButtonAction1
@@ -73,7 +73,7 @@ class StartScreen(Screen):
             'y': 400,
             'width': 250,
             'height': 100, 
-            'color': [242, 84, 91],
+            'color': [255,74,113],
             'text': 'Naam',
             'textColor': [11, 60, 73],
             'callback': self.testButtonAction1
@@ -84,7 +84,7 @@ class StartScreen(Screen):
             'y': 400,
             'width': 250,
             'height': 100, 
-            'color': [242, 84, 91],
+            'color': [255,74,113],
             'text': 'Naam',
             'textColor': [11, 60, 73],
             'callback': self.testButtonAction1
@@ -95,7 +95,7 @@ class StartScreen(Screen):
             'y': 600,
             'width': 250,
             'height': 100, 
-            'color': [242, 84, 91],
+            'color': [255,74,113],
             'text': 'Naam',
             'textColor': [11, 60, 73],
             'callback': self.testButtonAction1
@@ -106,7 +106,7 @@ class StartScreen(Screen):
             'y': 600,
             'width': 250,
             'height': 100, 
-            'color': [242, 84, 91],
+            'color': [255,74,113],
             'text': 'Naam',
             'textColor': [11, 60, 73],
             'callback': self.testButtonAction1
@@ -117,7 +117,7 @@ class StartScreen(Screen):
             'y': 800,
             'width': 250,
             'height': 100, 
-            'color': [242, 84, 91],
+            'color': [255,74,113],
             'text': 'Start',
             'textColor': [11, 60, 73],
             'callback': self.testButtonAction1
