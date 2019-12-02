@@ -1,5 +1,6 @@
 from screen import Screen
 from button import Button
+from user_input import UserInput
 
 class StartScreen(Screen):
     
@@ -59,8 +60,13 @@ class StartScreen(Screen):
             'y': 250,
             'width': 250,
             'height': 100, 
+<<<<<<< Updated upstream
             'color': [242, 84, 91],
             'text': '3 Teams',
+=======
+            'color': [255,74,113],
+            'text':'Naam',
+>>>>>>> Stashed changes
             'textColor': [11, 60, 73],
             'callback': self.testButtonAction1
         }]
