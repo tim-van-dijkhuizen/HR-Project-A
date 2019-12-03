@@ -46,9 +46,10 @@ class StartScreen(Screen):
         self.app.setCurrentScreen(gameScreen)
                       
     def getSubModules(self):
+        modules = []
         playerManager = self.app.getModule('playerManager')
         
-        maxToFourButton = [SelectableButton, {
+        modules.append([SelectableButton, {
             'x': 100,
             'y': 150,
             'width': 250,
@@ -61,9 +62,9 @@ class StartScreen(Screen):
             'selectedColor': [229, 250, 2],
             'onSelect': self.setMaxToFour,
             'default': True
-        }]
+        }])
         
-        maxToSixButton = [SelectableButton, {
+        modules.append([SelectableButton, {
             'x': 400,
             'y': 150,
             'width': 250,
@@ -75,22 +76,9 @@ class StartScreen(Screen):
             'group': 'maxPlayers',
             'selectedColor': [229, 250, 2],
             'onSelect': self.setMaxToSix
-        }]
-        
-        testButton = [SelectableButton, {
-            'x': 100,
-            'y': 400,
-            'width': 250,
-            'height': 100, 
-            'textSize':(23), 
-            'color': [255,74,113],
-            'text': 'Test',
-            'textColor': [11, 60, 73],
-            'group': 'test',
-            'selectedColor': [229, 250, 2]
-        }]
+        }])
      
-        startButton = [Button, {
+        modules.append([Button, {
             'x': 250,
             'y': 800,
             'width': 250,
@@ -100,11 +88,10 @@ class StartScreen(Screen):
             'text': 'START',
             'textColor': [11, 60, 73],
             'callback': self.startGame
-        }]
-     
-        return [
-            maxToFourButton,
-            maxToSixButton,
-            startButton,
-            [ PlayerButton, { 'x': 100, 'y': 400, 'player': playerManager.getPlayer(0) } ]
-        ]
+        }])
+        
+        for player in playerManager.players:
+            modules.append([ PlayerButton, { 'x': 100, 'y': 400, 'player': player } ])
+            
+        return modules
+    
