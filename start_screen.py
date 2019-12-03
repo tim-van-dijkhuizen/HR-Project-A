@@ -19,16 +19,16 @@ class StartScreen(Screen):
         background(112,238,255)
         fill(11, 60, 73)
         
-        textSize(50);
-        text('Love It!', width / 6, 100);
         
-        textSize(25);
-        text('Kies het aantal teams', width / 6, 200);
+        textSize(25)
+        textAlign(LEFT)
+        text('Kies het aantal teams', 100, 100)
         
-        textSize(25);
-        text('Configureer de spelers', width/6, 450);
+        textSize(25)
+        textAlign(LEFT)
+        text('Configureer de spelers', 100, 350)
         
-        image(img, width/1.8, 200);
+        image(img, 900, 200)
             
     def setMaxToFour(self):
         playerManager = self.app.getModule('playerManager')
@@ -46,8 +46,8 @@ class StartScreen(Screen):
         playerManager = self.app.getModule('playerManager')
         
         maxToFourButton = [SelectableButton, {
-            'x': width / 6 - (260),
-            'y': 250,
+            'x': 100,
+            'y': 150,
             'width': 250,
             'height': 100,
             'textSize':(23),  
@@ -61,8 +61,8 @@ class StartScreen(Screen):
         }]
         
         maxToSixButton = [SelectableButton, {
-            'x': width / 5 + 10,
-            'y': 250,
+            'x': 400,
+            'y': 150,
             'width': 250,
             'height': 100, 
             'textSize':(23), 
@@ -75,8 +75,8 @@ class StartScreen(Screen):
         }]
         
         testButton = [SelectableButton, {
-            'x': width / 5 + 10,
-            'y': 500,
+            'x': 100,
+            'y': 400,
             'width': 250,
             'height': 100, 
             'textSize':(23), 
@@ -88,7 +88,7 @@ class StartScreen(Screen):
         }]
      
         startButton = [Button, {
-            'x': width / 5.5 - 125,
+            'x': 250,
             'y': 800,
             'width': 250,
             'height': 100,
