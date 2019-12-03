@@ -59,13 +59,9 @@ class SelectableButton(Button):
             self.onDeselect()
     
     def callback(self):
-        print(self._siblings)
-        
         if len(self._siblings) > 0:
             self.select()
-            print('test 1')
         else:
-            print('test 2')
             if self.selected:
                 self.deselect()
             else:
