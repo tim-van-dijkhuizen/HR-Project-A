@@ -1,6 +1,7 @@
 from screen import Screen
 from button import Button
 from selectable_button import SelectableButton
+from player_button import PlayerButton
 
 class StartScreen(Screen):
     
@@ -22,11 +23,11 @@ class StartScreen(Screen):
         
         textSize(25)
         textAlign(LEFT)
-        text('Kies het aantal teams', 100, 100)
+        text('Teams', 100, 100)
         
         textSize(25)
         textAlign(LEFT)
-        text('Configureer de spelers', 100, 350)
+        text('Spelers', 100, 350)
         
         image(img, 900, 200)
             
@@ -73,19 +74,6 @@ class StartScreen(Screen):
             'selectedColor': [255, 22, 84],
             'onSelect': self.setMaxToSix
         }]
-        
-        testButton = [SelectableButton, {
-            'x': 100,
-            'y': 400,
-            'width': 250,
-            'height': 100, 
-            'textSize':(23), 
-            'color': [255,74,113],
-            'text': 'Test',
-            'textColor': [11, 60, 73],
-            'group': 'test',
-            'selectedColor': [255, 22, 84]
-        }]
      
         startButton = [Button, {
             'x': 250,
@@ -103,5 +91,5 @@ class StartScreen(Screen):
             maxToFourButton,
             maxToSixButton,
             startButton,
-            testButton
+            [ PlayerButton, { 'x': 100, 'y': 400, 'player': playerManager.getPlayer(0) } ]
         ]

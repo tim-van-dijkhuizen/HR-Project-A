@@ -1,20 +1,58 @@
-from clickable import Clickable
+from module import Module
+from button import Button
+from selectable_button import SelectableButton
 
-class PlayerButton(Clickable):
+class PlayerButton(Module):
 
-    # Button properties
-    color = [255, 255, 255]
-    text = ''
-    textSize = 15
-    textColor = [0, 0, 0]
+    # Constants
+    width = 250
+    height = 100
+
+    # Position
+    x = 0
+    y = 0
+
+    # The player which this button belongs to
+    player = None
+    
+    def setup(self):
+        if self.player == None:
+            raise ValueError('player must be set')
         
     def draw(self):        
-        # Create rectangle
-        fill(self.color[0], self.color[1], self.color[2])
+        fill(255, 74, 113)
         rect(self.x, self.y, self.width, self.height)
         
-        # Create text
-        textSize(self.textSize);
-        textAlign(CENTER);
-        fill(self.textColor[0], self.textColor[1], self.textColor[2])
-        text(self.text, self.x + self.width / 2, self.y + self.height / 2 + self.height / 12)
+    def changeLocation(self):
+        locationScreen = self.app.getScreen('location')
+        
+        locationScreen.fromScreen = self.parent
+        locationScreen.player = self.player
+        self.app.setCurrentScreen(locationScreen)
+    
+    def getSubModules(self):
+        locationButton = [Button,  {
+            'x': self.x,
+            'y': self.y + self.height / 2,
+            'width': self.width / 2,
+            'height': self.height / 2,
+            'color': [255, 74, 113],
+            'text': 'Locatie',
+            'callback': self.changeLocation
+        }]
+        
+        botButton = [SelectableButton,  {
+            'x': self.x + self.width / 2,
+            'y': self.y + self.height / 2,
+            'width': self.width / 2,
+            'height': self.height / 2,
+            'color': [255, 74, 113],
+            'text': 'BOT',
+            'group': 'botSelect',
+            'selectedColor': [255, 22, 84]
+        }]
+        
+        return [
+            locationButton,
+            botButton
+        ]

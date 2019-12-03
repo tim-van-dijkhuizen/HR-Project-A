@@ -10,11 +10,6 @@ class Clickable(Module):
     callback = None
     
     _hovered = False
-    
-    def draw(self):
-        if self.app.devMode:
-            fill(0, 0, 0, 0.1)
-            rect(self.x, self.y, self.width, self.height)
 
     def mouseMoved(self):
         if utils.collidesWith(self.x, self.y, self.width, self.height):
@@ -27,6 +22,3 @@ class Clickable(Module):
     def mousePressed(self):
         if utils.collidesWith(self.x, self.y, self.width, self.height) and self.callback != None:
             self.callback()
-            
-            if self.app.devMode:
-                print('Clickable was clicked:', self)
