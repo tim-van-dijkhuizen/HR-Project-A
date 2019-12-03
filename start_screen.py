@@ -12,15 +12,12 @@ class StartScreen(Screen):
     def draw(self):
         background(112,238,255)
         fill(11, 60, 73)
-        textSize(50);
         
-        text('Love It!', width/2, height/8.5);
+        textSize(38);
+        text('Kies het aantal teams', width/3.6, height/6.2);
         
-        textSize(25);
-        text('Kies het aantal teams', width/2, height/6);
-        
-        textSize(25);
-        text('Kies het aantal spelers', width/2, height/2.8);
+        textSize(38);
+        text('Kies het aantal spelers', width/3.6, height/2.9);
     
         
     def keyPressed(self):
@@ -47,10 +44,11 @@ class StartScreen(Screen):
         playerManager = self.app.getModule('playerManager')
         
         testButton1 = [Button, {
-            'x': width / 2 + 10,
+            'x': width / 2 - (400),
             'y': 200,
             'width': 250,
-            'height': 100, 
+            'height': 100,
+            'textSize':(23), 
             'color': [255,74,113],
             'text': '3 teams',
             'textColor': [11, 60, 73],
@@ -58,10 +56,11 @@ class StartScreen(Screen):
         }]
         
         testButton2 = [Button, {
-            'x': width / 2 - (260),
+            'x': width / 2 - (700),
             'y': 200,
             'width': 250,
-            'height': 100, 
+            'height': 100,
+            'textSize':(23),  
             'color': [255,74,113],
             'text': '2 Teams',
             'textColor': [11, 60, 73],
@@ -69,10 +68,11 @@ class StartScreen(Screen):
         }]
         
         testButton3 = [Button, {
-            'x': width / 2 + 10,
+            'x': width / 2 - (400),
             'y': 400,
             'width': 250,
             'height': 100, 
+            'textSize':(23), 
             'color': [255,74,113],
             'text': 'Naam',
             'textColor': [11, 60, 73],
@@ -80,10 +80,11 @@ class StartScreen(Screen):
         }]
    
         testButton4 = [Button, {
-            'x': width / 2 - (260),
+            'x': width / 2 - (700),
             'y': 400,
             'width': 250,
             'height': 100, 
+            'textSize':(23), 
             'color': [255,74,113],
             'text': 'Naam',
             'textColor': [11, 60, 73],
@@ -91,10 +92,11 @@ class StartScreen(Screen):
         }]
    
         testButton5 = [Button, {
-            'x': width / 2 + 10,
+            'x': width / 2 - (400),
             'y': 600,
             'width': 250,
             'height': 100, 
+            'textSize':(23), 
             'color': [255,74,113],
             'text': 'Naam',
             'textColor': [11, 60, 73],
@@ -102,10 +104,11 @@ class StartScreen(Screen):
         }]
      
         testButton6 = [Button, {
-            'x': width / 2 - (260),
+            'x': width / 2 - (700),
             'y': 600,
             'width': 250,
             'height': 100, 
+            'textSize':(23), 
             'color': [255,74,113],
             'text': 'Naam',
             'textColor': [11, 60, 73],
@@ -113,10 +116,11 @@ class StartScreen(Screen):
         }]
      
         testButton7 = [Button, {
-            'x': width / 2 - 125,
+            'x': width / 3.6 - 125,
             'y': 800,
             'width': 250,
-            'height': 100, 
+            'height': 100,
+            'textSize':(23),  
             'color': [255,74,113],
             'text': 'START',
             'textColor': [11, 60, 73],
