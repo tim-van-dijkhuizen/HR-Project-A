@@ -5,6 +5,8 @@ from player_button import PlayerButton
 
 class StartScreen(Screen):
     
+    _backgroundImage = None
+    
     def getHandle(self):
         return 'start'
     
@@ -12,16 +14,12 @@ class StartScreen(Screen):
         return True
     
     def setup(self):
-        global img
-        global img1
-        
-        img1 = loadImage('background.png')
-        img = loadImage('logo love it.png')
+        self._backgroundImage = loadImage('background.png')
+        self._logoImage = loadImage('logo.png')
 
     def draw(self):
-        background(112,238,255)
+        image(self._backgroundImage, 0 , 0 , width, height)
         fill(11, 60, 73)
-        
         
         textSize(25)
         textAlign(LEFT)
@@ -31,7 +29,9 @@ class StartScreen(Screen):
         textAlign(LEFT)
         text('Spelers', 100, 350)
         
-        image(img, width/2 , height /3 , width/2, height/2)
+        logoWidth = width / 3
+        logoHeight = height / 3
+        image(self._logoImage, width - (logoWidth + 100), height / 2 - logoHeight / 2, logoWidth, logoHeight)
             
     def setMaxToFour(self):
         playerManager = self.app.getModule('playerManager')
