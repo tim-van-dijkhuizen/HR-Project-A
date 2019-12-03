@@ -27,6 +27,17 @@ class App(Component):
         except KeyError:
             return None
     
+    # Returns a Module by its type
+    def getModulesByType(self, type):
+        modules = []
+        
+        # Loop through all modules
+        for module in self.modules:
+            if isinstance(module, type):
+                modules.append(module)
+                
+        return modules
+    
     # Returns a Screen by its handle
     def getScreen(self, handle):
         screen = self.getModule(handle)
@@ -43,7 +54,9 @@ class App(Component):
             
     # Sets the current screen
     def setCurrentScreen(self, screen):
-        self.currentScreen = screen
+        if not (self.currentScreen is screen):
+            self.currentScreen = screen
+            cursor(ARROW)
     
     # Registers a module and its sub-modules.
     # Also returns the instance of the newly created module.
