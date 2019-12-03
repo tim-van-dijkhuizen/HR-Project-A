@@ -28,7 +28,7 @@ class StartScreen(Screen):
         textAlign(LEFT)
         text('Configureer de spelers', 100, 350)
         
-        image(img, width - 300 - 100, 200, width/2, height/2)
+        image(img, width/2 , height /3 , width/2, height/2)
             
     def setMaxToFour(self):
         playerManager = self.app.getModule('playerManager')
