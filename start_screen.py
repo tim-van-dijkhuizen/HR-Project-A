@@ -1,6 +1,7 @@
 from screen import Screen
 from button import Button
 from selectable_button import SelectableButton
+from player_button import PlayerButton
 
 class StartScreen(Screen):
     
@@ -12,7 +13,9 @@ class StartScreen(Screen):
     
     def setup(self):
         global img
+        global img1
         
+        img1 = loadImage('background.png')
         img = loadImage('logo love it.png')
 
     def draw(self):
@@ -22,11 +25,11 @@ class StartScreen(Screen):
         
         textSize(25)
         textAlign(LEFT)
-        text('Kies het aantal teams', 100, 100)
+        text('Teams', 100, 100)
         
         textSize(25)
         textAlign(LEFT)
-        text('Configureer de spelers', 100, 350)
+        text('Spelers', 100, 350)
         
         image(img, width/2 , height /3 , width/2, height/2)
             
@@ -55,7 +58,7 @@ class StartScreen(Screen):
             'text': '2 teams',
             'textColor': [11, 60, 73],
             'group': 'maxPlayers',
-            'selectedColor': [255, 22, 84],
+            'selectedColor': [229, 250, 2],
             'onSelect': self.setMaxToFour,
             'default': True
         }]
@@ -70,7 +73,7 @@ class StartScreen(Screen):
             'text': '3 Teams',
             'textColor': [11, 60, 73],
             'group': 'maxPlayers',
-            'selectedColor': [255, 22, 84],
+            'selectedColor': [229, 250, 2],
             'onSelect': self.setMaxToSix
         }]
         
@@ -84,7 +87,7 @@ class StartScreen(Screen):
             'text': 'Test',
             'textColor': [11, 60, 73],
             'group': 'test',
-            'selectedColor': [255, 22, 84]
+            'selectedColor': [229, 250, 2]
         }]
      
         startButton = [Button, {
@@ -103,5 +106,5 @@ class StartScreen(Screen):
             maxToFourButton,
             maxToSixButton,
             startButton,
-            testButton
+            [ PlayerButton, { 'x': 100, 'y': 400, 'player': playerManager.getPlayer(0) } ]
         ]
