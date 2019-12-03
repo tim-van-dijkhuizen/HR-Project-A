@@ -29,7 +29,7 @@ class StartScreen(Screen):
         textAlign(LEFT)
         text('Spelers', 100, 350)
         
-        image(img, 900, 200)
+        image(img, width - 300 - 100, 200, width/2, height/2)
             
     def setMaxToFour(self):
         playerManager = self.app.getModule('playerManager')
