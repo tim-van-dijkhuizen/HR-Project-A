@@ -7,16 +7,19 @@ class SelectableButton(Button):
     default = False
     
     onSelect = None
+    onDeselect = None
     selectedColor = None
     selectedTextColor = None
     
-    _siblings = []
+    _siblings = None
     _originalColor = None
     _originalTextColor = None
     
     def setup(self):
         self._originalColor = self.color
         self._originalTextColor = self.textColor
+    
+        self._siblings = []
     
         if self.default:
             self.select()
@@ -33,23 +36,38 @@ class SelectableButton(Button):
             sibling.deselect()
             
         self.selected = True
-        if self.selectedColor != None: self.color = self.selectedColor
-        if self.selectedTextColor != None: self.textColor = self.selectedTextColor
+        
+        if self.selectedColor != None: 
+            self.color = self.selectedColor
+            
+        if self.selectedTextColor != None: 
+            self.textColor = self.selectedTextColor
+        
+        if self.onSelect != None:
+            self.onSelect()
     
     def deselect(self):
         self.selected = False
-        if self.selectedColor != None: self.color = self._originalColor
-        if self.selectedTextColor != None: self.textColor = self._originalTextColor
+        
+        if self.selectedColor != None: 
+            self.color = self._originalColor
+            
+        if self.selectedTextColor != None: 
+            self.textColor = self._originalTextColor
+        
+        if self.onDeselect != None:
+            self.onDeselect()
     
     def callback(self):
+        print(self._siblings)
+        
         if len(self._siblings) > 0:
             self.select()
+            print('test 1')
         else:
+            print('test 2')
             if self.selected:
                 self.deselect()
             else:
                 self.select()
-        
-        if self.onSelect != None:
-            self.onSelect()
         
