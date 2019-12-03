@@ -82,6 +82,5 @@ class App(Component):
         # Print message if devMode is enabled
         if self.devMode:
             print('Registered module: ' + str(instance))
-            print('All modules:', self.modules)
             
         return instance

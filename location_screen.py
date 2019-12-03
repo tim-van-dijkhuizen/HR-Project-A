@@ -27,11 +27,6 @@ class LocationScreen(Screen):
         self.boardX = width / 2 - (self.boardWidth / 2)
         self.boardY = height / 2 - (self.boardHeight / 2)
         
-        # For testing, remove this later
-        self.fromScreen = self.app.getScreen('start')
-        self.player = playerManager.getPlayer(0)
-        self.app.setCurrentScreen(self)
-        
     def draw(self):
         if self.player == None or self.fromScreen == None:
             raise ValueError('Variables player and fromScreen must be set')

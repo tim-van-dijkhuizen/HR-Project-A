@@ -1,6 +1,7 @@
 from screen import Screen
 from button import Button
 from selectable_button import SelectableButton
+from player_button import PlayerButton
 
 class StartScreen(Screen):
     
@@ -24,11 +25,11 @@ class StartScreen(Screen):
         
         textSize(25)
         textAlign(LEFT)
-        text('Kies het aantal teams', 100, 100)
+        text('Teams', 100, 100)
         
         textSize(25)
         textAlign(LEFT)
-        text('Configureer de spelers', 100, 350)
+        text('Spelers', 100, 350)
         
     
         image(img1,0,0,width,height);
@@ -107,5 +108,5 @@ class StartScreen(Screen):
             maxToFourButton,
             maxToSixButton,
             startButton,
-            testButton
+            [ PlayerButton, { 'x': 100, 'y': 400, 'player': playerManager.getPlayer(0) } ]
         ]
