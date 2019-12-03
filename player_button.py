@@ -1,6 +1,7 @@
 from module import Module
 from button import Button
 from selectable_button import SelectableButton
+from text_input import TextInput
 
 class PlayerButton(Module):
 
@@ -31,6 +32,13 @@ class PlayerButton(Module):
         self.app.setCurrentScreen(locationScreen)
     
     def getSubModules(self):
+        nameInput = [TextInput,  {
+            'x': self.x,
+            'y': self.y,
+            'width': self.width,
+            'height': self.height / 2
+        }]
+        
         locationButton = [Button,  {
             'x': self.x,
             'y': self.y + self.height / 2,
@@ -53,6 +61,7 @@ class PlayerButton(Module):
         }]
         
         return [
+            nameInput,
             locationButton,
             botButton
         ]
