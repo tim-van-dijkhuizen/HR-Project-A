@@ -10,6 +10,7 @@ app = None
 def setup():
     global app
     
+    
     # Configure program
     fullScreen()
     
