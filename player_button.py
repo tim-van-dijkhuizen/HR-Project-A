@@ -36,7 +36,8 @@ class PlayerButton(Module):
             'x': self.x,
             'y': self.y,
             'width': self.width,
-            'height': self.height / 2
+            'height': self.height / 2,
+            'maxLength': 18
         }]
         
         locationButton = [Button,  {

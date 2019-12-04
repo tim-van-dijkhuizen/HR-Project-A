@@ -3,6 +3,9 @@ from clickable import Clickable
 
 class TextInput(Clickable):
 
+    # Max value length
+    maxLength = None
+
     # The current value of the input
     value = ''
 
@@ -34,5 +37,5 @@ class TextInput(Clickable):
         if self.focused:
             if keyCode == 8:
                 self.value = self.value[0:-1] 
-            else:
+            elif self.maxLength == None or len(self.value) < self.maxLength:
                 self.value += str(key)

@@ -14,6 +14,6 @@ class LocationButton(Clickable):
     def callback(self):
         playerManager = self.app.getModule('playerManager')
         locationScreen = self.app.getScreen('location')
-        player = locationScreen.player
         
+        player = locationScreen.player
         player.location = self.location
