@@ -50,8 +50,8 @@ class StartScreen(Screen):
         playerManager = self.app.getModule('playerManager')
         
         modules.append([SelectableButton, {
-            'x': 100,
-            'y': 150,
+            'x': width/18,
+            'y': height/4,
             'width': 250,
             'height': 100,
             'textSize':(23),  
@@ -65,8 +65,8 @@ class StartScreen(Screen):
         }])
         
         modules.append([SelectableButton, {
-            'x': 400,
-            'y': 150,
+            'x': width/18*4,
+            'y': height/4,
             'width': 250,
             'height': 100, 
             'textSize':(23), 
@@ -79,8 +79,8 @@ class StartScreen(Screen):
         }])
      
         modules.append([Button, {
-            'x': 250,
-            'y': 800,
+            'x': width/18,
+            'y': height/4*3,
             'width': 250,
             'height': 100,
             'textSize':(23),  
