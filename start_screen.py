@@ -34,7 +34,7 @@ class StartScreen(Screen):
         image(self._logoImage, width - (logoWidth + 100), height / 2 - logoHeight / 2, logoWidth, logoHeight)
         
     def keyPressed(self):
-        if keyCode == 32:
+        if keyCode == 10:
             gameScreen = self.app.getScreen('game')
             self.app.setCurrentScreen(gameScreen)
             
