@@ -5,7 +5,7 @@ from location_button  import LocationButton
 class LocationScreen(Screen):
     
     # Settings
-    boardWidth = 1000
+    boardWidth = 1588
     boardHeight = 1000
     
     # Image of the board game
@@ -26,7 +26,7 @@ class LocationScreen(Screen):
         self.boardImageFour = loadImage('board-players4.png')
         self.boardImageSix = loadImage('board-players6.png')
         
-        self.boardX = width / 2 - (self.boardWidth / 2)
+        self.boardX = width / 2 - (self.boardWidth / 3.2)
         self.boardY = height / 2 - (self.boardHeight / 2)
             
     def draw(self):
@@ -44,9 +44,9 @@ class LocationScreen(Screen):
         
         # Current location
         fill(0, 0, 0)
-        textSize(30)
+        textSize(35)
         textAlign(CENTER)
-        text('Location: ' + str(self.player.location), width / 2, 100)
+        text('Location: ' + str(self.player.location), width / 5, 100)
         
     def keyPressed(self):
         try:
