@@ -55,9 +55,6 @@ class LocationScreen(Screen):
             location = 0
             
         self.player.location = location
-        
-        if self.app.devMode:
-            print('Updated player location:', self.player, location)
             
     def goBack(self):
         self.app.setCurrentScreen(self.fromScreen)

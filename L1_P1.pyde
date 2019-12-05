@@ -14,7 +14,7 @@ def setup():
     fullScreen()
     
     # Create app
-    app = App({ 'devMode': True })
+    app = App()
     
     # Register modules inside App
     for module in moduleList:

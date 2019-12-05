@@ -3,39 +3,46 @@ from player import Player
 
 class PlayerManager(Module):
     
+    # The max amount of players
     maxPlayers = None
-    players = []
+    
+    # List containing all player objects
+    _players = []
+    _activePlayers = []
     
     def getHandle(self):
         return 'playerManager'
     
-    def setup(self):
-        self.updateList()
+    def init(self):
+        self._players = self.app.getModulesByType(Player)
+        
+        # Create active player list
+        self.updateActiveList()
+    
+    def updateActiveList(self):
+        self._activePlayers = list(filter(lambda p: p.isPlaying(), self._players))
     
     def setMaxPlayers(self, maxPlayers):
         self.maxPlayers = maxPlayers
-        self.updateList()
-    
-    def updateList(self):
-        currentPlayers = len(self.players)
-        
-        # Slice list if its to big
-        if currentPlayers > self.maxPlayers:
-            self.players = self.players[0:self.maxPlayers]
-            
-        # Add players if we need more
-        if currentPlayers < self.maxPlayers:
-            toAdd = self.maxPlayers - currentPlayers
-            
-            for i in range(toAdd):
-                self.players.append(Player())
-        
-        if self.app.devMode:
-            print('Max players:', self.maxPlayers)
-            print('Updated players:', self.players)
+        self.updateActiveList()
     
     def getPlayer(self, index):
         if index < 0 or index > (self.maxPlayers - 1):
             return None
         
-        return self.players[index]
+        return self._players[index]
+    
+    def getPlayers(self):
+        return 
+    
+    def getAllPlayers(self):
+        return self._players
+    
+    def getSubModules(self):
+        modules = []
+        
+        # Create 6 players
+        for _ in range(6): 
+            modules.append([Player, {}])
+            
+        return modules

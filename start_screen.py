@@ -32,6 +32,11 @@ class StartScreen(Screen):
         logoWidth = width / 3
         logoHeight = height / 3
         image(self._logoImage, width - (logoWidth + 100), height / 2 - logoHeight / 2, logoWidth, logoHeight)
+        
+    def keyPressed(self):
+        if keyCode == 32:
+            gameScreen = self.app.getScreen('game')
+            self.app.setCurrentScreen(gameScreen)
             
     def setMaxToFour(self):
         playerManager = self.app.getModule('playerManager')
@@ -90,8 +95,10 @@ class StartScreen(Screen):
             'callback': self.startGame
         }])
         
-        for player in playerManager.players:
-            modules.append([ PlayerButton, { 'x': 100, 'y': 400, 'player': player } ])
+        playerButtonY = 700
+        for player in playerManager.getAllPlayers():
+            modules.append([ PlayerButton, { 'x': 100, 'y': playerButtonY, 'player': player } ])
+            playerButtonY += 150
             
         return modules
     

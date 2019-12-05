@@ -31,6 +31,9 @@ class PlayerButton(Module):
         locationScreen.player = self.player
         self.app.setCurrentScreen(locationScreen)
     
+    def isActive(self):
+        return self.player.isPlaying()
+    
     def getSubModules(self):
         nameInput = [TextInput,  {
             'x': self.x,

@@ -6,10 +6,6 @@ class App(Component):
     # Globals
     # ==========================================================
     
-    # Whether development mode should be enabled.
-    # Development mode add debugging tools
-    devMode = False
-    
     # All registered module objects
     modules = []
     moduleMap = {}
@@ -54,7 +50,9 @@ class App(Component):
             
     # Sets the current screen
     def setCurrentScreen(self, screen):
-        if not (self.currentScreen is screen):
+        currentScreen = self.currentScreen
+        
+        if currentScreen == None or currentScreen.getHandle() != screen.getHandle():
             screen.beforeShow()
             self.currentScreen = screen
             cursor(ARROW)
@@ -81,8 +79,6 @@ class App(Component):
         # Sort module list
         self.modules.sort(key = lambda x: x.getPriority(), reverse = False)
         
-        # Print message if devMode is enabled
-        if self.devMode:
-            print('Registered module: ' + str(instance))
+        instance.init()
             
         return instance

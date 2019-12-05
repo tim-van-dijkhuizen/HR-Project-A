@@ -42,6 +42,9 @@ class Module(Component):
     # Keep in mind that these will be inactive if their parent is.
     def getSubModules(self): return []
     
+    # Called after the module and its subModules have been loaded
+    def init(self): pass
+    
     # Called after all modules are loaded
     def afterLoadModules(self): pass
     
