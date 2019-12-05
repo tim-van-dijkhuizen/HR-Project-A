@@ -8,6 +8,10 @@ class Screen(Module):
     # Returns whether this is the default screen
     def isDefault(self): return False
     
+    # Called before/after the screen is shown
+    def beforeShow(self): pass
+    def afterShow(self): pass
+    
     # Returns true if this screen is the current screen
     # or if there is no current and this is the default.
     def isActive(self):

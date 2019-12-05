@@ -9,7 +9,8 @@ class LocationScreen(Screen):
     boardHeight = 1000
     
     # Image of the board game
-    boardImage = None
+    boardImageFour = None
+    boardImageSix = None
     
     # The player to edit the location for
     fromScreen = None
@@ -20,14 +21,17 @@ class LocationScreen(Screen):
         
     def setup(self):
         playerManager = self.app.getModule('playerManager')
-        boardImagePath = 'board-players' + str(playerManager.maxPlayers) + '.png'
         
         # Load board image
-        self.boardImage = loadImage(boardImagePath)
+        self.boardImageFour = loadImage('board-players4.png')
+        self.boardImageSix = loadImage('board-players6.png')
+        
         self.boardX = width / 2 - (self.boardWidth / 2)
         self.boardY = height / 2 - (self.boardHeight / 2)
-        
+            
     def draw(self):
+        playerManager = self.app.getModule('playerManager')
+        
         if self.player == None or self.fromScreen == None:
             raise ValueError('Variables player and fromScreen must be set')
             
@@ -35,7 +39,8 @@ class LocationScreen(Screen):
         background(255, 74, 113)
         
         # Board    
-        image(self.boardImage, self.boardX, self.boardY, self.boardWidth, self.boardHeight)
+        boardImage = self.boardImageSix if playerManager.maxPlayers == 6 else self.boardImageFour
+        image(boardImage, self.boardX, self.boardY, self.boardWidth, self.boardHeight)
         
         # Current location
         fill(0, 0, 0)

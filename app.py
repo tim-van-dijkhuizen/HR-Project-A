@@ -55,8 +55,10 @@ class App(Component):
     # Sets the current screen
     def setCurrentScreen(self, screen):
         if not (self.currentScreen is screen):
+            screen.beforeShow()
             self.currentScreen = screen
             cursor(ARROW)
+            screen.afterShow()
     
     # Registers a module and its sub-modules.
     # Also returns the instance of the newly created module.
