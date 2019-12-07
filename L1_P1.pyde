@@ -11,7 +11,7 @@ def setup():
     global app
     
     # Configure program
-    fullScreen()
+    size(1200, 650)
     
     # Create app
     app = App()
