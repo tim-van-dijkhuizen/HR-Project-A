@@ -29,9 +29,10 @@ class StartScreen(Screen):
         textAlign(LEFT)
         text('Spelers', 60, 220)
         
-        logoWidth = width / 3
-        logoHeight = height / 3
-        image(self._logoImage, width - (logoWidth + 100), height / 2 - logoHeight / 2, logoWidth, logoHeight)
+        logoWidth = 400
+        logoHeight = 300
+    
+        image(self._logoImage, 750, 100, logoWidth, logoHeight)
         
     def keyPressed(self):
         if keyCode == 10:
@@ -84,7 +85,7 @@ class StartScreen(Screen):
         }])
      
         modules.append([Button, {
-            'x': 60,
+            'x': 850,
             'y': height/4*3,
             'width': 200,
             'height': 80,
