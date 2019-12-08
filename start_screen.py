@@ -23,11 +23,11 @@ class StartScreen(Screen):
         
         textSize(25)
         textAlign(LEFT)
-        text('Teams', 60, 50)
+        text('Teams', 60, 60)
         
         textSize(25)
         textAlign(LEFT)
-        text('Spelers', 60, 250)
+        text('Spelers', 60, 220)
         
         logoWidth = width / 3
         logoHeight = height / 3
@@ -56,8 +56,8 @@ class StartScreen(Screen):
         
         modules.append([SelectableButton, {
             'x': 60,
-            'y': 100,
-            'width': 200,
+            'y': 90,
+            'width': 225,
             'height': 80,
             'textSize':(23),  
             'color': [255,74,113],
@@ -70,9 +70,9 @@ class StartScreen(Screen):
         }])
         
         modules.append([SelectableButton, {
-            'x': 260,
-            'y': 100,
-            'width': 200,
+            'x': 295,
+            'y': 90,
+            'width': 225,
             'height': 80, 
             'textSize':(23), 
             'color': [255,74,113],
@@ -95,10 +95,18 @@ class StartScreen(Screen):
             'callback': self.startGame
         }])
         
-        playerButtonY = 700
-        for player in playerManager.getAllPlayers():
-            modules.append([ PlayerButton, { 'x': 100, 'y': playerButtonY, 'player': player } ])
-            playerButtonY += 150
+        playerButtonX = 60
+        playerButtonY = 250
+        
+        players = playerManager.getAllPlayers()
+        for i in range(1, len(players) + 1):
+            modules.append([ PlayerButton, { 'x': playerButtonX, 'y': playerButtonY, 'player': players[i - 1] } ])
+            
+            playerButtonX += 235
+            
+            if i % 2 == 0:
+                playerButtonX = 60
+                playerButtonY += 110
             
         return modules
     

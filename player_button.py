@@ -6,7 +6,7 @@ from text_input import TextInput
 class PlayerButton(Module):
 
     # Constants
-    width = 250
+    width = 225
     height = 100
 
     # Position
@@ -36,16 +36,16 @@ class PlayerButton(Module):
     
     def getSubModules(self):
         nameInput = [TextInput,  {
-            'x': 60,
-            'y': 300,
+            'x': self.x,
+            'y': self.y,
             'width': self.width,
             'height': self.height / 2,
             'maxLength': 18
         }]
         
         locationButton = [Button,  {
-            'x': 60,
-            'y': 350,
+            'x': self.x,
+            'y': self.y + self.height / 2,
             'width': self.width / 2,
             'height': self.height / 2,
             'color': [255, 74, 113],
@@ -54,8 +54,8 @@ class PlayerButton(Module):
         }]
         
         botButton = [SelectableButton,  {
-            'x': 185,
-            'y': 350,
+            'x': self.x + self.width / 2,
+            'y': self.y + self.height / 2,
             'width': self.width / 2,
             'height': self.height / 2,
             'color': [255, 74, 113],
