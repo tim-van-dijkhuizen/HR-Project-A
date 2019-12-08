@@ -5,8 +5,8 @@ from location_button  import LocationButton
 class LocationScreen(Screen):
     
     # Settings
-    boardWidth = 1588
-    boardHeight = 1000
+    boardWidth = 794
+    boardHeight = 500
     
     # Image of the board game
     boardImageFour = None

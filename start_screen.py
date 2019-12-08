@@ -23,11 +23,11 @@ class StartScreen(Screen):
         
         textSize(25)
         textAlign(LEFT)
-        text('Teams', 100, 100)
+        text('Teams', 60, 50)
         
         textSize(25)
         textAlign(LEFT)
-        text('Spelers', 100, 350)
+        text('Spelers', 60, 250)
         
         logoWidth = width / 3
         logoHeight = height / 3
@@ -55,10 +55,10 @@ class StartScreen(Screen):
         playerManager = self.app.getModule('playerManager')
         
         modules.append([SelectableButton, {
-            'x': width/18,
-            'y': height/4,
-            'width': 250,
-            'height': 100,
+            'x': 60,
+            'y': 100,
+            'width': 200,
+            'height': 80,
             'textSize':(23),  
             'color': [255,74,113],
             'text': '2 teams',
@@ -70,10 +70,10 @@ class StartScreen(Screen):
         }])
         
         modules.append([SelectableButton, {
-            'x': width/18*4,
-            'y': height/4,
-            'width': 250,
-            'height': 100, 
+            'x': 260,
+            'y': 100,
+            'width': 200,
+            'height': 80, 
             'textSize':(23), 
             'color': [255,74,113],
             'text': '3 Teams',
@@ -84,10 +84,10 @@ class StartScreen(Screen):
         }])
      
         modules.append([Button, {
-            'x': width/18,
+            'x': 60,
             'y': height/4*3,
-            'width': 250,
-            'height': 100,
+            'width': 200,
+            'height': 80,
             'textSize':(23),  
             'color': [255,74,113],
             'text': 'START',

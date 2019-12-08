@@ -36,16 +36,16 @@ class PlayerButton(Module):
     
     def getSubModules(self):
         nameInput = [TextInput,  {
-            'x': self.x,
-            'y': self.y,
+            'x': 60,
+            'y': 300,
             'width': self.width,
             'height': self.height / 2,
             'maxLength': 18
         }]
         
         locationButton = [Button,  {
-            'x': self.x,
-            'y': self.y + self.height / 2,
+            'x': 60,
+            'y': 350,
             'width': self.width / 2,
             'height': self.height / 2,
             'color': [255, 74, 113],
@@ -54,8 +54,8 @@ class PlayerButton(Module):
         }]
         
         botButton = [SelectableButton,  {
-            'x': self.x + self.width / 2,
-            'y': self.y + self.height / 2,
+            'x': 185,
+            'y': 350,
             'width': self.width / 2,
             'height': self.height / 2,
             'color': [255, 74, 113],
