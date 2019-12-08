@@ -54,7 +54,7 @@ class PlayerButton(Module):
         }]
         
         botButton = [SelectableButton,  {
-            'x': self.x + self.width / 2,
+            'x': self.x + self.width / 2 + 1,
             'y': self.y + self.height / 2,
             'width': self.width / 2,
             'height': self.height / 2,
