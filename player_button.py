@@ -24,6 +24,12 @@ class PlayerButton(Module):
         fill(255, 74, 113)
         rect(self.x, self.y, self.width, self.height)
         
+    def isActive(self):
+        return self.player.isPlaying()
+       
+    def changeName(self, value):
+       self.player.name = value     
+    
     def changeLocation(self):
         locationScreen = self.app.getScreen('location')
         
@@ -31,8 +37,11 @@ class PlayerButton(Module):
         locationScreen.player = self.player
         self.app.setCurrentScreen(locationScreen)
     
-    def isActive(self):
-        return self.player.isPlaying()
+    def selectBot(self):
+        self.player.bot = True
+        
+    def deselectBot(self):
+        self.player.bot = False
     
     def getSubModules(self):
         nameInput = [TextInput,  {
@@ -40,7 +49,8 @@ class PlayerButton(Module):
             'y': self.y,
             'width': self.width,
             'height': self.height / 2,
-            'maxLength': 18
+            'maxLength': 18,
+            'callback': self.changeName
         }]
         
         locationButton = [Button,  {
@@ -61,7 +71,9 @@ class PlayerButton(Module):
             'color': [255, 74, 113],
             'text': 'BOT',
             'group': 'botSelect',
-            'selectedColor': [255, 22, 84]
+            'selectedColor': [255, 22, 84],
+            'onSelect': self.selectBot,
+            'onDeselect': self.deselectBot
         }]
         
         return [

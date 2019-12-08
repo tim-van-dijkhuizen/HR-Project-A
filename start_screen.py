@@ -47,7 +47,27 @@ class StartScreen(Screen):
         playerManager = self.app.getModule('playerManager')
         playerManager.setMaxPlayers(6)
        
-    def startGame():
+    def startDisabled(self):
+        playerManager = self.app.getModule('playerManager')
+        configInvalid = False
+
+        # Make sure a bot was selected
+        botSelected = False
+        for player in playerManager.getPlayers():
+            if player.bot: botSelected = True
+            
+            if player.name == None or len(player.name) <= 0:
+                configInvalid = True
+            
+            if player.location == None:
+                configInvalid = True
+            
+        if not botSelected: 
+            configInvalid = True
+        
+        return configInvalid
+       
+    def startGame(self):
         gameScreen = self.app.getScreen('game')
         self.app.setCurrentScreen(gameScreen)
                       
@@ -93,7 +113,8 @@ class StartScreen(Screen):
             'color': [255,74,113],
             'text': 'START',
             'textColor': [11, 60, 73],
-            'callback': self.startGame
+            'callback': self.startGame,
+            'disabled': self.startDisabled
         }])
         
         playerButtonX = 60
@@ -110,4 +131,3 @@ class StartScreen(Screen):
                 playerButtonY += 110
             
         return modules
-    

@@ -33,7 +33,7 @@ class PlayerManager(Module):
         return self._players[index]
     
     def getPlayers(self):
-        return 
+        return self._activePlayers
     
     def getAllPlayers(self):
         return self._players

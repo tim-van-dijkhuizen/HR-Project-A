@@ -11,6 +11,9 @@ class TextInput(Clickable):
 
     # Whether the input is focused
     focused = False
+    
+    # Callback for when the value changes
+    callback = None
 
     def draw(self):
         if self.focused:
@@ -39,3 +42,6 @@ class TextInput(Clickable):
                 self.value = self.value[0:-1] 
             elif self.maxLength == None or len(self.value) < self.maxLength:
                 self.value += str(key)
+                
+            if self.callback != None:
+                self.callback(self.value)
