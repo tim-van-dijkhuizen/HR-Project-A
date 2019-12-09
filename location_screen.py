@@ -66,8 +66,8 @@ class LocationScreen(Screen):
         return [
             [ Button, { 'x': 20, 'y': 20, 'width': 100, 'height': 50, 'text': 'Terug', 'textSize': 20, 'callback': self.goBack } ],
             
-            [ LocationButton, { 'x': self.boardX, 'y': self.boardY, 'width': 100, 'height': 100, 'location': 1 } ],
-            [ LocationButton, { 'x': self.boardX, 'y': self.boardY + 100, 'width': 100, 'height': 100, 'location': 2 } ],
-            [ LocationButton, { 'x': self.boardX, 'y': self.boardY + 200, 'width': 100, 'height': 100, 'location': 3 } ]    
+            [ LocationButton, { 'x': 733, 'y': 272, 'maxPlayers': 4, 'location': 1 } ],
+            [ LocationButton, { 'x': 703, 'y': 248, 'maxPlayers': 4, 'location': 2 } ],
+            [ LocationButton, { 'x': 673, 'y': 233, 'maxPlayers': 4, 'location': 3 } ],
         ]
         
