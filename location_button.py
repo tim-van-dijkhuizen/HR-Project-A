@@ -2,14 +2,22 @@ from clickable import Clickable
 
 class LocationButton(Clickable):
     
+    width = 28
+    height = 28
+    
+    maxPlayers = None
     location = None
     
     def getPriority(self):
         return 2
     
+    def isActive(self):
+        playerManager = self.app.getModule('playerManager')
+        return self.maxPlayers == playerManager.maxPlayers
+    
     def setup(self):
-        if self.location == None:
-            raise ValueError('Location must be set')
+        if self.maxPlayers == None or self.location == None:
+            raise ValueError('Max players and location must be set')
          
     def draw(self):
         fill(0, 0, 0, 0)
