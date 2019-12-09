@@ -2,8 +2,8 @@ from clickable import Clickable
 
 class LocationButton(Clickable):
     
-    width = 28
-    height = 28
+    width = 25
+    height = 25
     
     maxPlayers = None
     location = None
