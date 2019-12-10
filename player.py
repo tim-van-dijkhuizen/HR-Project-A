@@ -3,7 +3,6 @@ from module import Module
 class Player(Module):
     
     name = None
-    bot = False
     
     _location = None
     _oldLocation = None
@@ -24,3 +23,7 @@ class Player(Module):
     def setLocation(self, location):
         self._oldLocation = self._location
         self._location = location
+        
+    def isBot(self):
+        playerManager = self.app.getModule('playerManager')
+        return playerManager.botPlayer is self
