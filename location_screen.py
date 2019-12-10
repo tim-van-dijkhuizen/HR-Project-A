@@ -46,9 +46,9 @@ class LocationScreen(Screen):
         
         # Current location
         fill(0, 0, 0)
-        textSize(35)
-        textAlign(CENTER)
-        text('Location: ' + str(self.player.getLocation()), width / 5, 100)
+        textSize(24)
+        textAlign(LEFT)
+        text('Location: ' + str(self.player.getLocation()), 60, 60)
             
     def goBack(self):
         self.app.setCurrentScreen(self.fromScreen)
@@ -58,7 +58,7 @@ class LocationScreen(Screen):
         
     def getSubModules(self):
         return [
-            [ Button, { 'x': 20, 'y': 20, 'width': 100, 'height': 50, 'text': 'Terug', 'textSize': 20, 'callback': self.goBack } ],
+            [ Button, { 'x': 60, 'y': 90, 'width': 100, 'height': 50, 'text': 'Terug', 'textSize': 20, 'callback': self.goBack } ],
             
             [ LocationButton, { 'x': 735, 'y': 275, 'maxPlayers': 4, 'location': 1 } ],
             [ LocationButton, { 'x': 705, 'y': 250, 'maxPlayers': 4, 'location': 2 } ],
