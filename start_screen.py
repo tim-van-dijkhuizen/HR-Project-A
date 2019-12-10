@@ -59,7 +59,7 @@ class StartScreen(Screen):
             if player.name == None or len(player.name) <= 0:
                 configInvalid = True
             
-            if player.location == None:
+            if player.getLocation() == None:
                 configInvalid = True
             
         if not botSelected: 

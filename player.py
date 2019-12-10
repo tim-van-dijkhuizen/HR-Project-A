@@ -3,8 +3,10 @@ from module import Module
 class Player(Module):
     
     name = None
-    location = None
     bot = False
+    
+    _location = None
+    _oldLocation = None
     
     def isPlaying(self):
         playerManager = self.app.getModule('playerManager')
@@ -13,5 +15,12 @@ class Player(Module):
         
         return index <= playerManager.maxPlayers
     
-    def validate(self):
-        return self.name != None and self.location != None and self.bot != None
+    def getLocation(self):
+        return self._location
+    
+    def getOldLocation(self):
+        return self._oldLocation
+    
+    def setLocation(self, location):
+        self._oldLocation = self._location
+        self._location = location

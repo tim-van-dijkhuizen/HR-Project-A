@@ -48,15 +48,7 @@ class LocationScreen(Screen):
         fill(0, 0, 0)
         textSize(35)
         textAlign(CENTER)
-        text('Location: ' + str(self.player.location), width / 5, 100)
-        
-    def keyPressed(self):
-        try:
-            location = int(key)
-        except ValueError:
-            location = 0
-            
-        self.player.location = location
+        text('Location: ' + str(self.player.getLocation()), width / 5, 100)
             
     def goBack(self):
         self.app.setCurrentScreen(self.fromScreen)
