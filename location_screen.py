@@ -3,8 +3,6 @@ from button import Button
 from location_button  import LocationButton
 
 class LocationScreen(Screen):
-    # pixels naar rechts voor borden 
-    skip = 145
     
     # Settings
     boardWidth = 794
