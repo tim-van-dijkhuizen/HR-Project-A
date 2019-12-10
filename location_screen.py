@@ -2,7 +2,12 @@ from screen import Screen
 from button import Button
 from location_button  import LocationButton
 
+
+
 class LocationScreen(Screen):
+    # This is so i can verplaats de tiles makkelijker
+    move_tiles = 145
+    
     # pixels naar rechts voor borden 
     skip = 145
     
@@ -36,6 +41,7 @@ class LocationScreen(Screen):
         
         if self.player == None or self.fromScreen == None:
             raise ValueError('Variables player and fromScreen must be set')
+            
             
         # Background
         background(255, 74, 113)
@@ -207,28 +213,28 @@ class LocationScreen(Screen):
             [ LocationButton, { 'x': 791+ 142, 'y': 236, 'maxPlayers': 6, 'location': 43 } ],
             [ LocationButton, { 'x': 765+ 142, 'y': 250, 'maxPlayers': 6, 'location': 44 } ], 
             
-            [ LocationButton, { 'x': 735 + 142, 'y': 275, 'maxPlayers': 6, 'location': 45 } ],
-            [ LocationButton, { 'x': 705 +142, 'y': 250, 'maxPlayers': 6, 'location': 46 } ],
-            [ LocationButton, { 'x': 678+ 142, 'y': 236, 'maxPlayers': 6, 'location': 47} ],
-            [ LocationButton, { 'x': 655+ 142, 'y': 210, 'maxPlayers': 6, 'location': 48 } ],
-            [ LocationButton, { 'x': 635+ 142, 'y': 189, 'maxPlayers': 6, 'location': 49} ],
-            [ LocationButton, { 'x': 615+ 142, 'y': 166, 'maxPlayers': 6, 'location': 50 } ],
-            [ LocationButton, { 'x': 615+ 142, 'y': 134, 'maxPlayers': 6, 'location': 51 } ],
-            [ LocationButton, { 'x': 628+ 142, 'y': 105, 'maxPlayers': 6, 'location': 52 } ],
-            [ LocationButton, { 'x': 658+ 142, 'y': 93, 'maxPlayers': 6, 'location': 53 } ],
-            [ LocationButton, { 'x': 688+ 142, 'y': 82, 'maxPlayers': 6, 'location': 54 } ],
-            [ LocationButton, { 'x': 715+ 142, 'y': 93, 'maxPlayers': 6, 'location': 55 } ],
-            [ LocationButton, { 'x': 735+ 142, 'y': 120, 'maxPlayers': 6, 'location': 56 } ],
-            [ LocationButton, { 'x': 750+ 142, 'y': 93, 'maxPlayers': 6, 'location': 57 } ],
-            [ LocationButton, { 'x': 780+ 142, 'y': 82, 'maxPlayers': 6, 'location': 58 } ],
-            [ LocationButton, { 'x': 810+ 142, 'y': 93, 'maxPlayers': 6, 'location': 59 } ],
-            [ LocationButton, { 'x': 838+ 142, 'y': 108, 'maxPlayers': 6, 'location': 61 } ],
-            [ LocationButton, { 'x': 852+ 142, 'y': 137, 'maxPlayers': 6, 'location': 62 } ],
-            [ LocationButton, { 'x': 852+ 142, 'y': 166, 'maxPlayers': 6, 'location': 63 } ],
-            [ LocationButton, { 'x': 830+ 142, 'y': 189, 'maxPlayers': 6, 'location': 64 } ],
-            [ LocationButton, { 'x': 810+ 142, 'y': 212, 'maxPlayers': 6, 'location': 65 } ],
-            [ LocationButton, { 'x': 791+ 142, 'y': 236, 'maxPlayers': 6, 'location': 66 } ],
-            [ LocationButton, { 'x': 765+ 142, 'y': 250, 'maxPlayers': 6, 'location': 67 } ],
+            [ LocationButton, { 'x': 779+self.move_tiles, 'y': 312, 'maxPlayers': 6, 'location': 23 } ],
+            [ LocationButton, { 'x': 803+self.move_tiles, 'y': 282, 'maxPlayers': 6, 'location': 24 } ],
+            [ LocationButton, { 'x': 818+self.move_tiles, 'y': 255, 'maxPlayers': 6, 'location': 25 } ], 
+            [ LocationButton, { 'x': 840+self.move_tiles, 'y': 235, 'maxPlayers': 6, 'location': 26 } ],
+            [ LocationButton, { 'x': 863+self.move_tiles, 'y': 215, 'maxPlayers': 6, 'location': 27 } ], 
+            [ LocationButton, { 'x': 888+self.move_tiles, 'y': 192, 'maxPlayers': 6, 'location': 28 } ],
+            [ LocationButton, { 'x': 918+self.move_tiles, 'y': 192, 'maxPlayers': 6, 'location': 29 } ],
+            [ LocationButton, { 'x': 948+self.move_tiles, 'y': 204, 'maxPlayers': 6, 'location': 30 } ],
+            [ LocationButton, { 'x': 960+self.move_tiles, 'y': 235, 'maxPlayers': 6, 'location': 31 } ],
+            [ LocationButton, { 'x': 973+self.move_tiles, 'y': 265, 'maxPlayers': 6, 'location': 32 } ],
+            [ LocationButton, { 'x': 957+self.move_tiles, 'y': 295, 'maxPlayers': 6, 'location': 33 } ],
+            [ LocationButton, { 'x': 930+self.move_tiles, 'y': 312, 'maxPlayers': 6, 'location': 34 } ],
+            [ LocationButton, { 'x': 957+self.move_tiles, 'y': 327, 'maxPlayers': 6, 'location': 35 } ],
+            [ LocationButton, { 'x': 970+self.move_tiles, 'y': 357, 'maxPlayers': 6, 'location': 36 } ],
+            [ LocationButton, { 'x': 960+self.move_tiles, 'y': 387, 'maxPlayers': 6, 'location': 37 } ],
+            [ LocationButton, { 'x': 945+self.move_tiles, 'y': 415, 'maxPlayers': 6, 'location': 38 } ],
+            [ LocationButton, { 'x': 915+self.move_tiles, 'y': 432, 'maxPlayers': 6, 'location': 39 } ],
+            [ LocationButton, { 'x': 885+self.move_tiles, 'y': 432, 'maxPlayers': 6, 'location': 40 } ],
+            [ LocationButton, { 'x': 863+self.move_tiles, 'y': 410, 'maxPlayers': 6, 'location': 41 } ],
+            [ LocationButton, { 'x': 840+self.move_tiles, 'y': 389, 'maxPlayers': 6, 'location': 42 } ],
+            [ LocationButton, { 'x': 818+self.move_tiles, 'y': 368, 'maxPlayers': 6, 'location': 43 } ],
+            [ LocationButton, { 'x': 802+self.move_tiles, 'y': 342, 'maxPlayers': 6, 'location': 44 } ],
             
             [ LocationButton, { 'x': 735 + 142, 'y': 350, 'maxPlayers': 6, 'location': 68 } ],
             [ LocationButton, { 'x': 705 +142, 'y': 375, 'maxPlayers': 6, 'location': 69 } ],
@@ -275,6 +281,29 @@ class LocationScreen(Screen):
             [ LocationButton, { 'x': 810- 145, 'y': 415, 'maxPlayers': 6, 'location': 109 } ],
             [ LocationButton, { 'x': 791- 145, 'y': 390, 'maxPlayers': 6, 'location': 110 } ],
             [ LocationButton, { 'x': 765- 145, 'y': 375, 'maxPlayers': 6, 'location': 111 } ],
+            
+            [ LocationButton, { 'x': 692-self.move_tiles, 'y': 312, 'maxPlayers': 6, 'location': 112 } ],
+            [ LocationButton, { 'x': 669-self.move_tiles, 'y': 342, 'maxPlayers': 6, 'location': 113 } ],
+            [ LocationButton, { 'x': 652-self.move_tiles, 'y': 368, 'maxPlayers': 6, 'location': 114 } ],
+            [ LocationButton, { 'x': 630-self.move_tiles, 'y': 389, 'maxPlayers': 6, 'location': 115 } ],
+            [ LocationButton, { 'x': 606-self.move_tiles, 'y': 410, 'maxPlayers': 6, 'location': 116 } ],
+            [ LocationButton, { 'x': 583-self.move_tiles, 'y': 432, 'maxPlayers': 6, 'location': 117 } ],
+            [ LocationButton, { 'x': 553-self.move_tiles, 'y': 432, 'maxPlayers': 6, 'location': 118 } ],
+            [ LocationButton, { 'x': 525-self.move_tiles, 'y': 420, 'maxPlayers': 6, 'location': 119 } ],
+            [ LocationButton, { 'x': 510-self.move_tiles, 'y': 390, 'maxPlayers': 6, 'location': 120 } ],
+            [ LocationButton, { 'x': 497-self.move_tiles, 'y': 360, 'maxPlayers': 6, 'location': 121 } ],
+            [ LocationButton, { 'x': 512-self.move_tiles, 'y': 330, 'maxPlayers': 6, 'location': 122 } ],
+            [ LocationButton, { 'x': 542-self.move_tiles, 'y': 314, 'maxPlayers': 6, 'location': 123 } ],
+            [ LocationButton, { 'x': 512-self.move_tiles, 'y': 298, 'maxPlayers': 6, 'location': 124 } ],
+            [ LocationButton, { 'x': 500-self.move_tiles, 'y': 267, 'maxPlayers': 6, 'location': 125 } ],
+            [ LocationButton, { 'x': 512-self.move_tiles, 'y': 238, 'maxPlayers': 6, 'location': 126 } ],
+            [ LocationButton, { 'x': 525-self.move_tiles, 'y': 208, 'maxPlayers': 6, 'location': 127 } ],
+            [ LocationButton, { 'x': 553-self.move_tiles, 'y': 195, 'maxPlayers': 6, 'location': 128 } ],
+            [ LocationButton, { 'x': 583-self.move_tiles, 'y': 195, 'maxPlayers': 6, 'location': 129 } ],
+            [ LocationButton, { 'x': 606-self.move_tiles, 'y': 215, 'maxPlayers': 6, 'location': 130 } ],
+            [ LocationButton, { 'x': 630-self.move_tiles, 'y': 235, 'maxPlayers': 6, 'location': 131 } ],
+            [ LocationButton, { 'x': 652-self.move_tiles, 'y': 258, 'maxPlayers': 6, 'location': 132 } ],
+            [ LocationButton, { 'x': 669-self.move_tiles, 'y': 282, 'maxPlayers': 6, 'location': 133 } ],
             
             ]
             
