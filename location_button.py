@@ -28,4 +28,4 @@ class LocationButton(Clickable):
         locationScreen = self.app.getScreen('location')
         
         player = locationScreen.player
-        player.setLocation(self.location)
+        player.location = self.location
