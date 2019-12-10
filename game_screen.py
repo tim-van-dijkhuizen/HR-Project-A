@@ -36,7 +36,7 @@ class GameScreen(Screen):
         textSize(50);
         textAlign(LEFT);
         
-        text('Spelers', 475, 100)
+        text('Gamescherm', 450, 50)
         
         boardImage = self.boardImageSix if playerManager.maxPlayers == 6 else self.boardImageFour
         image(boardImage, self.boardX, self.boardY, self.boardWidth, self.boardHeight)
