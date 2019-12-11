@@ -6,6 +6,9 @@ class PlayerManager(Module):
     # The max amount of players
     maxPlayers = None
     
+    # The current bot player
+    botPlayer = None
+    
     # List containing all player objects
     _players = []
     _activePlayers = []

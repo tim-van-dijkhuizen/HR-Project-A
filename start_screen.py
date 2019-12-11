@@ -54,12 +54,12 @@ class StartScreen(Screen):
         # Make sure a bot was selected
         botSelected = False
         for player in playerManager.getPlayers():
-            if player.bot: botSelected = True
+            if player.isBot(): botSelected = True
             
             if player.name == None or len(player.name) <= 0:
                 configInvalid = True
             
-            if player.location == None:
+            if player.getLocation() == None:
                 configInvalid = True
             
         if not botSelected: 
