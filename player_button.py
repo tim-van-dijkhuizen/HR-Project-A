@@ -38,10 +38,8 @@ class PlayerButton(Module):
         self.app.setCurrentScreen(locationScreen)
     
     def selectBot(self):
-        self.player.bot = True
-        
-    def deselectBot(self):
-        self.player.bot = False
+        playerManager = self.app.getModule('playerManager')
+        playerManager.botPlayer = self.player
     
     def getSubModules(self):
         nameInput = [TextInput,  {
@@ -72,8 +70,7 @@ class PlayerButton(Module):
             'text': 'BOT',
             'group': 'botSelect',
             'selectedColor': [255, 22, 84],
-            'onSelect': self.selectBot,
-            'onDeselect': self.deselectBot
+            'onSelect': self.selectBot
         }]
         
         return [
