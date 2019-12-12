@@ -24,6 +24,11 @@ class Button(Clickable):
         fill(self.textColor)
         text(self.text, self.x + self.width / 2, self.y + self.height / 2 + self.textSize / 2 - 2)
         
+    def mouseMoved(self):
+        # Cancel hover if disabled
+        if not utils.parseValue(self.disabled):
+            Clickable.mouseMoved(self)
+        
     def mousePressed(self):
         # Cancel click if disabled
         if not utils.parseValue(self.disabled):
