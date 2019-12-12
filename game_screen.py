@@ -15,7 +15,6 @@ class GameScreen(Screen):
     player = None
     
     def setup(self):
-        
         playerManager = self.app.getModule('playerManager')
         
         self.boardImageFour = loadImage('board-players4.png')
