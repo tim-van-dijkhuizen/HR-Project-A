@@ -1,4 +1,4 @@
-import colors
+import ui
 from screen import Screen
 from button import Button
 from location_button  import LocationButton
@@ -40,7 +40,7 @@ class LocationScreen(Screen):
             raise ValueError('Variables player and fromScreen must be set')
             
         # Background
-        background(255, 74, 113)
+        background(ui.COLOR_RED_LIGHT)
         
         # Board    
         boardImage = self.boardImageSix if playerManager.maxPlayers == 6 else self.boardImageFour
@@ -54,7 +54,17 @@ class LocationScreen(Screen):
         
     def getSubModules(self):
         return [
-            [ Button, { 'x': 60, 'y': 60, 'width': 100, 'height': 50, 'color': [255, 22, 84], 'text': 'Terug', 'textColor': colors.COLOR_TEXT, 'textSize': 20, 'callback': self.goBack } ],
+            [ Button, {
+                'x': ui.SPACING_MD,
+                'y': ui.SPACING_MD,
+                'width': 100,
+                'height': 50,
+                'color': ui.COLOR_RED_DARK,
+                'text':'Terug',
+                'textColor': ui.COLOR_TEXT,
+                'textSize': ui.TEXT_SIZE_MD,
+                'callback': self.goBack }
+            ],
             
             [ LocationButton, { 'x': 735, 'y': 275, 'maxPlayers': 4, 'location': 1 } ],
             [ LocationButton, { 'x': 705, 'y': 250, 'maxPlayers': 4, 'location': 2 } ],

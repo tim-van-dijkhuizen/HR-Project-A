@@ -1,3 +1,4 @@
+import ui
 from module import Module
 from button import Button
 from selectable_button import SelectableButton
@@ -19,10 +20,6 @@ class PlayerButton(Module):
     def setup(self):
         if self.player == None:
             raise ValueError('player must be set')
-        
-    def draw(self):        
-        fill(255, 74, 113)
-        rect(self.x, self.y, self.width, self.height)
         
     def isActive(self):
         return self.player.isPlaying()
@@ -56,7 +53,6 @@ class PlayerButton(Module):
             'y': self.y + self.height / 2,
             'width': self.width / 2,
             'height': self.height / 2,
-            'color': [255, 74, 113],
             'text': 'Locatie',
             'callback': self.changeLocation
         }]
@@ -66,10 +62,9 @@ class PlayerButton(Module):
             'y': self.y + self.height / 2,
             'width': self.width / 2,
             'height': self.height / 2,
-            'color': [255, 74, 113],
             'text': 'BOT',
             'group': 'botSelect',
-            'selectedColor': [255, 22, 84],
+            'selectedColor': ui.COLOR_RED_DARK,
             'onSelect': self.selectBot
         }]
         

@@ -1,3 +1,4 @@
+import ui
 import utils
 from clickable import Clickable
 
@@ -17,15 +18,15 @@ class TextInput(Clickable):
 
     def draw(self):
         if self.focused:
-            fill(255, 235, 235)
+            fill(ui.COLOR_GRAY_LIGHT)
         else:
-            fill(255, 255, 255)
+            fill(ui.COLOR_WHITE)
         
         rect(self.x, self.y, self.width, self.height)
         
-        fill(0, 0, 0)
+        fill(ui.COLOR_TEXT)
         textAlign(LEFT)
-        textSize(15)
+        textSize(ui.TEXT_SIZE_SM)
         
         textOffset = self.height / 2 + textAscent() / 2
         text(self.value, self.x + textOffset, self.y + textOffset)

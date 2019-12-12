@@ -1,3 +1,4 @@
+import ui
 from screen import Screen
 from score import Score
 from button import Button
@@ -6,7 +7,7 @@ from dice_manager import DiceManager
 class GameScreen(Screen):
     
     boardX = 440
-    boardY = 60
+    boardY = ui.SPACING_LG
     boardWidth = 700
     boardHeight = 400
     
@@ -28,12 +29,11 @@ class GameScreen(Screen):
     def draw(self):    
         playerManager = self.app.getModule('playerManager')
             
-        background(255, 74, 113)
-        fill(11, 60, 73)
+        background(ui.COLOR_RED_LIGHT)
         
+        fill(ui.COLOR_TEXT)
         textSize(30);
         textAlign(LEFT);
-        
         text('Huidige beurt:', 60, 60)
         
         boardImage = self.boardImageSix if playerManager.maxPlayers == 6 else self.boardImageFour

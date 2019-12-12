@@ -1,3 +1,4 @@
+import ui
 from clickable import Clickable
 
 class LocationButton(Clickable):
@@ -25,7 +26,7 @@ class LocationButton(Clickable):
         circleSize = self.width / 2
         
         # Set color
-        fill(255, 22, 84)
+        fill(ui.COLOR_RED_DARK)
         
         # Show if selected
         if player.getLocation() == self.location:
