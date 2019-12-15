@@ -53,8 +53,3 @@ class GameScreen(Screen):
         return [
             [ DiceManager, {  } ]    
         ]
-        
-           
-   
-        
-        
