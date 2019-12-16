@@ -35,6 +35,13 @@ class PlayerManager(Module):
         
         return self._players[index]
     
+    def getPlayerByLocation(self, location):
+        for player in self.getPlayers():
+            if player.getLocation() == location:
+                return player
+            
+        return None
+    
     def getPlayers(self):
         return self._activePlayers
     
