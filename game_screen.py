@@ -83,7 +83,8 @@ class GameScreen(Screen):
         diceManager.rollDice()
 
     def getSubModules(self):
-        return [
+        playerManager = self.app.getModule('playerManager')
+        modules = [            
             [ DiceManager, {  } ],
         
             [ LocationButton, { 'x': 735, 'y': 275- self.buttonOffset2, 'maxPlayers': 4, 'location': 1 } ],
@@ -318,3 +319,18 @@ class GameScreen(Screen):
             [ LocationButton, { 'x': 655 - self.buttonOffset, 'y': 258- self.buttonOffset2, 'maxPlayers': 6, 'location': 131 } ],
             [ LocationButton, { 'x': 670 - self.buttonOffset, 'y': 287- self.buttonOffset2, 'maxPlayers': 6, 'location': 132 } ],
         ]
+        
+        playerButtonX = ui.SPACING_LG
+        playerButtonY = ui.SPACING_LG + ui.SPACING_SM + 80 + ui.SPACING_LG + ui.SPACING_SM
+        
+        players = playerManager.getAllPlayers()
+        for i in range(1, len(players) + 1):
+            modules.append([ PlayerButton, { 'x': playerButtonX, 'y': playerButtonY, 'player': players[i - 1] } ])
+            
+            playerButtonX += 225 + ui.SPACING_XS
+            
+            if i % 2 == 0:
+                playerButtonX = ui.SPACING_LG
+                playerButtonY += 100 + ui.SPACING_XS
+            
+        return modules
