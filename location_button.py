@@ -31,7 +31,7 @@ class LocationButton(Clickable):
         # Set color
         fill(ui.COLOR_RED_DARK)
         
-        # Check if the LocationScreen is active
+        # Check if we're in the LocationScreen context
         if screen != None and screen.getHandle() == 'location':
             player = screen.player
         
@@ -47,7 +47,9 @@ class LocationButton(Clickable):
                 text(player.name, self.x, self.y)
                   
     def callback(self):
-        locationScreen = self.app.getScreen('location')
+        screen = self.app.getCurrentScreen()
         
-        player = locationScreen.player
-        player.setLocation(self.location)
+        # Check if we're in the LocationScreen context
+        if screen != None and screen.getHandle() == 'location':
+            player = screen.player
+            player.setLocation(self.location)
