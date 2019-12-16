@@ -1,6 +1,5 @@
 import ui
 from screen import Screen
-from score import Score
 from button import Button
 from dice_manager import DiceManager
 from location_button  import LocationButton
@@ -59,8 +58,3 @@ class GameScreen(Screen):
         return [
             [ DiceManager, {  } ]    
         ]
-        
-           
-   
-        
-        
