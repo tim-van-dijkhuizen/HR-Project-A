@@ -42,7 +42,9 @@ class LocationButton(Clickable):
             player = playerManager.getPlayerByLocation(self.location)
             
             if player != None:
-                text('Player: ' + player.name, self.x, self.y)
+                fill(0, 0, 0)
+                textSize(10)
+                text(player.name, self.x, self.y)
                   
     def callback(self):
         locationScreen = self.app.getScreen('location')
