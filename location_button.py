@@ -21,8 +21,8 @@ class LocationButton(Clickable):
             raise ValueError('Max players and location must be set')
          
     def draw(self):
-        locationScreen = self.app.getScreen('location')
-        player = locationScreen.player
+        playerManager = self.app.getModule('playerManager')
+        screen = self.app.getCurrentScreen()
         circleSize = self.width / 2
         
         fill(0, 0, 0, 0)
@@ -31,9 +31,18 @@ class LocationButton(Clickable):
         # Set color
         fill(ui.COLOR_RED_DARK)
         
-        # Show if selected
-        if player.getLocation() == self.location:
-            circle(self.x + circleSize, self.y + circleSize, circleSize)
+        # Check if the LocationScreen is active
+        if screen != None and screen.getHandle() == 'location':
+            player = screen.player
+        
+            # Show circle if selected
+            if player.getLocation() == self.location:
+                circle(self.x + circleSize, self.y + circleSize, circleSize)
+        else:
+            player = playerManager.getPlayerByLocation(self.location)
+            
+            if player != None:
+                text('Player: ' + player.name, self.x, self.y)
                   
     def callback(self):
         locationScreen = self.app.getScreen('location')
