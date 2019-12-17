@@ -8,7 +8,7 @@ class ImageLoader(Module):
         return 'imageLoader'
     
     def get(self, fileName, ext = 'png'):
-        path = fileName + '.' + ext
+        path = self._buildPath(fileName, ext)
         
         # Load image if not cached yet
         if not (path in self._loadedImages):
@@ -17,10 +17,11 @@ class ImageLoader(Module):
         return self._loadedImages[path]
         
     def load(self, fileName, ext = 'png'):
-        path = fileName + '.' + ext
-        
-        print('Loading image:', path)
-        
+        path = self._buildPath(fileName, ext)
+
         # Load image
         self._loadedImages[path] = loadImage(path)
         return self._loadedImages[path]
+    
+    def _buildPath(self, fileName, ext):
+        return 'images/' + fileName + '.' + ext
