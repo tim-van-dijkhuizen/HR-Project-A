@@ -16,6 +16,17 @@ class PlayerManager(Module):
     def getHandle(self):
         return 'playerManager'
     
+    def setup(self):
+        imageLoader = self.app.getModule('imageLoader')
+        
+        # Load images
+        imageLoader.load('pion-1')
+        imageLoader.load('pion-2')
+        imageLoader.load('pion-3')
+        imageLoader.load('pion-4')
+        imageLoader.load('pion-5')
+        imageLoader.load('pion-6')
+    
     def init(self):
         self._players = self.app.getModulesByType(Player)
         
@@ -52,7 +63,8 @@ class PlayerManager(Module):
         modules = []
         
         # Create 6 players
-        for _ in range(6): 
-            modules.append([Player, {}])
+        for i in range(1, 7):
+            imageFile = 'pion-' + str(i)
+            modules.append([Player, { 'image': imageFile }])
             
         return modules

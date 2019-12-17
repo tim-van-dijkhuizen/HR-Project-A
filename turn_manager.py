@@ -24,7 +24,6 @@ class TurnManager(Module):
             nextIndex = 0
             
         self.currentPlayer = playerManager.getPlayer(nextIndex)
-        print("player:", self.currentPlayer.name)
         
     def getSubModules(self):
         modules = []
