@@ -54,11 +54,8 @@ class GameScreen(Screen):
         playerManager = self.app.getModule('playerManager')
         locationButton = self.app.getModule('location')
         turnManager = self.app.getModule('turnManager')
-        
-        print
 
         background(ui.COLOR_RED_LIGHT)
-
         fill(ui.COLOR_TEXT)
         textSize(30);
         textAlign(LEFT);

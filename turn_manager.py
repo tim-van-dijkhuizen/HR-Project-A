@@ -18,7 +18,6 @@ class TurnManager(Module):
         players = playerManager.getPlayers()
         currentIndex = 0 if self.currentPlayer == None else players.index(self.currentPlayer)
         nextIndex = currentIndex + 1
-        print('test')
         
         #reset index if max players exceeded
         if nextIndex >= len(players):
