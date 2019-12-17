@@ -2,22 +2,17 @@ from module import Module
 
 class DiceManager(Module):
     
-    diceImageOne = None
-    diceImageTwo = None
-    diceImageThree = None
-    diceImageFour = None
-    diceImageFive = None
-    diceImageSix = None
-    
     diceValue = 0
     
     def setup(self):
-        self.diceImageOne = loadImage("dice1.png")
-        self.diceImageTwo = loadImage("dice2.png")
-        self.diceImageThree = loadImage("dice3.png")
-        self.diceImageFour = loadImage("dice4.png")
-        self.diceImageFive = loadImage("dice5.png")
-        self.diceImageSix = loadImage("dice6.png")
+        imageLoader = self.app.getModule('imageLoader')
+        
+        imageLoader.load("dice1.png")
+        imageLoader.load("dice2.png")
+        imageLoader.load("dice3.png")
+        imageLoader.load("dice4.png")
+        imageLoader.load("dice5.png")
+        imageLoader.load("dice6.png")
                      
     def getHandle(self):
        return 'diceManager'

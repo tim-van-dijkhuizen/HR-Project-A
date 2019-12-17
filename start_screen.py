@@ -12,8 +12,6 @@ class StartScreen(Screen):
     logoX = None
     logoY = None
     
-    _backgroundImage = None
-    
     def getHandle(self):
         return 'start'
     
@@ -21,15 +19,20 @@ class StartScreen(Screen):
         return True
     
     def setup(self):
-        self._backgroundImage = loadImage('background.png')
+        imageLoader = self.app.getModule('imageLoader')
+        
+        # Load background image
+        imageLoader.load('background')
         
         # Logo image and position
-        self._logoImage = loadImage('logo.png')
+        imageLoader.load('logo')
         self.logoX = width - self.logoWidth - ui.SPACING_LG
         self.logoY = ui.SPACING_LG + ui.SPACING_SM
 
     def draw(self):
-        image(self._backgroundImage, 0 , 0 , width, height)
+        imageLoader = self.app.getModule('imageLoader')
+        
+        image(imageLoader.get('background'), 0 , 0 , width, height)
         
         fill(ui.COLOR_TEXT)
         textSize(ui.TEXT_SIZE_LG)
@@ -38,7 +41,7 @@ class StartScreen(Screen):
         text('Teams', ui.SPACING_LG, ui.SPACING_LG)
         text('Spelers', ui.SPACING_LG, ui.SPACING_LG + ui.SPACING_SM + 80 + ui.SPACING_LG)
     
-        image(self._logoImage, self.logoX, self.logoY, self.logoWidth, self.logoHeight)
+        image(imageLoader.get('logo'), self.logoX, self.logoY, self.logoWidth, self.logoHeight)
         
     def keyPressed(self):
         if keyCode == 10:

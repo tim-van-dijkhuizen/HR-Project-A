@@ -14,35 +14,23 @@ class GameScreen(Screen):
     
     boardWidth = 794
     boardHeight = 500
-
-    boardImageFour = None
-    boardImageSix = None
-    
-
-    pionRoodR = None
-    pionRoodL = None
-    pionBlauwL = None
-    pionBlauwR = None
-    pionGroenL = None
-    pionGroenR = None
     
     fromScreen = None
     player = None
 
     def setup(self):
         playerManager = self.app.getModule('playerManager')
-        locationButton = self.app.getModule('location')
-        turnManager = self.app.getModule('turnManager')
+        imageLoader = self.app.getModule('imageLoader')
 
-        self.boardImageFour = loadImage('board-players4.png')
-        self.boardImageSix = loadImage('board-players6.png')
+        imageLoader.load('board-players4.png')
+        imageLoader.load('board-players6.png')
         
-        self.pionRoodL = loadImage('RoodL.png')
-        self.pionRoodR = loadImage('RoodR.png')
-        self.pionBlauwL = loadImage('BlauwL.png')
-        self.pionBlauwR = loadImage('BlauwR.png')
-        self.pionGroenL = loadImage('GroenL.png')
-        self.pionGroenR = loadImage('GroenR.png')
+        imageLoader.load('RoodL')
+        imageLoader.load('RoodR')
+        imageLoader.load('BlauwL')
+        imageLoader.load('BlauwR')
+        imageLoader.load('GroenL')
+        imageLoader.load('GroenR')
         
         self.boardX = width / 2 - (self.boardWidth / 3.2)
         self.boardY = 40
@@ -52,27 +40,26 @@ class GameScreen(Screen):
 
     def draw(self):
         playerManager = self.app.getModule('playerManager')
-        locationButton = self.app.getModule('location')
-        turnManager = self.app.getModule('turnManager')
-        
-        print
+        imageLoader = self.app.getModule('imageLoader')
 
         background(ui.COLOR_RED_LIGHT)
-
         fill(ui.COLOR_TEXT)
         textSize(30);
         textAlign(LEFT);
         text('Huidige beurt:', 60, 60)
             
-        image(self.pionRoodR, 50, 150, 40, 50)
-        image(self.pionRoodL, 50, 210, 40, 50)
-        image(self.pionBlauwL, 100, 150, 40, 50)
-        image(self.pionBlauwR, 100, 210, 40, 50)
-        image(self.pionGroenL, 150, 150, 40, 50)
-        image(self.pionGroenR, 150, 210, 40, 50)
+        image(imageLoader.get('RoodL'), 50, 150, 40, 50)
+        image(imageLoader.get('RoodR'), 50, 210, 40, 50)
+        image(imageLoader.get('BlauwL'), 100, 150, 40, 50)
+        image(imageLoader.get('BlauwR'), 100, 210, 40, 50)
+        image(imageLoader.get('GroenL'), 150, 150, 40, 50)
+        image(imageLoader.get('GroenR'), 150, 210, 40, 50)
             
-        
-        boardImage = self.boardImageSix if playerManager.maxPlayers == 6 else self.boardImageFour
+        if playerManager.maxPlayers == 6:
+            boardImage = imageLoader.get('board-players6')
+        else:
+            boardImage = imageLoader.get('board-players4')
+            
         image(boardImage, self.boardX, self.boardY, self.boardWidth, self.boardHeight)
 
     def keyPressed(self):
