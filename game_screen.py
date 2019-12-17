@@ -58,9 +58,6 @@ class GameScreen(Screen):
         textSize(30);
         textAlign(LEFT);
         text('Huidige beurt:', 60, 60)
-
-        for player in playerManager.getPlayers():
-            print(player.getLocation())
             
         image(self.pionRoodR, 50, 150, 40, 50)
         image(self.pionRoodL, 50, 210, 40, 50)
