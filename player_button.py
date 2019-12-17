@@ -42,15 +42,15 @@ class PlayerButton(Module):
         nameInput = [TextInput,  {
             'x': self.x,
             'y': self.y,
-            'width': self.width,
-            'height': self.height / 2,
-            'maxLength': 18,
+            'width': self.width / 2,
+            'height': self.height,
+            #'maxLength': 18,
             'callback': self.changeName
         }]
         
         locationButton = [Button,  {
-            'x': self.x,
-            'y': self.y + self.height / 2,
+            'x': self.x + self.width / 2 + 1,
+            'y': self.y + self.height / 120,  # 120
             'width': self.width / 2,
             'height': self.height / 2,
             'text': 'Locatie',
