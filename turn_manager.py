@@ -32,10 +32,10 @@ class TurnManager(Module):
         turnManager = self.app.getModule('turnManager')
         
         modules.append([Button, {
-            'x': 100,
-            'y': 100,
+            'x': 60,
+            'y': 70,
             'width': 200,
-            'height': 80,
+            'height': 50,
             'textSize': ui.TEXT_SIZE_MD,  
             'text': 'Next',
             'callback': turnManager.nextPlayer
