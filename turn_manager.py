@@ -24,17 +24,16 @@ class TurnManager(Module):
             nextIndex = 0
             
         self.currentPlayer = playerManager.getPlayer(nextIndex)
-        print("player:", self.currentPlayer.name)
         
     def getSubModules(self):
         modules = []
         turnManager = self.app.getModule('turnManager')
         
         modules.append([Button, {
-            'x': 100,
-            'y': 100,
+            'x': 60,
+            'y': 70,
             'width': 200,
-            'height': 80,
+            'height': 50,
             'textSize': ui.TEXT_SIZE_MD,  
             'text': 'Next',
             'callback': turnManager.nextPlayer

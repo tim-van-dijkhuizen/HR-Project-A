@@ -65,9 +65,6 @@ class StartScreen(Screen):
         for player in playerManager.getPlayers():
             if player.isBot(): botSelected = True
             
-            if player.name == None or len(player.name) <= 0:
-                configInvalid = True
-            
             if player.getLocation() == None:
                 configInvalid = True
             
@@ -127,10 +124,10 @@ class StartScreen(Screen):
         for i in range(1, len(players) + 1):
             modules.append([ PlayerButton, { 'x': playerButtonX, 'y': playerButtonY, 'player': players[i - 1] } ])
             
-            playerButtonX += 225 + ui.SPACING_XS
+            playerButtonX += 160 + ui.SPACING_XS
             
             if i % 2 == 0:
                 playerButtonX = ui.SPACING_LG
-                playerButtonY += 100 + ui.SPACING_XS
+                playerButtonY += 80 + ui.SPACING_XS
             
         return modules

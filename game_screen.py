@@ -25,13 +25,6 @@ class GameScreen(Screen):
         imageLoader.load('board-players4.png')
         imageLoader.load('board-players6.png')
         
-        imageLoader.load('RoodL')
-        imageLoader.load('RoodR')
-        imageLoader.load('BlauwL')
-        imageLoader.load('BlauwR')
-        imageLoader.load('GroenL')
-        imageLoader.load('GroenR')
-        
         self.boardX = width / 2 - (self.boardWidth / 3.2)
         self.boardY = 40
 
@@ -47,13 +40,6 @@ class GameScreen(Screen):
         textSize(30);
         textAlign(LEFT);
         text('Huidige beurt:', 60, 60)
-            
-        image(imageLoader.get('RoodL'), 50, 150, 40, 50)
-        image(imageLoader.get('RoodR'), 50, 210, 40, 50)
-        image(imageLoader.get('BlauwL'), 100, 150, 40, 50)
-        image(imageLoader.get('BlauwR'), 100, 210, 40, 50)
-        image(imageLoader.get('GroenL'), 150, 150, 40, 50)
-        image(imageLoader.get('GroenR'), 150, 210, 40, 50)
             
         if playerManager.maxPlayers == 6:
             boardImage = imageLoader.get('board-players6')
@@ -314,17 +300,17 @@ class GameScreen(Screen):
             [ LocationButton, { 'x': 670 - self.buttonOffset, 'y': 287 - self.buttonOffset2, 'maxPlayers': 6, 'location': 132 } ],
         ]
         
-        playerButtonX = ui.SPACING_LG
-        playerButtonY = ui.SPACING_LG + ui.SPACING_SM + 80 + ui.SPACING_LG + ui.SPACING_SM
+        playerButtonX = 20
+        playerButtonY = 250
         
         players = playerManager.getAllPlayers()
         for i in range(1, len(players) + 1):
-            modules.append([ PlayerButton, { 'x': playerButtonX, 'y': playerButtonY, 'player': players[i - 1] } ])
+            modules.append([ PlayerButton, { 'x': playerButtonX, 'y': playerButtonY, 'width': 150, 'player': players[i - 1] } ])
             
-            playerButtonX += 225 + ui.SPACING_XS
+            playerButtonX += 140 + 20
             
             if i % 2 == 0:
-                playerButtonX = ui.SPACING_LG
+                playerButtonX = 20
                 playerButtonY += 100 + ui.SPACING_XS
             
         return modules

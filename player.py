@@ -2,7 +2,7 @@ from module import Module
 
 class Player(Module):
     
-    name = None
+    image = None
     
     _location = None
     _oldLocation = None

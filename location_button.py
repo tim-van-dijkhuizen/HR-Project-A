@@ -22,6 +22,7 @@ class LocationButton(Clickable):
          
     def draw(self):
         playerManager = self.app.getModule('playerManager')
+        imageLoader = self.app.getModule('imageLoader')
         screen = self.app.getCurrentScreen()
         circleSize = self.width / 2
         
@@ -42,9 +43,14 @@ class LocationButton(Clickable):
             player = playerManager.getPlayerByLocation(self.location)
             
             if player != None:
-                fill(0, 0, 0)
-                textSize(10)
-                text(player.name, self.x, self.y)
+                playerImage = imageLoader.get(player.image)
+                
+                imageWidth = self.width - 4
+                imageHeight = self.height - 4
+                imageOffsetX = (self.x + self.width / 2) - imageWidth / 2
+                imageOffsetY = (self.y + self.height / 2) - imageHeight / 2
+                
+                image(playerImage, imageOffsetX, imageOffsetY, imageWidth, imageHeight)
                   
     def callback(self):
         screen = self.app.getCurrentScreen()
