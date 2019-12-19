@@ -19,4 +19,5 @@ class DiceManager(Module):
         
     def mousePressed(self): 
         self.diceValue = int(random(1, 7))
+        print(self.diceValue)
         
