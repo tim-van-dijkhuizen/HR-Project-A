@@ -122,7 +122,12 @@ class StartScreen(Screen):
         
         players = playerManager.getAllPlayers()
         for i in range(1, len(players) + 1):
-            modules.append([ PlayerButton, { 'x': playerButtonX, 'y': playerButtonY, 'player': players[i - 1] } ])
+            modules.append([ PlayerButton, {
+                'x': playerButtonX,
+                'y': playerButtonY,
+                'player': players[i - 1],
+                'reverseAlignment': i % 2 != 0 
+            } ])
             
             playerButtonX += 160 + ui.SPACING_XS
             

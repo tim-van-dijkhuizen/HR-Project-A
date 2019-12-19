@@ -14,10 +14,13 @@ class PlayerButton(Module):
     y = 0
     
     editable = True
+    reverseAlignment = False
     
     # Position
     _imageBoxWidth = None
     _buttonBoxWidth = None
+    _imageBoxX = None
+    _buttonBoxX = None
 
     # The player which this button belongs to
     player = None
@@ -33,15 +36,22 @@ class PlayerButton(Module):
         self._imageBoxWidth = (self.width / 6) * 3
         self._buttonBoxWidth = self.width / 6 * 3
         
+        if self.reverseAlignment:
+            self._buttonBoxX = self.x
+            self._imageBoxX = self.x + self._buttonBoxWidth
+        else:
+            self._buttonBoxX = self.x + self._imageBoxWidth
+            self._imageBoxX = self.x
+        
     def draw(self):
         imageLoader = self.app.getModule('imageLoader')
         
         fill(ui.COLOR_WHITE)
-        rect(self.x, self.y, self._imageBoxWidth, self.height)
+        rect(self._imageBoxX, self.y, self._imageBoxWidth, self.height)
         
         playerImage = imageLoader.get(self.player.image)
         imageSize = self._imageBoxWidth - ui.SPACING_SM
-        image(playerImage, (self.x + self._imageBoxWidth / 2) - imageSize / 2, (self.y + self.height / 2) - imageSize / 2, imageSize, imageSize)
+        image(playerImage, (self._imageBoxX + self._imageBoxWidth / 2) - imageSize / 2, (self.y + self.height / 2) - imageSize / 2, imageSize, imageSize)
     
     def changeLocation(self):
         locationScreen = self.app.getScreen('location')
@@ -56,7 +66,7 @@ class PlayerButton(Module):
     
     def getSubModules(self):
         locationButton = [Button,  {
-            'x': self.x + self._imageBoxWidth + 1,
+            'x': self._buttonBoxX,
             'y': self.y,
             'width': self._buttonBoxWidth,
             'height': self.height / 2,
@@ -65,7 +75,7 @@ class PlayerButton(Module):
         }]
         
         botButton = [SelectableButton,  {
-            'x': self.x + self._imageBoxWidth + 1,
+            'x': self._buttonBoxX,
             'y': self.y + self.height / 2,
             'width': self._buttonBoxWidth,
             'height': self.height / 2,
