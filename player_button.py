@@ -12,8 +12,7 @@ class PlayerButton(Module):
     # Settings
     x = 0
     y = 0
-    
-    editable = True
+    readOnly = False
     reverseAlignment = False
     
     # Position
@@ -82,7 +81,8 @@ class PlayerButton(Module):
             'text': 'BOT',
             'group': 'botSelect',
             'selectedColor': ui.COLOR_RED_DARK,
-            'onSelect': self.selectBot
+            'onSelect': self.selectBot,
+            'readOnly': self.readOnly
         }]
         
         return [

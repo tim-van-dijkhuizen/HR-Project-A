@@ -1,6 +1,7 @@
 import ui
 from screen import Screen
 from button import Button
+from selectable_button import SelectableButton
 from dice_manager import DiceManager
 from location_button  import LocationButton
 from player_button import PlayerButton
@@ -52,6 +53,19 @@ class GameScreen(Screen):
         if keyCode == 32:
             startScreen = self.app.getScreen('start')
             self.app.setCurrentScreen(startScreen)
+
+    def afterShow(self):
+        playerManager = self.app.getModule('playerManager')
+        buttons = [ i for i in self.app.getModulesByType(PlayerButton) if i.getTopLevelParent() is self ]
+        
+        # Select the correct bot button
+        for button in buttons:
+            if button.player is playerManager.botPlayer:
+                botButtons = button.getSubModulesByType(SelectableButton)
+                botButton = botButtons[0] if len(botButtons) > 0 else None
+                
+                if botButton != None:
+                    botButton.select()
 
     def rollDice(self):
         diceManager = self.app.getModule('diceManager')
@@ -309,7 +323,8 @@ class GameScreen(Screen):
                 'x': playerButtonX,
                 'y': playerButtonY,
                 'player': players[i - 1],
-                'reverseAlignment': i % 2 != 0 
+                'reverseAlignment': i % 2 != 0,
+                'readOnly': True
             } ])
             
             playerButtonX += 140 + 20

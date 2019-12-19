@@ -8,5 +8,9 @@ class Component:
     
         self.setup()
 
+    # Returns the name of this class
+    def getClassName(self):
+        return self.__class__.__name__
+
     # Called on setup
     def setup(self): pass

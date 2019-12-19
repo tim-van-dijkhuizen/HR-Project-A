@@ -8,11 +8,14 @@ class Clickable(Module):
     width = 0
     height = 0
     callback = None
+    readOnly = False
     
     _hovered = False
 
     def mouseMoved(self):
-        if utils.collidesWith(self.x, self.y, self.width, self.height):
+        readOnly = utils.parseValue(self.readOnly)
+        
+        if utils.collidesWith(self.x, self.y, self.width, self.height) and not readOnly:
             self._hovered = True
             cursor(HAND)
         elif self._hovered:
@@ -20,5 +23,7 @@ class Clickable(Module):
             cursor(ARROW)
     
     def mousePressed(self):
-        if utils.collidesWith(self.x, self.y, self.width, self.height) and self.callback != None:
+        readOnly = utils.parseValue(self.readOnly)
+        
+        if utils.collidesWith(self.x, self.y, self.width, self.height) and not readOnly and self.callback != None:
             self.callback()

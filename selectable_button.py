@@ -28,7 +28,9 @@ class SelectableButton(Button):
         siblings = self.app.getModulesByType(SelectableButton)
         
         for sibling in siblings:
-            if sibling.group == self.group and not (sibling is self):
+            sameParent = sibling.getTopLevelParent() is self.getTopLevelParent()
+            
+            if sibling.group == self.group and not (sibling is self) and sameParent:
                 self._siblings.append(sibling)
         
     def select(self):

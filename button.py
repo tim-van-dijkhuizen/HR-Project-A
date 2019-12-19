@@ -10,9 +10,21 @@ class Button(Clickable):
     textSize = ui.TEXT_SIZE_SM
     textColor = ui.COLOR_TEXT
     disabled = False
-        
+    
+    _originalReadOnly = None
+    
     def draw(self):
-        color = utils.colorGrayscale(self.color) if utils.parseValue(self.disabled) else self.color
+        disabled = utils.parseValue(self.disabled)
+    
+        # Set read-only value
+        if disabled and not self.readOnly:
+            self._originalReadOnly = self.readOnly
+            self.readOnly = True
+        elif not disabled and self._originalReadOnly != None and self.readOnly != self._originalReadOnly:
+            self.readOnly = self._originalReadOnly
+        
+        # Determine color
+        color = utils.colorGrayscale(self.color) if disabled else self.color
                 
         # Create rectangle
         fill(color)
@@ -23,15 +35,5 @@ class Button(Clickable):
         textAlign(CENTER);
         fill(self.textColor)
         text(self.text, self.x + self.width / 2, self.y + self.height / 2 + self.textSize / 2 - 2)
-        
-    def mouseMoved(self):
-        # Cancel hover if disabled
-        if not utils.parseValue(self.disabled):
-            Clickable.mouseMoved(self)
-        
-    def mousePressed(self):
-        # Cancel click if disabled
-        if not utils.parseValue(self.disabled):
-            Clickable.mousePressed(self)
         
         

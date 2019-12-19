@@ -25,14 +25,11 @@ class App(Component):
     
     # Returns a Module by its type
     def getModulesByType(self, type):
-        modules = []
-        
-        # Loop through all modules
-        for module in self.modules:
-            if isinstance(module, type):
-                modules.append(module)
-                
-        return modules
+        return [ i for i in self.modules if isinstance(i, type) ]
+    
+    # Returns a Module by its type
+    def getModulesByParent(self, parent):    
+        return [ i for i in self.modules if i.parent is parent ]
     
     # Returns a Screen by its handle
     def getScreen(self, handle):

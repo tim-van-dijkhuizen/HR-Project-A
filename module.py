@@ -28,6 +28,20 @@ class Module(Component):
         # Return own active state
         return self.isActive()
     
+    # Returns the top-level parent
+    def getTopLevelParent(self):
+        parent = self.parent
+        
+        # Return if we've got no parent
+        if parent == None:
+            return self
+        
+        return parent.getTopLevelParent()
+    
+    # Returns a sub-module by its type
+    def getSubModulesByType(self, type):
+        return [ i for i in self.app.getModulesByParent(self) if isinstance(i, type) ]
+    
     # Optional functions
     # ==========================================================
     
