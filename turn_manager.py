@@ -11,13 +11,24 @@ class TurnManager(Module):
         return 'turnManager'
     
     def setup(self):
-        playerManager = self.app.getModule('playerManager')            
+        playerManager = self.app.getModule('playerManager')     
+        imageLoader = self.app.getModule('imageLoader')
+        
+        # Load images
+        imageLoader.load('pion-1')
+        imageLoader.load('pion-2')
+        imageLoader.load('pion-3')
+        imageLoader.load('pion-4')
+        imageLoader.load('pion-5')
+        imageLoader.load('pion-6')       
             
     def nextPlayer(self):
         playerManager = self.app.getModule('playerManager')
+        imageLoader = self.app.getModule('imageLoader')
         players = playerManager.getPlayers()
         currentIndex = 0 if self.currentPlayer == None else players.index(self.currentPlayer)
         nextIndex = currentIndex + 1
+        image(imageLoader.get('pion-' + str(nextIndex)), 300 , 50 , 50, 50)
         
         #reset index if max players exceeded
         if nextIndex >= len(players):
