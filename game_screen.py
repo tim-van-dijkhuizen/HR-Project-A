@@ -1,4 +1,5 @@
 import ui
+from player import Player
 from screen import Screen
 from button import Button
 from selectable_button import SelectableButton
