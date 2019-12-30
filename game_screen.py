@@ -6,6 +6,7 @@ from dice_manager import DiceManager
 from location_button  import LocationButton
 from player_button import PlayerButton
 from turn_manager import TurnManager
+from bot_manager import BotManager
 
 class GameScreen(Screen):
 
@@ -34,7 +35,8 @@ class GameScreen(Screen):
 
     def draw(self):
         playerManager = self.app.getModule('playerManager')
-        imageLoader = self.app.getModule('imageLoader')
+        turnManager = self.app.getModule('turnManager')
+        imageLoader = self.app.getModule('imageLoader')    
 
         background(ui.COLOR_RED_LIGHT)
         fill(ui.COLOR_TEXT)
@@ -76,6 +78,7 @@ class GameScreen(Screen):
         modules = [            
             [ DiceManager, {  } ],
             [ TurnManager, {  } ],
+            [ BotManager, {  } ],
         
             [ LocationButton, { 'x': 735, 'y': 275 - self.buttonOffset2, 'maxPlayers': 4, 'location': 1, 'readOnly': True } ],
             [ LocationButton, { 'x': 705, 'y': 250 - self.buttonOffset2, 'maxPlayers': 4, 'location': 2, 'readOnly': True } ],
