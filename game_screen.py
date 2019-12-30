@@ -36,8 +36,12 @@ class GameScreen(Screen):
     def draw(self):
         playerManager = self.app.getModule('playerManager')
         turnManager = self.app.getModule('turnManager')
-        imageLoader = self.app.getModule('imageLoader')    
-    
+
+        imageLoader = self.app.getModule('imageLoader')  
+        botManager = self.app.getModule('botManager')  
+        
+        print(botManager.botLocation())
+
         background(ui.COLOR_RED_LIGHT)
         fill(ui.COLOR_TEXT)
         textSize(30);
