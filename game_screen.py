@@ -37,7 +37,7 @@ class GameScreen(Screen):
         playerManager = self.app.getModule('playerManager')
         turnManager = self.app.getModule('turnManager')
         imageLoader = self.app.getModule('imageLoader')    
-
+    
         background(ui.COLOR_RED_LIGHT)
         fill(ui.COLOR_TEXT)
         textSize(30);
