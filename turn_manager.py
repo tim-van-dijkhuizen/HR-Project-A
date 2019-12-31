@@ -22,18 +22,24 @@ class TurnManager(Module):
         imageLoader.load('pion-4')
         imageLoader.load('pion-5')
         imageLoader.load('pion-6')       
+        
+    def draw(self):
+        imageLoader = self.app.getModule('imageLoader')
+        image(imageLoader.get('pion-' + str(self.nextPicture)), 300 , 50 , 50, 50)
             
     def nextPlayer(self):
         playerManager = self.app.getModule('playerManager')
-        imageLoader = self.app.getModule('imageLoader')
+        
         players = playerManager.getPlayers()
         currentIndex = 0 if self.currentPlayer == None else players.index(self.currentPlayer)
         nextIndex = currentIndex + 1
         self.nextPicture = self.nextPicture + 1
-        image(imageLoader.get('pion-' + str(self.nextPicture)), 300 , 50 , 50, 50)
-
-        if self.nextPicture >= len(players):
-            self.nextPicture = 0
+        
+        # hier geeft die aan welke picture nu aan de beurt is
+        if self.nextPicture == len(players):
+            self.nextPicture = len(players)
+        elif self.nextPicture > len(players):
+            self.nextPicture = 1
         
         #reset index if max players exceeded
         if nextIndex >= len(players):
