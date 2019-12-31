@@ -6,6 +6,7 @@ class TurnManager(Module):
     
     # All active players
     currentPlayer = None
+    nextPicture = 1
     
     def getHandle(self):
         return 'turnManager'
@@ -28,7 +29,11 @@ class TurnManager(Module):
         players = playerManager.getPlayers()
         currentIndex = 0 if self.currentPlayer == None else players.index(self.currentPlayer)
         nextIndex = currentIndex + 1
-        image(imageLoader.get('pion-' + str(nextIndex)), 300 , 50 , 50, 50)
+        self.nextPicture = self.nextPicture + 1
+        image(imageLoader.get('pion-' + str(self.nextPicture)), 300 , 50 , 50, 50)
+
+        if self.nextPicture >= len(players):
+            self.nextPicture = 0
         
         #reset index if max players exceeded
         if nextIndex >= len(players):
