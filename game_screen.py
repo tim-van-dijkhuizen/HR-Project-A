@@ -40,8 +40,6 @@ class GameScreen(Screen):
 
         imageLoader = self.app.getModule('imageLoader')  
         botManager = self.app.getModule('botManager')  
-        
-        print(botManager.botLocation())
 
         background(ui.COLOR_RED_LIGHT)
         fill(ui.COLOR_TEXT)

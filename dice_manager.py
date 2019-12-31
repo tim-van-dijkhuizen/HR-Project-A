@@ -21,10 +21,28 @@ class DiceManager(Module):
        return 'diceManager'
         
     def diceNumber(self):
-        imageLoader = self.app.getModule('imageLoader') 
+        playerManager = self.app.getModule('playerManager')
+        botManager = self.app.getModule('botManager')
+        turnManager = self.app.getModule('turnManager')
+        
         self.diceValue = int(random(1, 7))
-        print(self.diceValue)
-        # image(imageLoader.get('dice' + str(self.diceValue)), 1100 , 550 , 50, 50)
+        steps = self.diceValue
+        botLocatie = botManager.botLocation()
+        currentPlayer = turnManager.currentPlayer
+        partner = playerManager.botPlayer.getPartner()
+
+        if botLocatie > partner.getLocation():
+            botLocation = int(botLocatie) - steps
+        elif botLocatie == partner.getLocation():
+            print('Bot heeft gewonnen')
+        else:
+            botLocation = steps + int(botLocatie)
+        
+        # in de if moet er een formule komen om een beter rondtje te maken
+        if botLocation >= 88:
+            botLocation = 1
+            
+        newLocation = playerManager.botPlayer.setLocation(botLocation)
         
     def diceDisabled(self):
         playerManager = self.app.getModule('playerManager')
