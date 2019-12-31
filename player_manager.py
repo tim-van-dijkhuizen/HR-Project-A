@@ -63,8 +63,8 @@ class PlayerManager(Module):
         modules = []
         
         # Create 6 players
-        for i in range(1, 7):
-            imageFile = 'pion-' + str(i)
-            modules.append([Player, { 'image': imageFile }])
+        for i in range(6):
+            imageFile = 'pion-' + str(i + 1)
+            modules.append([Player, { 'index': i, 'image': imageFile }])
             
         return modules
