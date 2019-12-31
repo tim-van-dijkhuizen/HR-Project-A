@@ -36,6 +36,7 @@ class DiceManager(Module):
             newLocation = playerManager.botPlayer.setLocation(botLocation)
         elif botLocatie == partner.getLocation():
             print('Bot heeft gewonnen')
+            gameOver = True
         else:
             botLocation = steps + int(botLocatie)
             newLocation = playerManager.botPlayer.setLocation(botLocation)
