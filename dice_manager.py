@@ -30,9 +30,7 @@ class DiceManager(Module):
         botLocatie = botManager.botLocation()
         currentPlayer = turnManager.currentPlayer
         partner = playerManager.botPlayer.getPartner()
-        
-        print(partner.getLocation())
-        print(botLocatie)
+
         if botLocatie > partner.getLocation():
             botLocation = int(botLocatie) - steps
         elif botLocatie == partner.getLocation():
