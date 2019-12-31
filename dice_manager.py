@@ -33,16 +33,12 @@ class DiceManager(Module):
 
         if botLocatie > partner.getLocation():
             botLocation = int(botLocatie) - steps
+            newLocation = playerManager.botPlayer.setLocation(botLocation)
         elif botLocatie == partner.getLocation():
             print('Bot heeft gewonnen')
         else:
             botLocation = steps + int(botLocatie)
-        
-        # in de if moet er een formule komen om een beter rondtje te maken
-        if botLocation >= 88:
-            botLocation = 1
-            
-        newLocation = playerManager.botPlayer.setLocation(botLocation)
+            newLocation = playerManager.botPlayer.setLocation(botLocation)
         
     def diceDisabled(self):
         playerManager = self.app.getModule('playerManager')
