@@ -1,4 +1,5 @@
 import ui
+import player_manager
 from player import Player
 from screen import Screen
 from button import Button
@@ -41,6 +42,8 @@ class GameScreen(Screen):
         imageLoader = self.app.getModule('imageLoader')  
         botManager = self.app.getModule('botManager')  
 
+        print(playerManager.checkWinLose())
+        
         background(ui.COLOR_RED_LIGHT)
         fill(ui.COLOR_TEXT)
         textSize(30);

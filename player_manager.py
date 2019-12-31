@@ -17,8 +17,9 @@ class PlayerManager(Module):
         return 'playerManager'
     
     def checkWinLose(self):
+        playerManager = self.app.getModule('playerManager')
         for player in playerManager.getPlayers():
-            print(Player.getLocation())
+            print(player.getLocation())
         #if player1 == player2 or player3 == player4 or player5 == player6:
             #gameOver = True
     
