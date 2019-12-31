@@ -16,6 +16,12 @@ class PlayerManager(Module):
     def getHandle(self):
         return 'playerManager'
     
+    def checkWinLose(self):
+        for player in playerManager.getPlayers():
+            print(Player.getLocation())
+        #if player1 == player2 or player3 == player4 or player5 == player6:
+            #gameOver = True  
+    
     def setup(self):
         imageLoader = self.app.getModule('imageLoader')
         
@@ -68,3 +74,4 @@ class PlayerManager(Module):
             modules.append([Player, { 'index': i, 'image': imageFile }])
             
         return modules
+    
