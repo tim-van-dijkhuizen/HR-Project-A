@@ -47,6 +47,12 @@ class TurnManager(Module):
             
         self.currentPlayer = playerManager.getPlayer(nextIndex)
         
+        if self.currentPlayer == playerManager.botPlayer:
+            botManager = self.app.getModule('botManager')
+            botManager.autoBot()
+            nextIndex = currentIndex + 1
+            
+        
     def getSubModules(self):
         modules = []
         turnManager = self.app.getModule('turnManager')

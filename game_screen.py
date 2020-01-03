@@ -4,7 +4,7 @@ from player import Player
 from screen import Screen
 from button import Button
 from selectable_button import SelectableButton
-from dice_manager import DiceManager
+from bot_manager import BotManager
 from location_button  import LocationButton
 from player_button import PlayerButton
 from turn_manager import TurnManager
@@ -82,7 +82,6 @@ class GameScreen(Screen):
     def getSubModules(self):
         playerManager = self.app.getModule('playerManager')
         modules = [            
-            [ DiceManager, {  } ],
             [ TurnManager, {  } ],
             [ BotManager, {  } ],
         
