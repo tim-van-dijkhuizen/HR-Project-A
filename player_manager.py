@@ -19,9 +19,12 @@ class PlayerManager(Module):
     def checkWinLose(self):
         playerManager = self.app.getModule('playerManager')
         for player in playerManager.getPlayers():
-            print(player.getLocation())
-        #if player1 == player2 or player3 == player4 or player5 == player6:
-            #gameOver = True
+            if player.getLocation() == player.getPartner().getLocation() :
+                if player.getLocation() == player.getPartner().getLocation() == 41 or player.getLocation() == player.getPartner().getLocation() == 85:
+                    print ('lose')
+                else :
+                    print ('win')
+                    gameOver = True
     
     def setup(self):
         imageLoader = self.app.getModule('imageLoader')
