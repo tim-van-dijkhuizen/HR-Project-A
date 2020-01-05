@@ -37,4 +37,9 @@ class BotManager(Module):
         else:
             botLocation = steps + botLocation
             botPlayer.setLocation(botLocation)
+            
+    #def _calcDistance(self, location1, location2, clockwise):
+        # 88 132
+        #if location1 > location2:
+             
     
