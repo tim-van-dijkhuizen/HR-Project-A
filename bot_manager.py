@@ -3,12 +3,16 @@ from module import Module
 class BotManager(Module):
     
     diceValue = None
+    clockwise = True
     
     def getHandle(self):
         return 'botManager'
     
     def setup(self):
         playerManager = self.app.getModule('playerManager')
+        
+        print(self._calcDistance(16, 5, True))
+        print(self._calcDistance(16, 5, False))
         
     def draw(self):
         playerManager = self.app.getModule('playerManager')
@@ -31,15 +35,42 @@ class BotManager(Module):
         botLocation = botPlayer.getLocation()
         partnerLocation = botPartner.getLocation()
 
+        # Update direction
+        self._updateDirection(botLocation, partnerLocation)
+
         if botLocation > partnerLocation:
             botLocation = botLocation - steps
             botPlayer.setLocation(botLocation)
         else:
             botLocation = steps + botLocation
             botPlayer.setLocation(botLocation)
+          
+    def _calcDistance(self, botPlayer, partnerPlayer, clockwise):
+        playerManager = self.app.getModule('playerManager')
+        boardSize = 4 * playerManager.maxPlayers
+        
+        if clockwise:
+            if partnerPlayer >= botPlayer:
+                return partnerPlayer - botPlayer
+            else:
+                toEnd = boardSize - botPlayer
+                return toEnd + partnerPlayer
+        else:
+            if partnerPlayer < botPlayer:
+                return botPlayer - partnerPlayer
+            else:
+                toPartner = boardSize - partnerPlayer
+                return toPartner + botPlayer
+        
             
-    #def _calcDistance(self, location1, location2, clockwise):
-        # 88 132
-        #if location1 > location2:
+            
+    def _updateDirection(self, botPlayer, partnerPlayer):
+        clockwise = self._calcDistance(botPlayer, partnerPlayer, True)
+        counterClockwise = self._calcDistance(botPlayer, partnerPlayer, False)
+        
+        if clockwise <= counterClockwise:
+            self.clockwise = True
+        else:
+            self.clockwise = False
              
     
