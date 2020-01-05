@@ -16,7 +16,7 @@ class ImageLoader(Module):
         
         # Load image if not cached yet
         if not self.isCached(fileName, ext):
-            return self.load(path, ext)
+            return self.load(fileName, ext)
             
         return self._loadedImages[path]
         

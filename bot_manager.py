@@ -16,7 +16,7 @@ class BotManager(Module):
     def rollDice(self):
         self.diceValue = random(1, 7)   
     
-    def autoBot(self):
+    def handleBotTurn(self):
         playerManager = self.app.getModule('playerManager')
         
         # Team players

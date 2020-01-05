@@ -1,12 +1,11 @@
 import ui
 import player_manager
-from player import Player
 from screen import Screen
 from button import Button
 from selectable_button import SelectableButton
-from bot_manager import BotManager
 from location_button  import LocationButton
 from player_button import PlayerButton
+from game_manager import GameManager
 from turn_manager import TurnManager
 from bot_manager import BotManager
 
@@ -22,43 +21,29 @@ class GameScreen(Screen):
     fromScreen = None
     player = None
 
-    def setup(self):
-        playerManager = self.app.getModule('playerManager')
-        imageLoader = self.app.getModule('imageLoader')
-
-        imageLoader.load('board-players4.png')
-        imageLoader.load('board-players6.png')
-        
-        self.boardX = width / 2 - (self.boardWidth / 3.2)
-        self.boardY = 40
-
     def getHandle(self):
         return 'game'
+    
+    def setup(self):
+        # TODO: This is really dirty...
+        self.boardX = 351.875
+        self.boardY = 40
 
     def draw(self):
+        imageLoader = self.app.getModule('imageLoader')
         playerManager = self.app.getModule('playerManager')
-        turnManager = self.app.getModule('turnManager')
 
-        imageLoader = self.app.getModule('imageLoader')  
-        botManager = self.app.getModule('botManager')
-        
-        background(ui.COLOR_RED_LIGHT)
+        # Set styling
         fill(ui.COLOR_TEXT)
-        textSize(30);
-        textAlign(LEFT);
-        text('Huidige beurt:', 60, 60)
-            
-        if playerManager.maxPlayers == 6:
-            boardImage = imageLoader.get('board-players6')
-        else:
-            boardImage = imageLoader.get('board-players4')
-            
-        image(boardImage, self.boardX, self.boardY, self.boardWidth, self.boardHeight)
+        textSize(ui.TEXT_SIZE_XL)
+        textAlign(LEFT)
+        
+        # Players title
+        text('Spelers', ui.SPACING_SM, ui.SPACING_MD + ui.SPACING_SM + 50 + ui.SPACING_MD)
 
-    def keyPressed(self):
-        if keyCode == 32:
-            startScreen = self.app.getScreen('start')
-            self.app.setCurrentScreen(startScreen)
+        # Board image
+        boardImage = imageLoader.get('board-players' + str(playerManager.maxPlayers))
+        image(boardImage, self.boardX, self.boardY, self.boardWidth, self.boardHeight)
 
     def afterShow(self):
         playerManager = self.app.getModule('playerManager')
@@ -73,13 +58,11 @@ class GameScreen(Screen):
                 if botButton != None:
                     botButton.select()
 
-    def rollDice(self):
-        diceManager = self.app.getModule('diceManager')
-        diceManager.rollDice()
-
     def getSubModules(self):
         playerManager = self.app.getModule('playerManager')
+        
         modules = [            
+            [ GameManager, {  } ],
             [ TurnManager, {  } ],
             [ BotManager, {  } ],
         
@@ -320,8 +303,8 @@ class GameScreen(Screen):
             [ LocationButton, { 'x': 670 - self.buttonOffset, 'y': 287 - self.buttonOffset2, 'maxPlayers': 6, 'location': 132, 'readOnly': True } ],
         ]
         
-        playerButtonX = 20
-        playerButtonY = 250
+        playerButtonX = ui.SPACING_SM
+        playerButtonY = ui.SPACING_MD + ui.SPACING_SM + 50 + ui.SPACING_MD + ui.SPACING_SM
         
         players = playerManager.getAllPlayers()
         for i in range(1, len(players) + 1):
@@ -329,14 +312,13 @@ class GameScreen(Screen):
                 'x': playerButtonX,
                 'y': playerButtonY,
                 'player': players[i - 1],
-                'reverseAlignment': i % 2 != 0,
-                'readOnly': True
+                'reverseAlignment': i % 2 != 0 
             } ])
             
-            playerButtonX += 140 + 20
+            playerButtonX += 160 + ui.SPACING_XS
             
             if i % 2 == 0:
-                playerButtonX = 20
-                playerButtonY += 100 + ui.SPACING_XS
+                playerButtonX = ui.SPACING_SM
+                playerButtonY += 80 + ui.SPACING_XS
             
         return modules

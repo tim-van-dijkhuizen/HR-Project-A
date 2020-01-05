@@ -16,27 +16,6 @@ class PlayerManager(Module):
     def getHandle(self):
         return 'playerManager'
     
-    def checkWinLose(self):
-        playerManager = self.app.getModule('playerManager')
-        for player in playerManager.getPlayers():
-            if player.getLocation() == player.getPartner().getLocation() :
-                if player.getLocation() == player.getPartner().getLocation() == 41 or player.getLocation() == player.getPartner().getLocation() == 85:
-                    print ('lose')
-                else :
-                    print ('win')
-                    gameOver = True
-    
-    def setup(self):
-        imageLoader = self.app.getModule('imageLoader')
-        
-        # Load images
-        imageLoader.load('pion-1')
-        imageLoader.load('pion-2')
-        imageLoader.load('pion-3')
-        imageLoader.load('pion-4')
-        imageLoader.load('pion-5')
-        imageLoader.load('pion-6')
-    
     def init(self):
         self._players = self.app.getModulesByType(Player)
         

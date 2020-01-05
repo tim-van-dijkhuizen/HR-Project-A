@@ -19,34 +19,20 @@ class StartScreen(Screen):
         return True
     
     def setup(self):
-        imageLoader = self.app.getModule('imageLoader')
-        
-        # Load background image
-        imageLoader.load('background')
-        
-        # Logo image and position
-        imageLoader.load('logo')
         self.logoX = width - self.logoWidth - ui.SPACING_LG
         self.logoY = ui.SPACING_LG + ui.SPACING_SM
 
     def draw(self):
         imageLoader = self.app.getModule('imageLoader')
         
-        image(imageLoader.get('background'), 0 , 0 , width, height)
-        
         fill(ui.COLOR_TEXT)
-        textSize(ui.TEXT_SIZE_LG)
+        textSize(ui.TEXT_SIZE_XL)
         textAlign(LEFT)
         
         text('Teams', ui.SPACING_LG, ui.SPACING_LG)
         text('Spelers', ui.SPACING_LG, ui.SPACING_LG + ui.SPACING_SM + 80 + ui.SPACING_LG)
     
         image(imageLoader.get('logo'), self.logoX, self.logoY, self.logoWidth, self.logoHeight)
-        
-    def keyPressed(self):
-        if keyCode == 10:
-            gameScreen = self.app.getScreen('game')
-            self.app.setCurrentScreen(gameScreen)
             
     def setMaxToFour(self):
         playerManager = self.app.getModule('playerManager')
@@ -56,19 +42,21 @@ class StartScreen(Screen):
         playerManager = self.app.getModule('playerManager')
         playerManager.setMaxPlayers(6)
        
-    def startDisabled(self):
+    def isStartDisabled(self):
         playerManager = self.app.getModule('playerManager')
         configInvalid = False
 
-        # Make sure a bot was selected
-        botSelected = False
+        # Make sure all locations are set
         for player in playerManager.getPlayers():
-            if player.isBot(): botSelected = True
+            if player.getLocation() != None:
+                continue
             
-            if player.getLocation() == None:
-                configInvalid = True
+            # Location not set, break!
+            configInvalid = True
+            break
             
-        if not botSelected: 
+        # Make sure a bot was selected
+        if playerManager.botPlayer == None: 
             configInvalid = True
         
         return configInvalid
@@ -114,7 +102,7 @@ class StartScreen(Screen):
             'textSize': ui.TEXT_SIZE_MD,  
             'text': 'START',
             'callback': self.startGame,
-            'disabled': self.startDisabled
+            'disabled': self.isStartDisabled
         }])
         
         playerButtonX = ui.SPACING_LG

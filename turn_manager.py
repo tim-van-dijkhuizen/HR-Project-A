@@ -4,52 +4,46 @@ from button import Button
 
 class TurnManager(Module):
     
-    # All active players
     currentPlayer = None
-    nextPicture = 1
     
     def getHandle(self):
-        return 'turnManager'
-    
-    def setup(self):
-        playerManager = self.app.getModule('playerManager')     
-        imageLoader = self.app.getModule('imageLoader')
+        return 'turnManager'    
         
-        # Load images
-        imageLoader.load('pion-1')
-        imageLoader.load('pion-2')
-        imageLoader.load('pion-3')
-        imageLoader.load('pion-4')
-        imageLoader.load('pion-5')
-        imageLoader.load('pion-6')       
+    def setup(self):
+        self.nextPlayer()
         
     def draw(self):
         imageLoader = self.app.getModule('imageLoader')
-        image(imageLoader.get('pion-' + str(self.nextPicture)), 300 , 50 , 50, 50)
+        playerImage = imageLoader.get('pion-' + str(self.currentPlayer.index + 1))
+        
+        # Set styling
+        fill(ui.COLOR_TEXT)
+        textSize(ui.TEXT_SIZE_XL)
+        textAlign(LEFT)
+        
+        # Draw UI elements
+        text('Huidige beurt', ui.SPACING_SM, ui.SPACING_MD)
+        image(playerImage, ui.SPACING_SM + 150 + ui.SPACING_SM, ui.SPACING_MD + ui.SPACING_SM, 50, 50)
             
     def nextPlayer(self):
         playerManager = self.app.getModule('playerManager')
-        
         players = playerManager.getPlayers()
+        
+        # Find new index
         currentIndex = 0 if self.currentPlayer == None else players.index(self.currentPlayer)
         nextIndex = currentIndex + 1
-        self.nextPicture = self.nextPicture + 1
         
-        # hier geeft die aan welke picture nu aan de beurt is
-        if self.nextPicture == len(players):
-            self.nextPicture = len(players)
-        elif self.nextPicture > len(players):
-            self.nextPicture = 1
-        
-        #reset index if max players exceeded
+        # Reset index if max players exceeded
         if nextIndex >= len(players):
             nextIndex = 0
             
+        # Set new current player
         self.currentPlayer = playerManager.getPlayer(nextIndex)
         
-        if self.currentPlayer == playerManager.botPlayer:
+        # Handle bot turn
+        if self.currentPlayer is playerManager.botPlayer:
             botManager = self.app.getModule('botManager')
-            botManager.autoBot()
+            botManager.handleBotTurn()
             nextIndex = currentIndex + 1
             
         
@@ -58,12 +52,12 @@ class TurnManager(Module):
         turnManager = self.app.getModule('turnManager')
         
         modules.append([Button, {
-            'x': 60,
-            'y': 70,
-            'width': 200,
+            'x': ui.SPACING_SM,
+            'y': ui.SPACING_MD + ui.SPACING_SM,
+            'width': 150,
             'height': 50,
             'textSize': ui.TEXT_SIZE_MD,  
-            'text': 'Next',
+            'text': 'Volgende',
             'callback': turnManager.nextPlayer
         }])
         

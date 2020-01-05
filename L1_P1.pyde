@@ -24,6 +24,12 @@ def setup():
         module.afterLoadModules()
     
 def draw():
+    imageLoader = app.getModule('imageLoader')
+    
+    # Default background
+    image(imageLoader.get('background'), 0 , 0 , width, height)
+    
+    # Draw modules
     for module in app.modules:
         if module.getIsActive(): module.draw()
     

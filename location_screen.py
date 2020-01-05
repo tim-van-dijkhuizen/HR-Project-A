@@ -20,13 +20,7 @@ class LocationScreen(Screen):
         return 'location'
         
     def setup(self):
-        playerManager = self.app.getModule('playerManager')
-        imageLoader = self.app.getModule('imageLoader')
-        
-        # Load board image
-        imageLoader.load('board-players4')
-        imageLoader.load('board-players6')
-        
+        # TODO: This is really dirty...
         self.boardX = width / 2 - (self.boardWidth / 3.2)
         self.boardY = height / 2 - (self.boardHeight / 2)
             
@@ -36,7 +30,7 @@ class LocationScreen(Screen):
         
         if self.player == None or self.fromScreen == None:
             raise ValueError('Variables player and fromScreen must be set')
-            
+        
         # Background
         background(ui.COLOR_RED_LIGHT)
         
