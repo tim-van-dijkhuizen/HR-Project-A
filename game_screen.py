@@ -312,7 +312,8 @@ class GameScreen(Screen):
                 'x': playerButtonX,
                 'y': playerButtonY,
                 'player': players[i - 1],
-                'reverseAlignment': i % 2 != 0 
+                'reverseAlignment': i % 2 != 0,
+                'readOnly': True
             } ])
             
             playerButtonX += 160 + ui.SPACING_XS
