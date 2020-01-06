@@ -25,9 +25,8 @@ class GameScreen(Screen):
         return 'game'
     
     def setup(self):
-        # TODO: This is really dirty...
-        self.boardX = 351.875
-        self.boardY = 40
+        self.boardX = width - (self.boardWidth + ui.SPACING_SM)
+        self.boardY = height / 2 - self.boardHeight / 2
 
     def draw(self):
         imageLoader = self.app.getModule('imageLoader')
