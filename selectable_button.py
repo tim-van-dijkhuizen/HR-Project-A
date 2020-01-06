@@ -24,6 +24,7 @@ class SelectableButton(Button):
         if self.default:
             self.select()
     
+    # Find siblings after loading modules
     def afterLoadModules(self):
         siblings = self.app.getModulesByType(SelectableButton)
         
@@ -33,6 +34,7 @@ class SelectableButton(Button):
             if sibling.group == self.group and not (sibling is self) and sameParent:
                 self._siblings.append(sibling)
         
+    # Selects the button
     def select(self):
         for sibling in self._siblings:
             sibling.deselect()
@@ -48,6 +50,7 @@ class SelectableButton(Button):
         if self.onSelect != None:
             self.onSelect()
     
+    # Deselects the button
     def deselect(self):
         self.selected = False
         

@@ -108,6 +108,7 @@ class StartScreen(Screen):
         playerButtonX = ui.SPACING_LG
         playerButtonY = ui.SPACING_LG + ui.SPACING_SM + 80 + ui.SPACING_LG + ui.SPACING_SM
         
+        # Create PlayerButton modules
         players = playerManager.getAllPlayers()
         for i in range(1, len(players) + 1):
             modules.append([ PlayerButton, {

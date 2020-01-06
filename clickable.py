@@ -15,6 +15,7 @@ class Clickable(Module):
     def mouseMoved(self):
         readOnly = utils.parseValue(self.readOnly)
         
+        # Change cursor when hovered
         if utils.collidesWith(self.x, self.y, self.width, self.height) and not readOnly:
             self._hovered = True
             cursor(HAND)
@@ -25,5 +26,6 @@ class Clickable(Module):
     def mousePressed(self):
         readOnly = utils.parseValue(self.readOnly)
         
+        # Execute callback when clicked
         if utils.collidesWith(self.x, self.y, self.width, self.height) and not readOnly and self.callback != None:
             self.callback()

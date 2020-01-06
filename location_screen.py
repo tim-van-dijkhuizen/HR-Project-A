@@ -21,14 +21,14 @@ class LocationScreen(Screen):
         return 'location'
         
     def setup(self):
-        # TODO: This is really dirty...
-        self.boardX = width / 2 - (self.boardWidth / 3.2)
-        self.boardY = height / 2 - (self.boardHeight / 2)
+        self.boardX = 351.875
+        self.boardY = 75
             
     def draw(self):
         playerManager = self.app.getModule('playerManager')
         imageLoader = self.app.getModule('imageLoader')
         
+        # Raise error if player or fromScreen not set
         if self.player == None or self.fromScreen == None:
             raise ValueError('Variables player and fromScreen must be set')
         
@@ -36,18 +36,14 @@ class LocationScreen(Screen):
         background(ui.COLOR_RED_LIGHT)
         
         # Board image
-        if playerManager.maxPlayers == 6:
-           boardImage = imageLoader.get('board-players6')
-        else:
-            boardImage = imageLoader.get('board-players4')
-            
+        boardImage = imageLoader.get('board-players' + str(playerManager.maxPlayers))
         image(boardImage, self.boardX, self.boardY, self.boardWidth, self.boardHeight)
-            
+   
+    # Sends the user back to the fromScreen    
     def goBack(self):
         self.app.setCurrentScreen(self.fromScreen)
         self.fromScreen = None
         self.player = None
-            
         
     def getSubModules(self):
         return [
@@ -155,7 +151,6 @@ class LocationScreen(Screen):
             [ LocationButton, { 'x': 655, 'y': 256, 'maxPlayers': 4, 'location': Location(4, 21) } ],
             [ LocationButton, { 'x': 669, 'y': 282, 'maxPlayers': 4, 'location': Location(4, 22) } ],
             
-            #left up
             [ LocationButton, { 'x': 735 - 147.5, 'y': 275, 'maxPlayers': 6, 'location': Location(1, 1) } ],
             [ LocationButton, { 'x': 705 - 147.5, 'y': 250, 'maxPlayers': 6, 'location': Location(1, 2) } ],
             [ LocationButton, { 'x': 678 - 147.5, 'y': 236, 'maxPlayers': 6, 'location': Location(1, 3) } ],
@@ -178,7 +173,7 @@ class LocationScreen(Screen):
             [ LocationButton, { 'x': 812 - 147.5, 'y': 210, 'maxPlayers': 6, 'location': Location(1, 20) } ],
             [ LocationButton, { 'x': 791 - 147.5, 'y': 236, 'maxPlayers': 6, 'location': Location(1, 21) } ],
             [ LocationButton, { 'x': 765 - 147.5, 'y': 250, 'maxPlayers': 6, 'location': Location(1, 22) } ], 
-            #right up
+
             [ LocationButton, { 'x': 735 + 142, 'y': 275, 'maxPlayers': 6, 'location': Location(2, 1) } ],
             [ LocationButton, { 'x': 705 + 142, 'y': 249, 'maxPlayers': 6, 'location': Location(2, 2) } ],
             [ LocationButton, { 'x': 676 + 142, 'y': 232, 'maxPlayers': 6, 'location': Location(2, 3) } ],
@@ -201,7 +196,7 @@ class LocationScreen(Screen):
             [ LocationButton, { 'x': 810 + 142, 'y': 212, 'maxPlayers': 6, 'location': Location(2, 20) } ],
             [ LocationButton, { 'x': 791 + 142, 'y': 236, 'maxPlayers': 6, 'location': Location(2, 21) } ],
             [ LocationButton, { 'x': 765 + 142, 'y': 249, 'maxPlayers': 6, 'location': Location(2, 22) } ], 
-            #right
+
             [ LocationButton, { 'x': 779 + self.buttonOffset, 'y': 312, 'maxPlayers': 6, 'location': Location(3, 1) } ],
             [ LocationButton, { 'x': 800 + self.buttonOffset, 'y': 282, 'maxPlayers': 6, 'location': Location(3, 2) } ],
             [ LocationButton, { 'x': 816 + self.buttonOffset, 'y': 255, 'maxPlayers': 6, 'location': Location(3, 3) } ], 
@@ -225,7 +220,6 @@ class LocationScreen(Screen):
             [ LocationButton, { 'x': 816 + self.buttonOffset, 'y': 368, 'maxPlayers': 6, 'location': Location(3, 21) } ],
             [ LocationButton, { 'x': 800 + self.buttonOffset, 'y': 342, 'maxPlayers': 6, 'location': Location(3, 22) } ],
             
-            # right down
             [ LocationButton, { 'x': 736 + 142, 'y': 350, 'maxPlayers': 6, 'location': Location(4, 1) } ],
             [ LocationButton, { 'x': 706 + 142, 'y': 377, 'maxPlayers': 6, 'location': Location(4, 2) } ],
             [ LocationButton, { 'x': 681 + 142, 'y': 392, 'maxPlayers': 6, 'location': Location(4, 3) } ],
@@ -248,7 +242,7 @@ class LocationScreen(Screen):
             [ LocationButton, { 'x': 812 + 145, 'y': 415, 'maxPlayers': 6, 'location': Location(4, 20) } ],
             [ LocationButton, { 'x': 791 + 145, 'y': 392, 'maxPlayers': 6, 'location': Location(4, 21) } ],
             [ LocationButton, { 'x': 765 + 145, 'y': 377, 'maxPlayers': 6, 'location': Location(4, 22) } ],
-            #left down
+
             [ LocationButton, { 'x': 736 - 145, 'y': 352, 'maxPlayers': 6, 'location': Location(5, 1) } ],
             [ LocationButton, { 'x': 705 - 145, 'y': 378, 'maxPlayers': 6, 'location': Location(5, 2) } ],
             [ LocationButton, { 'x': 678 - 145, 'y': 390, 'maxPlayers': 6, 'location': Location(5, 3) } ],
@@ -271,7 +265,7 @@ class LocationScreen(Screen):
             [ LocationButton, { 'x': 821 - 145, 'y': 418, 'maxPlayers': 6, 'location': Location(5, 20) } ],
             [ LocationButton, { 'x': 795 - 145, 'y': 390, 'maxPlayers': 6, 'location': Location(5, 21) } ],
             [ LocationButton, { 'x': 765 - 145, 'y': 378, 'maxPlayers': 6, 'location': Location(5, 22) } ],
-            # left 
+            
             [ LocationButton, { 'x': 692 - self.buttonOffset, 'y': 317, 'maxPlayers': 6, 'location': Location(6, 1) } ],
             [ LocationButton, { 'x': 669 - self.buttonOffset, 'y': 347, 'maxPlayers': 6, 'location': Location(6, 2) } ],
             [ LocationButton, { 'x': 652 - self.buttonOffset, 'y': 375, 'maxPlayers': 6, 'location': Location(6, 3) } ],

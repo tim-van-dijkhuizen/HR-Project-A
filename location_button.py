@@ -40,9 +40,10 @@ class LocationButton(Clickable):
             if player.getLocation() == self.location:
                 circle(self.x + circleSize, self.y + circleSize, circleSize)
         else:
-            player = playerManager.getPlayerByLocation(self.location)
+            players = playerManager.getPlayersByLocation(self.location)
             
-            if player != None:
+            # Show images for players
+            for player in players:
                 playerImage = imageLoader.get(player.image)
                 
                 imageWidth = self.width - 4

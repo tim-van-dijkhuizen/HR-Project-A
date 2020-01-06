@@ -158,7 +158,6 @@ class GameScreen(Screen):
             [ LocationButton, { 'x': 655, 'y': 256 - self.buttonOffset2, 'maxPlayers': 4, 'location': Location(4, 21), 'readOnly': True } ],
             [ LocationButton, { 'x': 669, 'y': 282 - self.buttonOffset2, 'maxPlayers': 4, 'location': Location(4, 22), 'readOnly': True } ],
             
-            # Left up
             [ LocationButton, { 'x': 735 - 147.5, 'y': 275 - self.buttonOffset2, 'maxPlayers': 6, 'location': Location(1, 1), 'readOnly': True } ],
             [ LocationButton, { 'x': 705 - 147.5, 'y': 250 - self.buttonOffset2, 'maxPlayers': 6, 'location': Location(1, 2), 'readOnly': True } ],
             [ LocationButton, { 'x': 678 - 147.5, 'y': 236 - self.buttonOffset2, 'maxPlayers': 6, 'location': Location(1, 3), 'readOnly': True } ],
@@ -182,7 +181,6 @@ class GameScreen(Screen):
             [ LocationButton, { 'x': 791 - 147.5, 'y': 236 - self.buttonOffset2, 'maxPlayers': 6, 'location': Location(1, 21), 'readOnly': True } ],
             [ LocationButton, { 'x': 765 - 147.5, 'y': 250 - self.buttonOffset2, 'maxPlayers': 6, 'location': Location(1, 22), 'readOnly': True } ],
             
-            # Right up
             [ LocationButton, { 'x': 735 + 142, 'y': 275 - self.buttonOffset2, 'maxPlayers': 6, 'location': Location(2, 1), 'readOnly': True } ],
             [ LocationButton, { 'x': 705 + 142, 'y': 249 - self.buttonOffset2, 'maxPlayers': 6, 'location': Location(2, 2), 'readOnly': True } ],
             [ LocationButton, { 'x': 676 + 142, 'y': 232 - self.buttonOffset2, 'maxPlayers': 6, 'location': Location(2, 3), 'readOnly': True } ],
@@ -206,7 +204,6 @@ class GameScreen(Screen):
             [ LocationButton, { 'x': 791 + 142, 'y': 236 - self.buttonOffset2, 'maxPlayers': 6, 'location': Location(2, 21), 'readOnly': True } ],
             [ LocationButton, { 'x': 765 + 142, 'y': 249 - self.buttonOffset2, 'maxPlayers': 6, 'location': Location(2, 22), 'readOnly': True } ], 
             
-            # Right
             [ LocationButton, { 'x': 779 + self.buttonOffset, 'y': 312 - self.buttonOffset2, 'maxPlayers': 6, 'location': Location(3, 1), 'readOnly': True } ],
             [ LocationButton, { 'x': 800 + self.buttonOffset, 'y': 282 - self.buttonOffset2, 'maxPlayers': 6, 'location': Location(3, 2), 'readOnly': True } ],
             [ LocationButton, { 'x': 816 + self.buttonOffset, 'y': 255 - self.buttonOffset2, 'maxPlayers': 6, 'location': Location(3, 3), 'readOnly': True } ], 
@@ -230,7 +227,6 @@ class GameScreen(Screen):
             [ LocationButton, { 'x': 816 + self.buttonOffset, 'y': 368 - self.buttonOffset2, 'maxPlayers': 6, 'location': Location(3, 21), 'readOnly': True } ],
             [ LocationButton, { 'x': 800 + self.buttonOffset, 'y': 342 - self.buttonOffset2, 'maxPlayers': 6, 'location': Location(3, 22), 'readOnly': True } ],
             
-            # Right down
             [ LocationButton, { 'x': 736 + 142, 'y': 350 - self.buttonOffset2, 'maxPlayers': 6, 'location': Location(4, 1), 'readOnly': True } ],
             [ LocationButton, { 'x': 706 + 142, 'y': 377 - self.buttonOffset2, 'maxPlayers': 6, 'location': Location(4, 2), 'readOnly': True } ],
             [ LocationButton, { 'x': 681 + 142, 'y': 392 - self.buttonOffset2, 'maxPlayers': 6, 'location': Location(4, 3), 'readOnly': True } ],
@@ -254,7 +250,6 @@ class GameScreen(Screen):
             [ LocationButton, { 'x': 791 + 145, 'y': 392 - self.buttonOffset2, 'maxPlayers': 6, 'location': Location(4, 21), 'readOnly': True } ],
             [ LocationButton, { 'x': 765 + 145, 'y': 377 - self.buttonOffset2, 'maxPlayers': 6, 'location': Location(4, 22), 'readOnly': True } ],
             
-            # Left down
             [ LocationButton, { 'x': 736 - 145, 'y': 352 - self.buttonOffset2, 'maxPlayers': 6, 'location': Location(5, 1), 'readOnly': True } ],
             [ LocationButton, { 'x': 705 - 145, 'y': 378 - self.buttonOffset2, 'maxPlayers': 6, 'location': Location(5, 2), 'readOnly': True } ],
             [ LocationButton, { 'x': 678 - 145, 'y': 390 - self.buttonOffset2, 'maxPlayers': 6, 'location': Location(5, 3), 'readOnly': True } ],
@@ -278,7 +273,6 @@ class GameScreen(Screen):
             [ LocationButton, { 'x': 795 - 145, 'y': 390 - self.buttonOffset2, 'maxPlayers': 6, 'location': Location(5, 21), 'readOnly': True } ],
             [ LocationButton, { 'x': 765 - 145, 'y': 378 - self.buttonOffset2, 'maxPlayers': 6, 'location': Location(5, 22), 'readOnly': True } ],
             
-            # Left 
             [ LocationButton, { 'x': 692 - self.buttonOffset, 'y': 317 - self.buttonOffset2, 'maxPlayers': 6, 'location': Location(6, 1), 'readOnly': True } ],
             [ LocationButton, { 'x': 669 - self.buttonOffset, 'y': 347 - self.buttonOffset2, 'maxPlayers': 6, 'location': Location(6, 2), 'readOnly': True } ],
             [ LocationButton, { 'x': 652 - self.buttonOffset, 'y': 375 - self.buttonOffset2, 'maxPlayers': 6, 'location': Location(6, 3), 'readOnly': True } ],
@@ -306,6 +300,7 @@ class GameScreen(Screen):
         playerButtonX = ui.SPACING_SM
         playerButtonY = ui.SPACING_MD + ui.SPACING_SM + 50 + ui.SPACING_MD + ui.SPACING_SM
         
+        # Create PlayerButton modules
         players = playerManager.getAllPlayers()
         for i in range(1, len(players) + 1):
             modules.append([ PlayerButton, {
