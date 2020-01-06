@@ -10,7 +10,8 @@ class TurnManager(Module):
         return 'turnManager'    
         
     def setup(self):
-        self.nextPlayer()
+        playerManager = self.app.getModule('playerManager')
+        self.currentPlayer = playerManager.getPlayer(0)
         
     def draw(self):
         imageLoader = self.app.getModule('imageLoader')
