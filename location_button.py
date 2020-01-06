@@ -9,8 +9,6 @@ class LocationButton(Clickable):
     maxPlayers = None
     location = None
     
-    _section = None
-    
     def getPriority(self):
         return 2
     
@@ -61,9 +59,3 @@ class LocationButton(Clickable):
         if screen != None and screen.getHandle() == 'location':
             player = screen.player
             player.setLocation(self.location)
-            
-    def getSection(self):
-        if self._section == None:
-            self._section = self.location // 22
-            
-        return self._section
