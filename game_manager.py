@@ -11,7 +11,8 @@ class GameManager(Module):
     minBoxesLocation = None
     addBoxesLocation = None
     warpsLocation = None
-    breakPoints = None
+    breakPointsLocation = None
+    breakPoint = False
 
     def getHandle(self):
         return 'gameManager'
@@ -23,24 +24,6 @@ class GameManager(Module):
         # Loop through players
         for player in playerManager.getPlayers():
             partner = player.getPartner()
-            
-            # get a goodCard if player stands on a goodCard box
-            if player.getLocation() == self.goodCardLocation:
-                cardScreen = self.app.getScreen('card')
-                self.app.setCurrentScreen(cardScreen)                
-            
-            # get a badCard if player stands on a badCard box        
-            elif player.getLocation() == self.badCardLocation:
-                cardScreen = self.app.getScreen('card')
-                self.app.setCurrentScreen(cardScreen)
-            
-            # minus 3 or 2 steps if player stands on a minusBox        
-            elif player.getLocation() == self.minBoxesLocation:
-                break
-            
-            # add 3 or 2 steos if player stands on a addBox        
-            elif player.getLocation() == self.addBoxesLocation:
-                break
                     
             # Ignore if team members are not on the same location
             if player.getLocation() != partner.getLocation():
@@ -65,31 +48,42 @@ class GameManager(Module):
         else:
             self.minBoxesLocation = [Location(3,12), Location(6,12)]
     
-    def addBoxes(self):
+    def BoxesLocations(self):
         playerManager = self.app.getModule('playerManager')
         if playerManager.maxPlayers == 4:
             self.addBoxesLocation = [Location(1, 12), Location(3, 12)]
+            self.warpsLocation = [[Location(1, 6), Location(1, 10)], [Location(1, 18),Location(1, 14)], [Location(2, 4), Location(2, 19)], [Location(2, 6), Location(2, 10)], [Location(2, 18),Location(2, 14)], [Location(3, 6), Location(3, 10)], [Location(3, 18),Location(3, 14)],[Location(4, 4), Location(4, 19)], [Location(4, 6), Location(4, 10)], [Location(4, 18),Location(4, 14)]]
+            self.breakPointsLocation = [Location(2,19), Location(4,19)]
+            self.badCardsLocation = [Location(1, 3), Location(1, 7), Location(1, 11), Location(1, 15), Location(1, 19), Location(2, 3), Location(2, 7), Location(2, 11), Location(2, 15), Location(3, 3), Location(3, 7), Location(3, 11), Location(3, 15), Location(3, 19), Location(4, 3), Location(4, 7), Location(4, 11), Location(4, 15)]
+
         else:
             self.addBoxesLocation = [Location(1,12), Location(2,12), Location(4,12), Location(5,12)]    
-                
-    def warpsLocation(self):
-        playerManager = self.app.getModule('playerManager')
-        if playerManager.maxPlayers == 4:
-            self.warpsLocation = [Location(1, 6), Location(1, 18), Location(2, 6), Location(2, 18), Location(3, 6), Location(3, 18), Location(4, 6), Location(4, 18)]
-        else:
-            self.warpsLocation = [Location(1, 6), Location(1, 18), Location(2, 6), Location(2, 18), Location(3, 6), Location(3, 18), Location(4, 6), Location(4, 18), Location(5, 6), Location(5, 18), Location(6, 6), Location(6, 18)]
-    
-    def breakPoints(self):
-        playerManager = self.app.getModule('playerManager') 
-        if playerManager.maxPlayers == 4:
-            self.breakPointsLocation = [Location(2,19), Location(4,19)]
-        else:
+            self.warpsLocation = [[Location(1, 6), Location(1, 10)], [Location(1, 18),Location(1, 14)], [Location(3, 4), Location(3, 19)], [Location(2, 6), Location(2, 10)], [Location(2, 18),Location(2, 14)], [Location(3, 6), Location(3, 10)], [Location(3, 18),Location(3, 14)],[Location(6, 4), Location(6, 19)], [Location(4, 6), Location(4, 10)], [Location(4, 18),Location(4, 14)], [Location(5, 6), Location(5, 10)], [Location(5, 18),Location(5, 14)], [Location(6, 6), Location(6, 10)], [Location(6, 18),Location(6, 14)]]
             self.breakPointsLocation = [Location(3, 19), Location(6, 19)]
-    
-    def badCards(self):    
-        # Check where is a badCard
-        playerManager = self.app.getModule('playerManager') 
-        if playerManager.maxPlayers == 4:
-            self.badCardsLocation = [Location(1, 3), Location(1, 7), Location(1, 11), Location(1, 15), Location(1, 19), Location(2, 3), Location(2, 7), Location(2, 11), Location(2, 15), Location(3, 3), Location(3, 7), Location(3, 11), Location(3, 15), Location(3, 19), Location(4, 3), Location(4, 7), Location(4, 11), Location(4, 15)]
-        else:
             self.badCardsLocation = [Location(1, 3), Location(1, 7), Location(1, 11), Location(1, 15), Location(1, 19), Location(2, 3), Location(2, 7), Location(2, 11), Location(2, 15), Location(2, 19), Location(3, 3), Location(3, 7), Location(3, 11), Location(3, 15), Location(4, 3), Location(4, 7), Location(4, 11), Location(4, 15), Location(4, 19), Location(5, 3), Location(5, 7), Location(5, 11), Location(5, 15), Location(5, 19), Location(6, 3), Location(6, 7), Location(6, 11), Location(6, 15)]
+            
+    def controlGoodCard(self):
+        turnManager = self.app.getModule('turnManager')
+        if turnManager.currentPlayer.getLocation() == self.goodCardLocation:
+            cardScreen = self.app.getScreen('card')
+            self.app.setCurrentScreen(cardScreen)
+            goodLocation = cardScreen.steps + turnManager.currentPlayer.getLocation()
+            turnManager.currentPlayer.setLocation(goodLocation)
+            
+    def controlBadCard(self):
+        turnManager = self.app.getModule('turnManager')
+        if turnManager.currentPlayer.getLocation() == self.badCardLocation:
+            cardScreen = self.app.getScreen('card')
+            self.app.setCurrentScreen(cardScreen)
+            badLocation = cardScreen.steps - turnManager.currentPlayer.getLocation()
+            turnManager.currentPlayer.setLocation(badLocation)
+    
+    def controlBreakpoint(self):
+        playerManager = self.app.getModule('playerManager')
+        botManager = self.app.getModule('botManager')
+        if playerManager.botPlayer.getLocation == self.breakPointLocation:
+            self.breakPoint = True
+            if botManager.diceValue == 6:
+                self.breakPoint = False
+        else:
+            self.breakPoint = False

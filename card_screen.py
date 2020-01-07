@@ -17,6 +17,9 @@ class CardScreen(Screen):
         textSize(ui.TEXT_SIZE_XL)
         textAlign(LEFT)
         
+    def draw(self):
+        text('give the number from your card', 500, 225)
+        
     def makingChoise(self):
         gameScreen = self.app.getScreen('game')
         self.app.setCurrentScreen(gameScreen)
@@ -34,23 +37,21 @@ class CardScreen(Screen):
             self.valid = True
         except ValueError:
             self.valid = False
-        print(self.steps)
-                
+                        
     def getSubModules(self):
         
         cardButton = [Button,  {
-            'x': 725,
-            'y': 325,
+            'x': 700,
+            'y': 300,
             'width': 50,
             'height': 50,
-            'text': 'Number',
             'callback': self.makingChoise,
             'disabled': self.isDisabled
         }]
         
         nameInput = [TextInput,  {
             'x': 500,
-            'y': 325,
+            'y': 300,
             'width': 200,
             'height': 50,
             'callback': self.setSteps
