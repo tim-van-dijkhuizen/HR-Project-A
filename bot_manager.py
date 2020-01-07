@@ -13,6 +13,9 @@ class BotManager(Module):
     # Whether the bot has finished this section
     positionsHit = 1
     
+    # Whether the bot is on breakpoint
+    breakPoint = False
+    
     def getHandle(self):
         return 'botManager'
         
@@ -33,19 +36,22 @@ class BotManager(Module):
         self.rollDice()
         steps = self.diceValue
         
-        # Team locations
-        botLocation = botPlayer.getLocation()
-        partnerLocation = botPartner.getLocation()
-
-        # Distances
-        clockwise = self.calcDistance(botLocation, partnerLocation, True)
-        counterClockwise = self.calcDistance(botLocation, partnerLocation, False)
-
-        # Perform steps
-        if clockwise <= counterClockwise:
-            self.performSteps(steps, True)
-        else:
-            self.performSteps(steps, False)
+        if self.breakPoint and steps == 6:
+            self.breakPoint = False    
+        elif not self.breakPoint:
+            # Team locations
+            botLocation = botPlayer.getLocation()
+            partnerLocation = botPartner.getLocation()
+    
+            # Distances
+            clockwise = self.calcDistance(botLocation, partnerLocation, True)
+            counterClockwise = self.calcDistance(botLocation, partnerLocation, False)
+    
+            # Perform steps
+            if clockwise <= counterClockwise:
+                self.performSteps(steps, True)
+            else:
+                self.performSteps(steps, False)
          
     def performSteps(self, steps, clockwise):
         playerManager = self.app.getModule('playerManager')

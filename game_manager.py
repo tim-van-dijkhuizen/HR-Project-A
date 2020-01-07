@@ -86,10 +86,6 @@ class GameManager(Module):
         playerManager = self.app.getModule('playerManager')
         botManager = self.app.getModule('botManager')
         
-        if playerManager.botPlayer.getLocation == self.breakPointLocation:
-            self.breakPoint = True
-            
-            if botManager.diceValue == 6:
-                self.breakPoint = False
-        else:
-            self.breakPoint = False
+        # Set breakpoint to True if the bot steps on it
+        if player.getLocation() in self.breakPointLocations:
+            botManager.breakPoint = True
