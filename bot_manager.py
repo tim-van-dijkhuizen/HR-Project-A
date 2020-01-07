@@ -17,16 +17,16 @@ class BotManager(Module):
         playerManager = self.app.getModule('playerManager')
         
         #print('test1:', self._calcDistance(Location(1, 4), Location(1, 1), False)) # 3
-        #print('test1:', self._calcDistance(Location(4, 3), Location(4, 2), False)) # 3
+        #print('test1:', self._calcDistance(Location(4, 3), Location(4, 2), False)) # 1
         
         #print('test2:', self._calcDistance(Location(1, 2), Location(1, 3), False)) # 3
-        #print('test2:', self._calcDistance(Location(3, 1), Location(3, 4), False)) # 3
+        #print('test2:', self._calcDistance(Location(3, 1), Location(3, 4), False)) # 1
         
-        #print('test3:', self._calcDistance(Location(1, 2), Location(3, 4), False))
-        #print('test3:', self._calcDistance(Location(3, 1), Location(4, 3), False))
+        #print('test3:', self._calcDistance(Location(3, 4), Location(1, 2), False))
+        #print('test3:', self._calcDistance(Location(4, 3), Location(3, 1), False))
         
-        #print('test4:', self._calcDistance(Location(3, 2), Location(1, 4), False))
-        #print('test4:', self._calcDistance(Location(4, 1), Location(3, 3), False))
+        #print('test4:', self._calcDistance(Location(1, 2), Location(3, 4), False))
+        #print('test4:', self._calcDistance(Location(3, 1), Location(4, 3), False))
         
     def draw(self):
         playerManager = self.app.getModule('playerManager')
@@ -89,13 +89,27 @@ class BotManager(Module):
                 result = stepsToSectionEnd + distanceToStart + distanceToPartner + boardSteps
                 return result
         else:
-            # Counter clockwise - bot and partner on same section
-            if partnerLocation.position <= botLocation.position:
-                # Counter clockwise - partner in front of bot
-                return botLocation.position - partnerLocation.position
+            if partnerLocation.section == botLocation.section:
+                # Counter clockwise - bot and partner on same section
+                if partnerLocation.position <= botLocation.position:
+                    # Counter clockwise - partner in front of bot
+                    return botLocation.position - partnerLocation.position
+                else:
+                    # Counter clockwise - partner behind bot
+                    return stepsToSectionEnd + self._getShortestRoute(partnerLocation.position)
+            elif partnerLocation.section < botLocation.section:
+                # Counter clockwise - partner in front of bot section
+                sections = botLocation.section - partnerLocation.section - 1
+                boardSteps = botLocation.section - partnerLocation.section
+                result = stepsToSectionEnd + (sections * self.boardSize) + self._getShortestRoute(partnerLocation.position) + boardSteps
+                return result
             else:
-                # Counter clockwise - partner behind bot
-                return stepsToSectionEnd + self._getShortestRoute(partnerLocation.position)
+                # Counter clockwise - partner behind bot section
+                distanceToStart = ((botLocation.section - 1) * self.boardSize)
+                distanceToPartner = ((self.boardSize - partnerLocation.section) * self.boardSize) + self._getShortestRoute(partnerLocation.position)
+                boardSteps = (playerManager.maxPlayers - partnerLocation.section) + botLocation.section
+                result = stepsToSectionEnd + distanceToStart + distanceToPartner + boardSteps
+                return result
            
     def _getStepsToSectionEnd(self, location, clockwise):
         if clockwise:
