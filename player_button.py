@@ -25,7 +25,7 @@ class PlayerButton(Module):
     player = None
     
     def isActive(self):
-        return self.player.isPlaying()
+        return self.player.isActive()
     
     def setup(self):
         if self.player == None:

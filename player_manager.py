@@ -28,7 +28,7 @@ class PlayerManager(Module):
     
     # Updates the list of active players
     def updateActiveList(self):
-        self._activePlayers = list(filter(lambda p: p.isPlaying(), self._players))
+        self._activePlayers = list(filter(lambda p: p.isActive(), self._players))
     
     # Sets the max amount of players
     def setMaxPlayers(self, maxPlayers):
