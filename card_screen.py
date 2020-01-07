@@ -5,31 +5,58 @@ from text_input import TextInput
 
 class CardScreen(Screen):
     
+    cardType = None
+    
     steps = None
-    valid = True
+    valid = False
     
     def getHandle(self):
         return 'card'
-    
-    def setup(self):
+
+    def beforeShow(self):
+        self.steps = None
+        self.valid = False
+        self.app.getModule('cardScreenInput').value = ''
+
+    def draw(self):
+        if self.cardType == None:
+            raise NotImplementedError('cardType not set')
+        
         # Set styling
         fill(ui.COLOR_TEXT)
-        textSize(ui.TEXT_SIZE_XL)
-        textAlign(LEFT)
+        textSize(ui.TEXT_SIZE_MD)
+        textAlign(CENTER)
         
-    def draw(self):
-        text('give the number from your card', 500, 225)
+        cardName = 'goede' if self.cardType == 'good' else 'slechte'
+        pointName = 'plus' if self.cardType == 'good' else 'min'
+        text('Pak een ' + cardName + ' kaart en vul het aantal ' + pointName + 'punten in', width / 2, height / 2 - ui.SPACING_SM)
         
-    def makingChoise(self):
+    def goBack(self):
         gameScreen = self.app.getScreen('game')
+        playerManager = self.app.getModule('playerManager')
+        botManager = self.app.getModule('botManager')
+        botPlayer = playerManager.botPlayer
+        
+        # Get locations
+        botLocation = botPlayer.getLocation()
+        partnerLocation = botPlayer.getPartner().getLocation()
+        
+        # Apply points
+        clockwise = botManager.calcDistance(botLocation, partnerLocation, True)
+        counterClockwise = botManager.calcDistance(botLocation, partnerLocation, False)
+        
+        if self.cardType == 'good':
+            performClockwise = clockwise <= counterClockwise
+        else:
+            performClockwise = clockwise >= counterClockwise
+        
+        botManager.performSteps(self.steps, performClockwise)
+        
+        # Go back
         self.app.setCurrentScreen(gameScreen)
         
     def isDisabled(self):
-        if self.steps > 0 and self.steps < 4:
-            self.valid = False
-        else:
-            self.valid = True
-        return self.valid
+        return not self.valid
         
     def setSteps(self, value):
         try: 
@@ -39,20 +66,21 @@ class CardScreen(Screen):
             self.valid = False
                         
     def getSubModules(self):
-        
         cardButton = [Button,  {
-            'x': 700,
-            'y': 300,
-            'width': 50,
+            'x': width / 2 - (80 + 120) / 2 + 120,
+            'y': height / 2,
+            'width': 80,
             'height': 50,
-            'callback': self.makingChoise,
+            'text': 'Klaar',
+            'callback': self.goBack,
             'disabled': self.isDisabled
         }]
         
         nameInput = [TextInput,  {
-            'x': 500,
-            'y': 300,
-            'width': 200,
+            'handle': 'cardScreenInput',
+            'x': width / 2 - (80 + 120) / 2,
+            'y': height / 2,
+            'width': 120,
             'height': 50,
             'callback': self.setSteps
         }]

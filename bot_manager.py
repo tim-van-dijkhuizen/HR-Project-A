@@ -38,17 +38,18 @@ class BotManager(Module):
         partnerLocation = botPartner.getLocation()
 
         # Distances
-        clockwise = self._calcDistance(botLocation, partnerLocation, True)
-        counterClockwise = self._calcDistance(botLocation, partnerLocation, False)
+        clockwise = self.calcDistance(botLocation, partnerLocation, True)
+        counterClockwise = self.calcDistance(botLocation, partnerLocation, False)
 
         # Perform steps
         if clockwise <= counterClockwise:
-            self.performSteps(botPlayer, steps, True)
+            self.performSteps(steps, True)
         else:
-            self.performSteps(botPlayer, steps, False)
+            self.performSteps(steps, False)
          
-    def performSteps(self, player, steps, clockwise):
+    def performSteps(self, steps, clockwise):
         playerManager = self.app.getModule('playerManager')
+        player = playerManager.botPlayer
         location = player.getLocation()
         stepsLeft = steps
         
@@ -98,7 +99,7 @@ class BotManager(Module):
         # Perform steps
         player.setLocation(Location(section, position))
      
-    def _calcDistance(self, botLocation, partnerLocation, clockwise):
+    def calcDistance(self, botLocation, partnerLocation, clockwise):
         playerManager = self.app.getModule('playerManager')
         boardSize = self.boardSize * playerManager.maxPlayers
         
@@ -171,8 +172,8 @@ class BotManager(Module):
         return clockwise if clockwise <= counterClockwise else counterClockwise
     
     def _getDirection(self, current, target):
-        clockwise = self._calcDistance(current, target, True)
-        counterClockwise = self._calcDistance(current, target, False)
+        clockwise = self.calcDistance(current, target, True)
+        counterClockwise = self.calcDistance(current, target, False)
         
         if clockwise <= counterClockwise:
             return True
