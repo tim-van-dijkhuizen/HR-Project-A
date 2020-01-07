@@ -47,6 +47,8 @@ class Player(Module):
         # Check for win/lose
         if screen != None and screen.getHandle() == 'game':
             gameManager.checkWinLose()
+            gameManager.checkGoodCard(self)
+            gameManager.checkBadCard(self)
         
     # Returns whether this player is the bot
     def isBot(self):
