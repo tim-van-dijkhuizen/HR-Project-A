@@ -11,7 +11,7 @@ class BotManager(Module):
     diceValue = None
     
     # Whether the bot has finished this section
-    positionsHit = 0
+    positionsHit = 1
     
     def getHandle(self):
         return 'botManager'
