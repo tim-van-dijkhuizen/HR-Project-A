@@ -16,8 +16,17 @@ class BotManager(Module):
     def setup(self):
         playerManager = self.app.getModule('playerManager')
         
-        print(self._calcDistance(Location(1, 2), Location(3, 4), True))
-        print(self._calcDistance(Location(3, 1), Location(4, 3), True))
+        print('test1:', self._calcDistance(Location(1, 1), Location(1, 4), False))
+        print('test1:', self._calcDistance(Location(4, 2), Location(4, 3), False))
+        
+        #print('test2:', self._calcDistance(Location(1, 3), Location(1, 2), False))
+        #print('test2:', self._calcDistance(Location(3, 4), Location(3, 1), False))
+        
+        #print('test3:', self._calcDistance(Location(1, 2), Location(3, 4), False))
+        #print('test3:', self._calcDistance(Location(3, 1), Location(4, 3), False))
+        
+        #print('test4:', self._calcDistance(Location(3, 2), Location(1, 4), False))
+        #print('test4:', self._calcDistance(Location(4, 1), Location(3, 3), False))
         
     def draw(self):
         playerManager = self.app.getModule('playerManager')
@@ -65,7 +74,7 @@ class BotManager(Module):
                     return partnerLocation.position - botLocation.position
                 else:
                     # Clockwise - partner behind bot
-                    return stepsToSectionEnd + ((playerManager.maxPlayers - 1) * self.boardSize) + partnerLocation.position
+                    return stepsToSectionEnd + self._getShortestRoute(partnerLocation.position)
             elif partnerLocation.section > botLocation.section:
                 # Clockwise - partner on section in front of bot
                 sections = partnerLocation.section - botLocation.section - 1
@@ -90,8 +99,9 @@ class BotManager(Module):
         return result + 1
         
     def _getShortestRoute(self, position):
+        clockwise = position - 1
         counterClockwise = (self.boardSize + 1) - position
-        return position if position <= counterClockwise else counterClockwise
+        return clockwise if clockwise <= counterClockwise else counterClockwise
     
     def _getDirection(self, current, target):
         clockwise = self._calcDistance(current, target, True)
