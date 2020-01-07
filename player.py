@@ -4,6 +4,7 @@ class Player(Module):
     
     index = None
     image = None
+    teamNumber = None
     
     _location = None
     _oldLocation = None

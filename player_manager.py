@@ -54,11 +54,17 @@ class PlayerManager(Module):
     
     def getSubModules(self):
         modules = []
+        team = 0
         
         # Create 6 players
         for i in range(6):
             imageFile = 'pion-' + str(i + 1)
-            modules.append([Player, { 'index': i, 'image': imageFile }])
+            
+            # Increase team number
+            if i % 2 == 0:
+                team += 1
+            
+            modules.append([Player, { 'index': i, 'image': imageFile, 'teamNumber': team }])
             
         return modules
     
