@@ -45,8 +45,10 @@ class TurnManager(Module):
         if self.currentPlayer is playerManager.botPlayer:
             botManager = self.app.getModule('botManager')
             botManager.handleBotTurn()
-            nextIndex = currentIndex + 1
+            self.nextPlayer()
             
+    def isBotPlaying(self):
+        return self.currentPlayer != None and self.currentPlayer.isBot()    
         
     def getSubModules(self):
         modules = []
@@ -59,7 +61,8 @@ class TurnManager(Module):
             'height': 50,
             'textSize': ui.TEXT_SIZE_MD,  
             'text': 'Volgende',
-            'callback': turnManager.nextPlayer
+            'callback': turnManager.nextPlayer,
+            'disabled': self.isBotPlaying
         }])
         
         return modules
