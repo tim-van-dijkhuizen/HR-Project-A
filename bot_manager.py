@@ -5,34 +5,22 @@ from location import Location
 class BotManager(Module):
     
     # Settings
-    boardSize = 4
+    boardSize = 22
     
     # Current dice value
     diceValue = None
     
+    # Whether the bot has finished this section
+    positionsHit = 0
+    
     def getHandle(self):
         return 'botManager'
-    
-    def setup(self):
-        playerManager = self.app.getModule('playerManager')
-        
-        #print('test1:', self._calcDistance(Location(1, 4), Location(1, 1), False)) # 3
-        #print('test1:', self._calcDistance(Location(4, 3), Location(4, 2), False)) # 1
-        
-        #print('test2:', self._calcDistance(Location(1, 2), Location(1, 3), False)) # 3
-        #print('test2:', self._calcDistance(Location(3, 1), Location(3, 4), False)) # 1
-        
-        #print('test3:', self._calcDistance(Location(3, 4), Location(1, 2), False))
-        #print('test3:', self._calcDistance(Location(4, 3), Location(3, 1), False))
-        
-        #print('test4:', self._calcDistance(Location(1, 2), Location(3, 4), False))
-        #print('test4:', self._calcDistance(Location(3, 1), Location(4, 3), False))
         
     def draw(self):
         playerManager = self.app.getModule('playerManager')
         
     def rollDice(self):
-        self.diceValue = random(1, 7)   
+        self.diceValue = int(random(1, 7))   
     
     def handleBotTurn(self):
         playerManager = self.app.getModule('playerManager')
@@ -49,16 +37,67 @@ class BotManager(Module):
         botLocation = botPlayer.getLocation()
         partnerLocation = botPartner.getLocation()
 
-        # Update direction
-        self._updateDirection(botLocation, partnerLocation)
+        # Distances
+        clockwise = self._calcDistance(botLocation, partnerLocation, True)
+        counterClockwise = self._calcDistance(botLocation, partnerLocation, False)
 
-        if botLocation > partnerLocation:
-            botLocation = botLocation - steps
-            botPlayer.setLocation(botLocation)
+        # Perform steps
+        if clockwise <= counterClockwise:
+            self.performSteps(botPlayer, steps, True)
         else:
-            botLocation = steps + botLocation
-            botPlayer.setLocation(botLocation)
-          
+            self.performSteps(botPlayer, steps, False)
+         
+    def performSteps(self, player, steps, clockwise):
+        playerManager = self.app.getModule('playerManager')
+        location = player.getLocation()
+        stepsLeft = steps
+        
+        # New section and position
+        section = location.section
+        position = location.position
+        
+        # Place steps
+        while stepsLeft > 0:
+            stepsLeft -= 1
+            
+            if clockwise:
+                position += 1
+                
+                # Make sure we stay on the board
+                if position > self.boardSize:
+                    position = 1
+            else:
+                position -= 1
+                
+                # Make sure we stay on the board
+                if position < 1:
+                    position = self.boardSize
+                    
+            self.positionsHit += 1
+                
+            # Check if this is the end
+            if position == 1 and stepsLeft >= 1:
+                stepsLeft -= 1
+                
+                if clockwise:
+                    section += 1
+                    
+                    # Reset section if we've reached the end
+                    if section > playerManager.maxPlayers:
+                        section = 1
+                else:
+                    section -= 1
+            
+                    # Reset section if we've reached the end
+                    if section < 1:
+                        section = playerManager.maxPlayers
+                        
+                # New section, reset this value
+                self.positionsHit = 0
+                        
+        # Perform steps
+        player.setLocation(Location(section, position))
+     
     def _calcDistance(self, botLocation, partnerLocation, clockwise):
         playerManager = self.app.getModule('playerManager')
         boardSize = self.boardSize * playerManager.maxPlayers
@@ -112,10 +151,19 @@ class BotManager(Module):
                 return result
            
     def _getStepsToSectionEnd(self, location, clockwise):
+        clockwiseResult = (self.boardSize - location.position) + 1
+        counterClockwiseResult = location.position - 1
+        
         if clockwise:
-            return (self.boardSize - location.position) + 1
+            result = clockwiseResult
         else:
-            return location.position - 1
+            result = counterClockwiseResult
+            
+        # Make sure we reach enough steps
+        if self.positionsHit + result < self.boardSize:
+            result = counterClockwiseResult if clockwise else clockwiseResult
+            
+        return result
         
     def _getShortestRoute(self, position):
         clockwise = position - 1

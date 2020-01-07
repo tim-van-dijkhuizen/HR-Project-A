@@ -10,14 +10,22 @@ class Player(Module):
     _oldLocation = None
     
     _partner = None
-
-    # Returns whether the player is playing
-    def isPlaying(self):
+    _team = None
+    
+    def isActive(self):
         playerManager = self.app.getModule('playerManager')
         players = playerManager.getAllPlayers()
-        index = players.index(self) + 1
         
-        return index <= playerManager.maxPlayers
+        # Return false if module not active
+        if not Module.isActive(self):
+            return False
+        
+        return (self.index + 1) <= playerManager.maxPlayers
+    
+    # Returns whether the player is playing
+    def isPlaying(self):
+        team = self.getTeam()
+        return self.isActive() and team.isPlaying
     
     # Returns the location
     def getLocation(self):
@@ -29,8 +37,16 @@ class Player(Module):
     
     # Sets the location and saves the old location
     def setLocation(self, location):
+        gameManager = self.app.getModule('gameManager')
+        screen = self.app.getCurrentScreen()
+        
+        # Update location
         self._oldLocation = self._location
         self._location = location
+        
+        # Check for win/lose
+        if screen != None and screen.getHandle() == 'game':
+            gameManager.checkWinLose()
         
     # Returns whether this player is the bot
     def isBot(self):
@@ -47,3 +63,13 @@ class Player(Module):
             self._partner = playerManager.getPlayer(partnerIndex)
         
         return self._partner
+    
+    # Returns the team object of this player
+    def getTeam(self):
+        playerManager = self.app.getModule('playerManager')
+        
+        # Find it if not cached yet
+        if self._team == None:
+            self._team = playerManager.getTeamByNumber(self.teamNumber)
+            
+        return self._team

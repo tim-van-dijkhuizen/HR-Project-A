@@ -1,5 +1,6 @@
 from module import Module
 from player import Player
+from team import Team
 
 class PlayerManager(Module):
     
@@ -12,6 +13,9 @@ class PlayerManager(Module):
     # List containing all player objects
     _players = []
     _activePlayers = []
+    
+    # List of team objects
+    _teams = {}
     
     def getHandle(self):
         return 'playerManager'
@@ -52,6 +56,9 @@ class PlayerManager(Module):
     def getAllPlayers(self):
         return self._players
     
+    def getTeamByNumber(self, number):
+        return self._teams[number]
+    
     def getSubModules(self):
         modules = []
         team = 0
@@ -65,6 +72,7 @@ class PlayerManager(Module):
                 team += 1
             
             modules.append([Player, { 'index': i, 'image': imageFile, 'teamNumber': team }])
+            self._teams[team] = Team()
             
         return modules
     

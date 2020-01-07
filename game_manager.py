@@ -2,6 +2,9 @@ from module import Module
 
 class GameManager(Module):
     
+    def getHandle(self):
+        return 'gameManager'
+    
     def checkWinLose(self):
         playerManager = self.app.getModule('playerManager')
         
@@ -15,6 +18,12 @@ class GameManager(Module):
                 
             # Check if they are standing on a breakpoint
             if player.getLocation() == 41 or player.getLocation() == 85:
-                print ('lose')
+                self.showLoseScreen()
             else :
-                print ('win')
+                self.showWinScreen()
+                
+    def openWinScreen(self):
+        pass
+        
+    def openLoseScreen(self):
+        pass
