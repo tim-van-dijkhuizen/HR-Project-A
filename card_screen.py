@@ -60,5 +60,5 @@ class CardScreen(Screen):
         return [
             cardButton,
             nameInput
-            ]
+        ]
     
