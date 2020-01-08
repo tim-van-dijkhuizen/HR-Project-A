@@ -49,16 +49,18 @@ class Player(Module):
               (str(self._oldLocation.section) + '/' + str(self._oldLocation.position)) if self._oldLocation != None else None
         )
         
-        # Check for a win/lose
-        gameManager.checkWinLose()
-        
-        # Check all boxes if its the bot
-        if self.isBot() and gameManager.gameStarted:
-            gameManager.checkGoodCard(self)
-            gameManager.checkBadCard(self)
-            gameManager.checkBreakpoint(self)
-            gameManager.checkAddBox(self)
-            gameManager.checkMinBox(self)
+        # Check if game has started
+        if gameManager.gameStarted:
+            # Check for a win/lose
+            gameManager.checkWinLose()
+            
+            # Check all boxes if its the bot
+            if self.isBot():
+                gameManager.checkGoodCard(self)
+                gameManager.checkBadCard(self)
+                gameManager.checkBreakpoint(self)
+                gameManager.checkAddBox(self)
+                gameManager.checkMinBox(self)
         
     # Returns whether this player is the bot
     def isBot(self):

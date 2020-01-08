@@ -64,10 +64,19 @@ class StartScreen(Screen):
     def startGame(self):
         gameScreen = self.app.getScreen('game')
         gameManager = self.app.getModule('gameManager')
+        turnManager = self.app.getModule('turnManager')
+        botManager = self.app.getModule('botManager')
+        currentPlayer = turnManager.currentPlayer
         
+        # Prepare game and switch to game screen
         gameManager.setBoxLocations()
         gameManager.gameStarted = True
         self.app.setCurrentScreen(gameScreen)
+        
+        # Update bot if its the first player
+        if currentPlayer != None and currentPlayer.isBot():
+            botManager.handleBotTurn()
+            turnManager.nextPlayer()
                       
     def getSubModules(self):
         modules = []

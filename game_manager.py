@@ -43,7 +43,7 @@ class GameManager(Module):
                 continue
                 
             # Check if they are standing on a breakpoint
-            if player.getLocation() in self.breakPointsLocation:
+            if player.getLocation() in self.breakPointLocations:
                 self.showLoseScreen()
             else :
                 self.showWinScreen()
