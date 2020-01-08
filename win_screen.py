@@ -14,6 +14,7 @@ class WinScreen(Screen):
         textSize(ui.TEXT_SIZE_XL)
         textAlign(CENTER)
         
+        # Show text
         if self.isWinner:
             text('Gefeliciteerd, je hebt gewonnen!', width / 2, height / 2)
         else:
