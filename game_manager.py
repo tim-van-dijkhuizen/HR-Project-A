@@ -72,10 +72,10 @@ class GameManager(Module):
             self.breakPointLocations = [Location(2,19), Location(4,19)]
             self.badCardLocations = [Location(1, 3), Location(1, 7), Location(1, 11), Location(1, 15), Location(1, 19), Location(2, 3), Location(2, 7), Location(2, 11), Location(2, 15), Location(3, 3), Location(3, 7), Location(3, 11), Location(3, 15), Location(3, 19), Location(4, 3), Location(4, 7), Location(4, 11), Location(4, 15)]
         else:
-            self.minBoxLocations = [Location(3,12), Location(6,12)]
-            self.addBoxLocations = [Location(1,12), Location(2,12), Location(4,12), Location(5,12)]    
-            self.warpLocations = [[Location(1, 6), Location(1, 10)], [Location(1, 18),Location(1, 14)], [Location(3, 4), Location(3, 19)], [Location(2, 6), Location(2, 10)], [Location(2, 18),Location(2, 14)], [Location(3, 6), Location(3, 10)], [Location(3, 18),Location(3, 14)],[Location(6, 4), Location(6, 19)], [Location(4, 6), Location(4, 10)], [Location(4, 18),Location(4, 14)], [Location(5, 6), Location(5, 10)], [Location(5, 18),Location(5, 14)], [Location(6, 6), Location(6, 10)], [Location(6, 18),Location(6, 14)]]
-            self.breakPointLocations = [Location(3, 19), Location(6, 19)]
+            self.minBoxLocations = [Location(1,12), Location(4,12)]
+            self.addBoxLocations = [Location(2,12), Location(3,12), Location(5,12), Location(6,12)]    
+            self.warpLocations = [[Location(1, 6), Location(1, 10)], [Location(1, 18),Location(1, 14)], [Location(4, 19), Location(4, 4)], [Location(2, 6), Location(2, 10)], [Location(2, 18),Location(2, 14)], [Location(3, 6), Location(3, 10)], [Location(3, 18),Location(3, 14)],[Location(1, 4), Location(1, 19)], [Location(4, 6), Location(4, 10)], [Location(4, 18),Location(4, 14)], [Location(5, 6), Location(5, 10)], [Location(5, 18),Location(5, 14)], [Location(6, 6), Location(6, 10)], [Location(6, 18),Location(6, 14)]]
+            self.breakPointLocations = [Location(4, 19), Location(1, 19)]
             self.badCardLocations = [Location(1, 3), Location(1, 7), Location(1, 11), Location(1, 15), Location(1, 19), Location(2, 3), Location(2, 7), Location(2, 11), Location(2, 15), Location(2, 19), Location(3, 3), Location(3, 7), Location(3, 11), Location(3, 15), Location(4, 3), Location(4, 7), Location(4, 11), Location(4, 15), Location(4, 19), Location(5, 3), Location(5, 7), Location(5, 11), Location(5, 15), Location(5, 19), Location(6, 3), Location(6, 7), Location(6, 11), Location(6, 15)]
             
     def checkGoodCard(self):
