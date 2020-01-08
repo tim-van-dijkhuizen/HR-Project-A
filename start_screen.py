@@ -81,7 +81,7 @@ class StartScreen(Screen):
             'textSize': ui.TEXT_SIZE_LG,  
             'text': '2 teams',
             'group': 'maxPlayers',
-            'selectedColor': ui.COLOR_YELLOW,
+            'selectedColor': ui.COLOR_RED_DARK,
             'onSelect': self.setMaxToFour,
             'default': True
         }])
@@ -94,7 +94,7 @@ class StartScreen(Screen):
             'textSize': ui.TEXT_SIZE_LG, 
             'text': '3 Teams',
             'group': 'maxPlayers',
-            'selectedColor': ui.COLOR_YELLOW,
+            'selectedColor': ui.COLOR_RED_DARK,
             'onSelect': self.setMaxToSix
         }])
      

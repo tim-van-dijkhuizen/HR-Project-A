@@ -26,9 +26,6 @@ class LocationButton(Clickable):
         screen = self.app.getCurrentScreen()
         circleSize = self.width / 2
         
-        fill(0, 0, 0, 0)
-        rect(self.x, self.y, self.width, self.height)
-        
         # Set color
         fill(ui.COLOR_RED_DARK)
         
