@@ -12,9 +12,9 @@ class WinScreen(Screen):
         # Set styling
         fill(ui.COLOR_TEXT)
         textSize(ui.TEXT_SIZE_XL)
-        textAlign(LEFT)
+        textAlign(CENTER)
         
         if self.isWinner:
-            text('Gefeliciteerd, je hebt gewonnen!', 600, 300)
+            text('Gefeliciteerd, je hebt gewonnen!', width / 2, height / 2)
         else:
-            text('Helaas, je hebt verloren!', 600, 550)
+            text('Helaas, je hebt verloren!', width / 2, height / 2)
