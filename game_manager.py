@@ -68,7 +68,7 @@ class GameManager(Module):
         if playerManager.maxPlayers == 4:
             self.minBoxLocations = [Location(2, 12), Location(4, 12)]
             self.addBoxLocations = [Location(1, 12), Location(3, 12)]
-            self.warpLocations = [[Location(1, 6), Location(1, 10)], [Location(1, 18),Location(1, 14)], [Location(2, 4), Location(2, 19)], [Location(2, 6), Location(2, 10)], [Location(2, 18),Location(2, 14)], [Location(3, 6), Location(3, 10)], [Location(3, 18),Location(3, 14)],[Location(4, 4), Location(4, 19)], [Location(4, 6), Location(4, 10)], [Location(4, 18),Location(4, 14)]]
+            self.warpLocations = [[Location(1, 6), Location(1, 10)], [Location(1, 18), Location(1, 14)], [Location(2, 4), Location(2, 19)], [Location(2, 6), Location(2, 10)], [Location(2, 18),Location(2, 14)], [Location(3, 6), Location(3, 10)], [Location(3, 18),Location(3, 14)],[Location(4, 4), Location(4, 19)], [Location(4, 6), Location(4, 10)], [Location(4, 18),Location(4, 14)]]
             self.breakPointLocations = [Location(2,19), Location(4,19)]
             self.badCardLocations = [Location(1, 3), Location(1, 7), Location(1, 11), Location(1, 15), Location(1, 19), Location(2, 3), Location(2, 7), Location(2, 11), Location(2, 15), Location(3, 3), Location(3, 7), Location(3, 11), Location(3, 15), Location(3, 19), Location(4, 3), Location(4, 7), Location(4, 11), Location(4, 15)]
         else:
@@ -78,40 +78,68 @@ class GameManager(Module):
             self.breakPointLocations = [Location(3, 19), Location(6, 19)]
             self.badCardLocations = [Location(1, 3), Location(1, 7), Location(1, 11), Location(1, 15), Location(1, 19), Location(2, 3), Location(2, 7), Location(2, 11), Location(2, 15), Location(2, 19), Location(3, 3), Location(3, 7), Location(3, 11), Location(3, 15), Location(4, 3), Location(4, 7), Location(4, 11), Location(4, 15), Location(4, 19), Location(5, 3), Location(5, 7), Location(5, 11), Location(5, 15), Location(5, 19), Location(6, 3), Location(6, 7), Location(6, 11), Location(6, 15)]
             
-    def checkGoodCard(self, player):
+    def checkGoodCard(self):
+        playerManager = self.app.getModule('playerManager')
+        player = playerManager.botPlayer
+        
         if player.getLocation() in self.goodCardLocations:
             cardScreen = self.app.getScreen('card')
             
             cardScreen.cardType = 'good'
             self.app.setCurrentScreen(cardScreen)
             
-    def checkBadCard(self, player):
+    def checkBadCard(self):
+        playerManager = self.app.getModule('playerManager')
+        player = playerManager.botPlayer
+        
         if player.getLocation() in self.badCardLocations:
             cardScreen = self.app.getScreen('card')
             
             cardScreen.cardType = 'bad'
             self.app.setCurrentScreen(cardScreen)
     
-    def checkBreakpoint(self, player):
+    def checkBreakpoint(self):
+        playerManager = self.app.getModule('playerManager')
         botManager = self.app.getModule('botManager')
+        player = playerManager.botPlayer
+        
         
         # Set breakpoint to True if the bot steps on it
         if player.getLocation() in self.breakPointLocations:
             botManager.breakPoint = True
             print('breakPoint:', True)
             
-    def checkAddBox(self, player):
+    def checkAddBox(self):
+        playerManager = self.app.getModule('playerManager')
         botManager = self.app.getModule('botManager')
+        player = playerManager.botPlayer
         
         # Apply effect when stepped on
         if player.getLocation() in self.addBoxLocations:
             botManager.decreaseDistance(2)
             print('addBox:', 2)
             
-    def checkMinBox(self, player):
+    def checkMinBox(self):
+        playerManager = self.app.getModule('playerManager')
         botManager = self.app.getModule('botManager')
+        player = playerManager.botPlayer
         
         # Apply effect when stepped on
         if player.getLocation() in self.minBoxLocations:
             botManager.increaseDistance(2)
             print('minBox:', 2)
+            
+    def checkWarp(self):
+        playerManager = self.app.getModule('playerManager')
+        botManager = self.app.getModule('botManager')
+        player = playerManager.botPlayer
+        
+        # Loop through warp locations
+        for warp in self.warpLocations:
+            fromLocation = warp[0]
+            toLocation = warp[1]
+            
+            # Apply effect when stepped on
+            if player.getLocation() == fromLocation:
+                player.setLocation(toLocation)
+                print('warp')

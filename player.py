@@ -56,11 +56,12 @@ class Player(Module):
             
             # Check all boxes if its the bot
             if self.isBot():
-                gameManager.checkGoodCard(self)
-                gameManager.checkBadCard(self)
-                gameManager.checkBreakpoint(self)
-                gameManager.checkAddBox(self)
-                gameManager.checkMinBox(self)
+                gameManager.checkGoodCard()
+                gameManager.checkBadCard()
+                gameManager.checkBreakpoint()
+                gameManager.checkAddBox()
+                gameManager.checkMinBox()
+                gameManager.checkWarp()
         
     # Returns whether this player is the bot
     def isBot(self):
