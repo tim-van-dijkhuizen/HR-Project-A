@@ -33,15 +33,11 @@ class GameManager(Module):
     
     def checkWinLose(self):
         playerManager = self.app.getModule('playerManager')
-        
-        # Loop through players
-        for player in playerManager.getPlayers():
-            partner = player.getPartner()
-                    
-            # Ignore if team members are not on the same location
-            if player.getLocation() != partner.getLocation():
-                continue
-                
+        player = playerManager.botPlayer
+        partner = player.getPartner()
+
+        # Check if they are on the same location
+        if player.getLocation() == partner.getLocation():    
             # Check if they are standing on a breakpoint
             if player.getLocation() in self.breakPointLocations:
                 self.openLoseScreen()
