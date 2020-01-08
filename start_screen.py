@@ -64,9 +64,19 @@ class StartScreen(Screen):
     def startGame(self):
         gameScreen = self.app.getScreen('game')
         gameManager = self.app.getModule('gameManager')
+        turnManager = self.app.getModule('turnManager')
+        botManager = self.app.getModule('botManager')
+        currentPlayer = turnManager.currentPlayer
         
+        # Prepare game and switch to game screen
         gameManager.setBoxLocations()
+        gameManager.gameStarted = True
         self.app.setCurrentScreen(gameScreen)
+        
+        # Update bot if its the first player
+        if currentPlayer != None and currentPlayer.isBot():
+            botManager.handleBotTurn()
+            turnManager.nextPlayer()
                       
     def getSubModules(self):
         modules = []
@@ -80,7 +90,7 @@ class StartScreen(Screen):
             'textSize': ui.TEXT_SIZE_LG,  
             'text': '2 teams',
             'group': 'maxPlayers',
-            'selectedColor': ui.COLOR_YELLOW,
+            'selectedColor': ui.COLOR_RED_DARK,
             'onSelect': self.setMaxToFour,
             'default': True
         }])
@@ -93,7 +103,7 @@ class StartScreen(Screen):
             'textSize': ui.TEXT_SIZE_LG, 
             'text': '3 Teams',
             'group': 'maxPlayers',
-            'selectedColor': ui.COLOR_YELLOW,
+            'selectedColor': ui.COLOR_RED_DARK,
             'onSelect': self.setMaxToSix
         }])
      

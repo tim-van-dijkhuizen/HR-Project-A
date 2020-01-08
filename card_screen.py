@@ -36,14 +36,16 @@ class CardScreen(Screen):
         playerManager = self.app.getModule('playerManager')
         botManager = self.app.getModule('botManager')
         
+        # Go back
+        self.app.setCurrentScreen(gameScreen)
+        
         # Apply steps
         if self.cardType == 'good':
             botManager.decreaseDistance(self.steps)
+            print('goodCard:', self.steps)
         else:
             botManager.increaseDistance(self.steps)
-        
-        # Go back
-        self.app.setCurrentScreen(gameScreen)
+            print('badCard:', self.steps)
         
     def isDisabled(self):
         return not self.valid

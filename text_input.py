@@ -24,7 +24,7 @@ class TextInput(Clickable):
         
         rect(self.x, self.y, self.width, self.height)
         
-        fill(ui.COLOR_TEXT)
+        fill(ui.COLOR_GRAY_DARK)
         textAlign(LEFT)
         textSize(ui.TEXT_SIZE_SM)
         

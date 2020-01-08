@@ -37,7 +37,8 @@ class BotManager(Module):
         steps = self.diceValue
         
         if self.breakPoint and steps == 6:
-            self.breakPoint = False    
+            self.breakPoint = False
+            print('breakPoint:', False)  
         elif not self.breakPoint:
             self.performSteps(steps, self.shouldGoClockwise())    
     
