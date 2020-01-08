@@ -3,6 +3,7 @@ import player_manager
 from screen import Screen
 from button import Button
 from selectable_button import SelectableButton
+from conditional_button import ConditionalButton
 from location_button  import LocationButton
 from player_button import PlayerButton
 from location import Location
@@ -44,6 +45,7 @@ class GameScreen(Screen):
         # Board image
         boardImage = imageLoader.get('board-players' + str(playerManager.maxPlayers))
         image(boardImage, self.boardX, self.boardY, self.boardWidth, self.boardHeight)
+            
 
     def afterShow(self):
         playerManager = self.app.getModule('playerManager')
@@ -58,6 +60,18 @@ class GameScreen(Screen):
                 if botButton != None:
                     botButton.select()
 
+    def showBreakpointButton(self):
+        turnManager = self.app.getModule('turnManager')
+        botManager = self.app.getModule('botManager')
+        return turnManager.currentPlayer.isBot() and botManager.breakPoint
+
+    def disableBreakpoint(self):
+        turnManager = self.app.getModule('turnManager')
+        botManager = self.app.getModule('botManager')
+        
+        botManager.breakPoint = False
+        turnManager.nextPlayer()
+
     def getSubModules(self):
         playerManager = self.app.getModule('playerManager')
         
@@ -65,6 +79,17 @@ class GameScreen(Screen):
             [ GameManager, {  } ],
             [ TurnManager, {  } ],
             [ BotManager, {  } ],
+        
+            [ConditionalButton, {
+                'x': ui.SPACING_SM + 150 + ui.SPACING_SM + 50 + ui.SPACING_SM,
+                'y': ui.SPACING_MD + ui.SPACING_SM,
+                'width': 150,
+                'height': 50,
+                'textSize': ui.TEXT_SIZE_MD,  
+                'text': '6 Gegooid',
+                'callback': self.disableBreakpoint,
+                'condition': self.showBreakpointButton
+            }],
         
             [ LocationButton, { 'x': 735 + self.buttonOffset2, 'y': 275 , 'maxPlayers': 4, 'location': Location(1, 1), 'readOnly': True } ],
             [ LocationButton, { 'x': 705 + self.buttonOffset2, 'y': 250 , 'maxPlayers': 4, 'location': Location(1, 2), 'readOnly': True } ],

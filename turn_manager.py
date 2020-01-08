@@ -28,6 +28,7 @@ class TurnManager(Module):
             
     def nextPlayer(self):
         playerManager = self.app.getModule('playerManager')
+        botManager = self.app.getModule('botManager')
         players = playerManager.getPlayers()
         
         # Find new index
@@ -43,12 +44,14 @@ class TurnManager(Module):
         
         # Handle bot turn
         if self.currentPlayer is playerManager.botPlayer:
-            botManager = self.app.getModule('botManager')
             botManager.handleBotTurn()
-            self.nextPlayer()
+            
+            if not botManager.breakPoint:
+                self.nextPlayer()
             
     def isBotPlaying(self):
-        return self.currentPlayer != None and self.currentPlayer.isBot()    
+        botManager = self.app.getModule('botManager')
+        return self.currentPlayer != None and self.currentPlayer.isBot() and not botManager.breakPoint
         
     def getSubModules(self):
         modules = []
