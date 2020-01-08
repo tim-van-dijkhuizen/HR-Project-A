@@ -44,15 +44,23 @@ class GameManager(Module):
                 
             # Check if they are standing on a breakpoint
             if player.getLocation() in self.breakPointLocations:
-                self.showLoseScreen()
+                self.openLoseScreen()
             else :
-                self.showWinScreen()
+                self.openWinScreen()
                 
     def openWinScreen(self):
-        pass
+        winScreen = self.app.getScreen('win')
+        
+        # Set isWinner and open screen
+        winScreen.isWinner = True
+        self.app.setCurrentScreen(winScreen)
         
     def openLoseScreen(self):
-        pass
+        winScreen = self.app.getScreen('win')
+        
+        # Set isWinner and open screen
+        winScreen.isWinner = False
+        self.app.setCurrentScreen(winScreen)
     
     def setBoxLocations(self):
         playerManager = self.app.getModule('playerManager')

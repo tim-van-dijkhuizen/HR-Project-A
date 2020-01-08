@@ -4,17 +4,19 @@ from start_screen import StartScreen
 from game_screen import GameScreen
 from location_screen import LocationScreen
 from card_screen import CardScreen
+from win_screen import WinScreen
 
 modules = [
            
     # General modules
     [ ImageLoader, {  } ],
-    [ PlayerManager, { 'maxPlayers': 4 } ],
+    [ PlayerManager, {  } ],
     
     # Screens
     [ StartScreen, {  } ],
-    [ GameScreen, { 'playerCount': 4, 'direction': True } ],
+    [ GameScreen, {  } ],
     [ LocationScreen, {  } ],
-    [ CardScreen, {  } ]
+    [ CardScreen, {  } ],
+    [ WinScreen, {  } ]
 
 ]

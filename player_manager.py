@@ -5,7 +5,7 @@ from team import Team
 class PlayerManager(Module):
     
     # The max amount of players
-    maxPlayers = None
+    maxPlayers = 4
     
     # The current bot player
     botPlayer = None
