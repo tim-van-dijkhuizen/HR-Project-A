@@ -5,6 +5,8 @@ from card_screen import CardScreen
 
 class GameManager(Module):
     
+    gameStarted = False
+    
     # Goodcard locations
     goodCardLocations = [
         Location(1, 5), Location(1, 9), Location(1, 13),
@@ -83,9 +85,25 @@ class GameManager(Module):
             self.app.setCurrentScreen(cardScreen)
     
     def checkBreakpoint(self, player):
-        playerManager = self.app.getModule('playerManager')
         botManager = self.app.getModule('botManager')
         
         # Set breakpoint to True if the bot steps on it
         if player.getLocation() in self.breakPointLocations:
             botManager.breakPoint = True
+            print('breakPoint:', True)
+            
+    def checkAddBox(self, player):
+        botManager = self.app.getModule('botManager')
+        
+        # Apply effect when stepped on
+        if player.getLocation() in self.addBoxLocations:
+            botManager.decreaseDistance(2)
+            print('addBox:', 2)
+            
+    def checkMinBox(self, player):
+        botManager = self.app.getModule('botManager')
+        
+        # Apply effect when stepped on
+        if player.getLocation() in self.minBoxLocations:
+            botManager.increaseDistance(2)
+            print('minBox:', 2)

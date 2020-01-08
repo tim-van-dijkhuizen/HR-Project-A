@@ -39,8 +39,10 @@ class CardScreen(Screen):
         # Apply steps
         if self.cardType == 'good':
             botManager.decreaseDistance(self.steps)
+            print('goodCard:', self.steps)
         else:
             botManager.increaseDistance(self.steps)
+            print('badCard:', self.steps)
         
         # Go back
         self.app.setCurrentScreen(gameScreen)

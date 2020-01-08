@@ -66,6 +66,7 @@ class StartScreen(Screen):
         gameManager = self.app.getModule('gameManager')
         
         gameManager.setBoxLocations()
+        gameManager.gameStarted = True
         self.app.setCurrentScreen(gameScreen)
                       
     def getSubModules(self):

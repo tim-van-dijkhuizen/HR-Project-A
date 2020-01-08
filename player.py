@@ -44,12 +44,19 @@ class Player(Module):
         self._oldLocation = self._location
         self._location = location
         
-        # Check for win/lose
-        if screen != None and screen.getHandle() != 'location':
+        print('setPlayerLocation:', 
+              (str(self._location.section) + '/' + str(self._location.position)) if self._location != None else None, 
+              (str(self._oldLocation.section) + '/' + str(self._oldLocation.position)) if self._oldLocation != None else None
+        )
+        
+        # Check for win/loses and all boxes
+        if self.isBot() and gameManager.gameStarted:
             gameManager.checkWinLose()
             gameManager.checkGoodCard(self)
             gameManager.checkBadCard(self)
             gameManager.checkBreakpoint(self)
+            gameManager.checkAddBox(self)
+            gameManager.checkMinBox(self)
         
     # Returns whether this player is the bot
     def isBot(self):
