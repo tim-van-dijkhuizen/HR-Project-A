@@ -35,22 +35,12 @@ class CardScreen(Screen):
         gameScreen = self.app.getScreen('game')
         playerManager = self.app.getModule('playerManager')
         botManager = self.app.getModule('botManager')
-        botPlayer = playerManager.botPlayer
         
-        # Get locations
-        botLocation = botPlayer.getLocation()
-        partnerLocation = botPlayer.getPartner().getLocation()
-        
-        # Apply points
-        clockwise = botManager.calcDistance(botLocation, partnerLocation, True)
-        counterClockwise = botManager.calcDistance(botLocation, partnerLocation, False)
-        
+        # Apply steps
         if self.cardType == 'good':
-            performClockwise = clockwise <= counterClockwise
+            botManager.decreaseDistance(self.steps)
         else:
-            performClockwise = clockwise >= counterClockwise
-        
-        botManager.performSteps(self.steps, performClockwise)
+            botManager.increaseDistance(self.steps)
         
         # Go back
         self.app.setCurrentScreen(gameScreen)
